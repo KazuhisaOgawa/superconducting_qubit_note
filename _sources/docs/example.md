@@ -1,4 +1,4 @@
-# My nifty title
+# エグザンプル
 
 Some **text**!
 
