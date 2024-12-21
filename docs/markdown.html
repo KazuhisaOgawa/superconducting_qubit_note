@@ -60,7 +60,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/markdown';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -376,7 +377,7 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="id1">
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>マークダウン<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
 in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
@@ -429,26 +430,27 @@ then the bibliography is inserted with:</p>
 <h2>Learn more<a class="headerlink" href="#learn-more" title="Link to this heading">#</a></h2>
 <p>This is just a simple starter to get you started.
 You can learn a lot more at <a class="reference external" href="https://jupyterbook.org">jupyterbook.org</a>.</p>
-<p>$$
-a_1=b_1+c_1\
-a_2=b_2+c_2-d_2+e_2
-$$</p>
-<p>$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a0d19a86-5a32-4d57-8f9b-736c9b7a4403">
-<span class="eqno">(2)<a class="headerlink" href="#equation-a0d19a86-5a32-4d57-8f9b-736c9b7a4403" title="Permalink to this equation">#</a></span>\[\begin{gather}
+<div class="math notranslate nohighlight">
+\[\begin{split}
 a_1=b_1+c_1\\
 a_2=b_2+c_2-d_2+e_2
-\end{gather}\]</div>
-<p>$$</p>
-<p>$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0eae3506-fe42-44b2-b7de-a10dda3e350d">
-<span class="eqno">(3)<a class="headerlink" href="#equation-0eae3506-fe42-44b2-b7de-a10dda3e350d" title="Permalink to this equation">#</a></span>\[\begin{align}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gather}
+a_1=b_1+c_1\\
+a_2=b_2+c_2-d_2+e_2
+\end{gather}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
 a_{11}&amp; =b_{11}&amp;
   a_{12}&amp; =b_{12}\\
 a_{21}&amp; =b_{21}&amp;
   a_{22}&amp; =b_{22}+c_{22}
-\end{align}\]</div>
-<p>$$</p>
+\end{align}
+\end{split}\]</div>
 </section>
 </section>
 
