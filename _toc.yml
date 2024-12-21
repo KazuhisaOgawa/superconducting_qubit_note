@@ -4,7 +4,8 @@
 format: jb-book
 root: docs/intro
 chapters:
+- file: docs/single_qubit
 - file: docs/markdown
-- file: docs/notebooks
 - file: docs/markdown-notebooks
 - file: docs/mymarkdownfile
+- file: docs/共振器の反射応答の古典波動論での導出.md
