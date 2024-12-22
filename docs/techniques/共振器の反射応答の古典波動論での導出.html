@@ -1,0 +1,569 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>共振器の反射応答の古典波動論での導出 &#8212; 超伝導qubitノート</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/techniques/共振器の反射応答の古典波動論での導出';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">超伝導qubitノート</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    イントロページ
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/techniques/共振器の反射応答の古典波動論での導出.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/techniques/共振器の反射応答の古典波動論での導出.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>共振器の反射応答の古典波動論での導出</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>共振器の反射応答の古典波動論での導出<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>共振器QED理論から, 共振器に対する振幅反射率の周波数応答は</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\varGamma_{\rm q} = 
+\frac{(\kappa_{\rm i} - \kappa_{\rm e})/2 - \mathrm{i}\Delta\omega}
+{(\kappa_{\rm i} + \kappa_{\rm e})/2 - \mathrm{i}\Delta\omega}
+\end{align}
+\]</div>
+<p>と表される. ここで<span class="math notranslate nohighlight">\(\Delta\omega:=\omega-\omega_{\rm r}\)</span>は入力電磁波の周波数<span class="math notranslate nohighlight">\(\omega\)</span>と共振器共鳴周波数<span class="math notranslate nohighlight">\(\omega_{\rm r}\)</span>の差, <span class="math notranslate nohighlight">\(\kappa_{\rm i}\)</span>, <span class="math notranslate nohighlight">\(\kappa_{\rm e}\)</span>はそれぞれ共振器の内部, 外部結合レートである. ここでは共振器QED理論ではなく古典波動論に基づいて共振器に対する振幅反射率を導出し, 各パラメータが古典と量子でどのように対応するかを調べる.</p>
+<a class="reference internal image-reference" href="docs/figs/classical_resonator.png"><img alt="docs/figs/classical_resonator.png" src="docs/figs/classical_resonator.png" style="width: 400px;" /></a>
+<p>上図のように, 距離<span class="math notranslate nohighlight">\(d\)</span>だけ離れた振幅反射率<span class="math notranslate nohighlight">\(r_1\)</span>, <span class="math notranslate nohighlight">\(r_2\)</span>の半透明鏡M1, M2からなる共振器を考える. ただし<span class="math notranslate nohighlight">\(r_1\)</span>, <span class="math notranslate nohighlight">\(r_2\)</span>は1に十分近い値であると仮定する. M1側から電磁波を入射するとすると, M1による透過は外部結合レートに関係し, M2による透過は内部結合レートに関係する. 入射電磁波の振幅を<span class="math notranslate nohighlight">\(E\mathrm{e}^{{\rm i}\omega t}\)</span>, 伝搬速度(位相速度)を<span class="math notranslate nohighlight">\(v\)</span>とすると, 出力される各項の振幅は,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E_{\rm r,0} &amp;= r_1E\mathrm{e}^{{\rm i}\omega t} \\
+E_{\rm r,1} &amp;= (1-r_1^2) r_2 E\mathrm{e}^{{\rm i}\omega (t-2d/v)} \\
+E_{\rm r,2} &amp;= -r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v} E_{\rm r,1}\\
+&amp;\cdots\nonumber\\
+E_{{\rm r},n} &amp;= \left(-r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}\right)^{n-1} E_{\rm r,1}\\
+\end{align}
+\end{split}\]</div>
+<p>と表せる(固定端反射, 開放端反射で<span class="math notranslate nohighlight">\(\pm\)</span>の符号が異なることに注意). したがって全反射波の総和は,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\sum_{n=0}^\infty E_{\rm r,n}
+&amp;= E_{\rm r,0} + \frac{E_{\rm r,1}}{1+r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}\nonumber\\
+&amp; = E\mathrm{e}^{{\rm i}\omega t}
+\frac{r_1+r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}
+{1+r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}
+\end{align}
+\end{split}\]</div>
+<p>となるため, 振幅反射係数は,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\varGamma_{\rm c} =
+\frac{r_1+r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}
+{1+r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}
+\end{align}
+\]</div>
+<p>と求められる.</p>
+<p>次に<span class="math notranslate nohighlight">\(\varGamma_{\rm q}\)</span>と<span class="math notranslate nohighlight">\(\varGamma_{\rm c}\)</span>の関係を調べる. <span class="math notranslate nohighlight">\(\omega_{\rm r}\)</span>, <span class="math notranslate nohighlight">\(d\)</span>, <span class="math notranslate nohighlight">\(v\)</span>は以下の共鳴条件を満たす:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\omega_{\rm r}\frac{2d}{v} = \pi,
+\end{align}
+\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(2d/v\)</span>は電磁波が共振器を往復するのにかかる時間, 右辺が<span class="math notranslate nohighlight">\(2\pi\)</span>ではなく<span class="math notranslate nohighlight">\(\pi\)</span>なのはM1とM2での反射における符号が異なる(=λ/4共振器である)ためである. 入射電磁波の周波数を<span class="math notranslate nohighlight">\(\omega=\omega_{\rm r}+\Delta\omega\)</span>と表すと,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+{\rm e}^{-{\rm i}\omega 2d/v}
+&amp;= {\rm e}^{-{\rm i}(\omega_{\rm r}+\Delta\omega) 2d/v}\nonumber\\
+&amp;= {\rm e}^{-{\rm i}\omega_{\rm r} 2d/v}
+{\rm e}^{-{\rm i}\Delta\omega 2d/v}\nonumber\\
+&amp;= -1\cdot {\rm e}^{-{\rm i}\pi\Delta\omega/\omega_{\rm r}}
+\nonumber\\
+&amp;\approx -1 +{\rm i}\pi\Delta\omega/\omega_{\rm r}
+\end{align}
+\end{split}\]</div>
+<p>となる. ただし<span class="math notranslate nohighlight">\(\Delta\omega \ll \omega_{\rm r}\)</span>と仮定した. したがって複素反射係数<span class="math notranslate nohighlight">\(\varGamma_{\rm c}\)</span>は次のように表せる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\varGamma_{\rm c}
+&amp;= 
+\frac{r_1+r_2 (-1 +{\rm i}\pi\Delta\omega/\omega_{\rm r})}
+{1+r_1r_2 (-1 +{\rm i}\pi\Delta\omega/\omega_{\rm r})}\nonumber\\
+&amp;= 
+\frac{\frac{r_1-r_2}{\pi/\omega_{\rm r}} 
++ {\rm i}r_2\Delta\omega}
+{\frac{1-r_1r_2}{\pi/\omega_{\rm r}} 
++{\rm i}r_1r_2\Delta\omega}
+\end{align}.
+\end{split}\]</div>
+<p>次に, 共振器の内部, 外部結合レート<span class="math notranslate nohighlight">\(\kappa_{\rm i}\)</span>, <span class="math notranslate nohighlight">\(\kappa_{\rm e}\)</span>は<span class="math notranslate nohighlight">\(r_1\)</span>, <span class="math notranslate nohighlight">\(r_2\)</span>, <span class="math notranslate nohighlight">\(d\)</span>, <span class="math notranslate nohighlight">\(v\)</span>を用いて以下のように表せる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\kappa_{\rm i}
+&amp;=\frac{1-r_2^2}{2d/v}
+=\frac{1-r_2^2}{\pi/\omega_{\rm r}},\\
+\kappa_{\rm e}
+&amp;=\frac{1-r_1^2}{2d/v}=\frac{1-r_1^2}{\pi/\omega_{\rm r}},\\
+\end{align}
+\end{split}\]</div>
+<p>ここでそれぞれの分子はM2, M1におけるエネルギー(振幅の2乗に対応する量)透過率, 分母は電磁波が共振器を往復するのにかかる時間である. これらの和と差は次のように近似できる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\kappa_{\rm i} + \kappa_{\rm e} 
+&amp;=
+\frac{2-r_1^2-r_2^2}{\pi/\omega_{\rm r}}
+=
+\frac{2-2r_1r_2-(r_1-r_2)^2}{\pi/\omega_{\rm r}}\nonumber\\
+&amp;\approx
+\frac{2-2r_1r_2}{\pi/\omega_{\rm r}},
+\quad[(r_1-r_2)^2\approx 0 \text{とした}]\\
+\kappa_{\rm i} - \kappa_{\rm e} 
+&amp;=
+\frac{r_1^2-r_2^2}{\pi/\omega_{\rm r}}
+=
+\frac{(r_1+r_2)(r_1-r_2)}{\pi/\omega_{\rm r}}\nonumber\\
+&amp;\approx
+\frac{2(r_1-r_2)}{\pi/\omega_{\rm r}}.
+\quad[r_1+r_2\approx 2 \text{とした}]\\
+\end{align}
+\end{split}\]</div>
+<p>したがって,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\varGamma_{\rm c}
+&amp;\approx
+\frac{(\kappa_{\rm i} - \kappa_{\rm e})/2
++ {\rm i}r_2\Delta\omega}
+{(\kappa_{\rm i} + \kappa_{\rm e})/2
++{\rm i}r_1r_2\Delta\omega}
+\end{align}
+\]</div>
+<p>であり, さらに<span class="math notranslate nohighlight">\(r_2\approx1\)</span>, <span class="math notranslate nohighlight">\(r_1r_2\approx1\)</span>と近似すれば, <span class="math notranslate nohighlight">\(\varGamma_{\rm c}\approx \varGamma_{\rm q}\)</span>の関係が得られる.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/techniques"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 小川 和久
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
