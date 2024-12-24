@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1qubit &#8212; 超伝導qubitノート</title>
+    <title>1 qubit &#8212; 超伝導qubitノート</title>
   
   
   
@@ -65,6 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/SCQ_intro/single_qubit';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2 qubit" href="two_qubit.html" />
+    <link rel="prev" title="入門編" href="SCQ_intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,8 +118,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -160,11 +160,23 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../intro.html">
-                    イントロページ
+                    超伝導qubitノート
                 </a>
             </li>
         </ul>
-        
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="SCQ_intro.html">入門編</a><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1 qubit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="two_qubit.html">2 qubit</a></li>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../samples/markdown-notebooks.html">マークダウン、ノートブックス</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../techniques/%E5%85%B1%E6%8C%AF%E5%99%A8%E3%81%AE%E5%8F%8D%E5%B0%84%E5%BF%9C%E7%AD%94%E3%81%AE%E5%8F%A4%E5%85%B8%E6%B3%A2%E5%8B%95%E8%AB%96%E3%81%A7%E3%81%AE%E5%B0%8E%E5%87%BA.html">共振器の反射応答の古典波動論での導出</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -327,7 +339,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -338,11 +352,20 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>1qubit</h1>
+    <h1>1 qubit</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ハミルトニアン</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">回転座標変換</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -353,15 +376,44 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="qubit">
-<h1>1qubit<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h1>
-<p>エネルギーが<span class="math notranslate nohighlight">\(E_0\)</span>と<span class="math notranslate nohighlight">\(E_1\)</span>である2準位系のハミルトニアンは,</p>
+<h1>1 qubit<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>ハミルトニアン<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>量子系の時間発展を適切に制御するためには, その系のハミルトニアンを正確に同定・設計できることが重要である. これは量子系の時間発展はSchrödinger方程式:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+{\rm i}\hbar\frac{\rm d}{{\rm d}t}\ket{\psi(t)}
+=\hat{H}\ket{\psi(t)}
+\end{align}
+\]</div>
+<p>に従うため, ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}\)</span>がその時間発展を特徴づけているからである.</p>
+<p>ハミルトニアンはその系のエネルギーを表す物理量演算子である. エネルギーが<span class="math notranslate nohighlight">\(E_0\)</span>と<span class="math notranslate nohighlight">\(E_1\)</span> (<span class="math notranslate nohighlight">\(E_0&lt;E_1\)</span>)である2準位系(qubit系)のハミルトニアンは,</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{align}
 \hat{H} = E_0|0\rangle\langle0| + E_1|1\rangle\langle1|
 \end{align}
 \]</div>
-<p>と表せる.</p>
+<p>と表せる. 恒等演算子<span class="math notranslate nohighlight">\(\hat{I}=\begin{bmatrix} 1&amp;0\\0&amp;1\\ \end{bmatrix}\)</span>, Pauli-Z演算子<span class="math notranslate nohighlight">\(\hat{Z}=\begin{bmatrix} 1&amp;0\\0&amp;-1\\ \end{bmatrix}\)</span>を用いると,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H} = \frac{E_0+E_1}{2}\hat{I} + \frac{E_0-E_1}{2}\hat{Z}
+\end{align}
+\]</div>
+<p>となる. ここで<span class="math notranslate nohighlight">\(\hat{I}\)</span>に比例する項はエネルギーの基準値に対応する項であり, Schrödinger方程式の解としては量子状態全体にかかる全体位相というゲージ自由度に現れる. この量は観測には現れず, 実際に観測に現れるのは準位間のエネルギー差に対応する周波数である. したがって<span class="math notranslate nohighlight">\(\hat{I}\)</span>に比例する項は無視し, <span class="math notranslate nohighlight">\(\omega_{\rm q}:=(E_1-E_0)/\hbar&gt;0\)</span>とすると, ハミルトニアンは</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H} = -\hbar\omega_{\rm q}\frac{\hat{Z}}{2}
+\end{align}
+\]</div>
+<p>と表せる. これが外部駆動がない時の1 qubitのハミルトニアンである.</p>
+</section>
+<section id="id2">
+<h2>回転座標変換<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -394,12 +446,47 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="SCQ_intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">入門編</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="two_qubit.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2 qubit</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ハミルトニアン</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">回転座標変換</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
