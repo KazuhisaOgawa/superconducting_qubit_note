@@ -4,8 +4,20 @@
 format: jb-book
 root: docs/intro
 chapters:
-- file: docs/single_qubit
-- file: docs/markdown
-- file: docs/markdown-notebooks
-- file: docs/mymarkdownfile
-- file: docs/共振器の反射応答の古典波動論での導出.md
+- file: docs/SCQ_intro/SCQ_intro
+  sections:
+  - file: docs/SCQ_intro/single_qubit
+  - file: docs/SCQ_intro/two_qubit
+- file: docs/samples/markdown-notebooks
+- file: docs/samples/mymarkdownfile
+  sections:
+  - file: docs/techniques/共振器の反射応答の古典波動論での導出.md
+# chapters:
+# - file: docs/samples/markdown
+#   sections:
+#   - file: docs/SCQ_intro/single_qubit
+#   - file: docs/SCQ_intro/two_qubit
+# - file: docs/samples/markdown-notebooks
+# - file: docs/samples/mymarkdownfile
+#   sections:
+#   - file: docs/techniques/共振器の反射応答の古典波動論での導出.md
