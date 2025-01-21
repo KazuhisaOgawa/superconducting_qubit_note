@@ -363,7 +363,8 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ハミルトニアン</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">回転座標変換</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">自由時間発展</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部駆動時の時間発展</a></li>
 </ul>
             </nav>
         </div>
@@ -388,7 +389,7 @@
 \end{align}
 \]</div>
 <p>に従うため, ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}\)</span>がその時間発展を特徴づけているからである.</p>
-<p>ハミルトニアンはその系のエネルギーを表す物理量演算子である. エネルギーが<span class="math notranslate nohighlight">\(E_0\)</span>と<span class="math notranslate nohighlight">\(E_1\)</span> (<span class="math notranslate nohighlight">\(E_0&lt;E_1\)</span>)である2準位系(qubit系)のハミルトニアンは,</p>
+<p>ハミルトニアンはその系のエネルギーを表す物理量演算子である. 下図のように, エネルギーが<span class="math notranslate nohighlight">\(E_0\)</span>と<span class="math notranslate nohighlight">\(E_1\)</span> (<span class="math notranslate nohighlight">\(E_0&lt;E_1\)</span>)である2準位系(qubit系)のハミルトニアンは,</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{align}
@@ -410,9 +411,125 @@
 \end{align}
 \]</div>
 <p>と表せる. これが外部駆動がない時の1 qubitのハミルトニアンである.</p>
+<a class="reference internal image-reference" href="../../_images/TLS.png"><img alt="../../_images/TLS.png" class="align-center" src="../../_images/TLS.png" style="width: 200px;" /></a>
 </section>
 <section id="id2">
-<h2>回転座標変換<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h2>自由時間発展<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>このハミルトニアンにおける時間発展は, Schrödinger方程式を解くことで求めることができる. 今はハミルトニアンが時間変化しないので, 以下のように簡単に求められる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\ket{\psi(t)} &amp;= \hat{U}(t)\ket{\psi(0)},\\
+\hat{U}(t) &amp;= \exp
+\left(
+    \frac{-{\rm i}\hat{H}t}{\hbar}
+\right)
+=
+\exp
+\left(
+    \frac{{\rm i}\omega_{\rm q}t\hat{Z}}{2}
+\right)
+= \hat{R}_z(-\omega_{\rm q}t).
+\end{align}
+\end{split}\]</div>
+<p>これは静止系（実験室系）から見たBloch球上では, Z軸周りを角速度<span class="math notranslate nohighlight">\(-\omega_{\rm q}\)</span>で回転（XYZ軸が右手系配置の場合は左ネジ方向回転に対応）する描像となる. 典型的にqubitの共鳴周波数<span class="math notranslate nohighlight">\(\omega_{\rm q}\)</span>は数GHzであるのに対しコヒーレンス時間は数10 µsであるので, 注目する時間スケール内で高速に回転することになり, 時間発展を追いかけるには不都合である(下図左).</p>
+<p>外部駆動がない自由時間発展の際にqubitを静止した描像で捉えるためには, <strong>回転座標変換</strong>という手法が用いられる. これはBloch球回転と同じ角速度で回転するフレーム（回転座標系）に観測者が乗ることで, Bloch球が静止して見えるという考え方である(下図右). 数式としては, 状態ケット<span class="math notranslate nohighlight">\(\ket{\psi(t)}\)</span>（Z軸周り<span class="math notranslate nohighlight">\(-\omega_{\rm q}\)</span>回転している）に対して,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}_{\rm r}(t) := 
+\exp
+\left(
+    \frac{-{\rm i}\omega_{\rm r}t\hat{Z}}{2}
+\right)
+\end{align}
+\]</div>
+<p>という変換を行った状態</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\ket{\psi_{\rm r}(t)}:=\hat{U}_{\rm r}(t)\ket{\psi(t)} = 
+\exp
+\left(
+    \frac{{\rm i}(\omega_{\rm q} - \omega_{\rm r})t\hat{Z}}{2}
+\right)
+\ket{\psi(0)}
+\end{align}
+\]</div>
+<p>を考えることに対応する（相互作用描像と呼ばれる）. 特に<span class="math notranslate nohighlight">\(\omega_{\rm r}=\omega_{\rm q}\)</span>と選べば, 状態は静止して見える.</p>
+<p>回転座標系に乗った時の実効的なハミルトニアンの形を求めておく（qubitの回転を打ち消すような座標系に乗っているので, ハミルトニアンは0となるはずである）. 実験室系でのSchrödinger方程式に<span class="math notranslate nohighlight">\(\hat{I} = \hat{U}_{\rm r}^\dagger(t)\hat{U}_{\rm r}(t)\)</span>を挿入して,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+&amp;{\rm i}\hbar\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dag(t)\hat{U}_{\rm r}(t)\ket{\psi(t)}
+=\hat{H}\hat{U}_{\rm r}^\dag(t)\hat{U}_{\rm r}(t)\ket{\psi(t)} \\
+%
+\Leftrightarrow&amp;
+{\rm i}\hbar\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dag(t)\ket{\psi_{\rm r}(t)}
+=\hat{H}\hat{U}_{\rm r}^\dag(t)\ket{\psi_{\rm r}(t)} \\
+%
+\Leftrightarrow&amp;
+{\rm i}\hbar
+\left\{
+\left[\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dag(t)\right]\ket{\psi_{\rm r}(t)}
++\hat{U}_{\rm r}^\dag(t)\left[\frac{\rm d}{{\rm d}t}\ket{\psi_{\rm r}(t)}\right]
+\right\}
+=\hat{H}\hat{U}_{\rm r}^\dag(t)\ket{\psi_{\rm r}(t)} \\
+%
+\Leftrightarrow&amp;
+{\rm i}\hbar
+\hat{U}_{\rm r}^\dag(t)
+\frac{\rm d}{{\rm d}t}\ket{\psi_{\rm r}(t)}
+=
+\left[
+\hat{H}\hat{U}_{\rm r}^\dag(t)
+-{\rm i}\hbar\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dag(t)
+\right]
+\ket{\psi_{\rm r}(t)} \\
+%
+\Leftrightarrow&amp;
+{\rm i}\hbar
+\frac{\rm d}{{\rm d}t}\ket{\psi_{\rm r}(t)}
+=
+\left[
+\hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dag(t)
+-{\rm i}\hbar
+\hat{U}_{\rm r}(t) \frac{\rm d}{{\rm d}t} \hat{U}_{\rm r}^\dag(t)
+\right]
+\ket{\psi_{\rm r}(t)}, \\
+\end{align}
+\end{split}\]</div>
+<p>よって回転座標系における実効ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}_{\rm r}\)</span>は,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H}_{\rm r} 
+&amp;= \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dag(t)
+-{\rm i}\hbar
+\hat{U}_{\rm r}(t) \frac{\rm d}{{\rm d}t} \hat{U}_{\rm r}^\dag(t)\nonumber\\
+&amp;= \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dag(t)
++{\rm i}\hbar
+\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}(t) \cdot\hat{U}_{\rm r}^\dag(t)
+\end{align} 
+\end{split}\]</div>
+<p>と表せる. 今の場合は,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dag(t)
++{\rm i}\hbar
+\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}(t) \cdot\hat{U}_{\rm r}^\dag(t)
+= -\hbar\omega_{\rm q}\frac{\hat{Z}}{2}
++\hbar\omega_{\rm r}\frac{\hat{Z}}{2}
+= -\hbar(\omega_{\rm q}-\omega_{\rm r})\frac{\hat{Z}}{2}
+\end{align} 
+\]</div>
+<p>であり, 特に<span class="math notranslate nohighlight">\(\omega_{\rm r}=\omega_{\rm q}\)</span>の時は<span class="math notranslate nohighlight">\(\hat{H}_{\rm r}=0\)</span>となり, これは時間発展しない（状態は静止して見える）ことに対応する.</p>
+<a class="reference internal image-reference" href="../../_images/rotating_frame.png"><img alt="../../_images/rotating_frame.png" class="align-center" src="../../_images/rotating_frame.png" style="width: 600px;" /></a>
+</section>
+<section id="id3">
+<h2>外部駆動時の時間発展<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>超伝導qubitに共鳴する周波数のマイクロ波を照射することで, qubitの状態を励起または脱励起することができる.</p>
 </section>
 </section>
 
@@ -482,7 +599,8 @@
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">ハミルトニアン</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">回転座標変換</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">自由時間発展</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部駆動時の時間発展</a></li>
 </ul>
   </nav></div>
 
