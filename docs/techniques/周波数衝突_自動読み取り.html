@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2 qubit &#8212; 超伝導qubitノート</title>
+    <title>周波数衝突の定義 &#8212; 超伝導qubitノート</title>
   
   
   
@@ -60,11 +60,11 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/SCQ_intro/two_qubit';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/techniques/周波数衝突_自動読み取り';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="マークダウン、ノートブックス" href="../samples/markdown-notebooks.html" />
-    <link rel="prev" title="1 qubit" href="single_qubit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,6 +116,8 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -162,15 +164,15 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="SCQ_intro.html">入門編</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="single_qubit.html">1 qubit</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2 qubit</a></li>
-</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_intro/SCQ_intro.html">入門編</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/single_qubit.html">1 qubit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/two_qubit.html">2 qubit</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../samples/markdown-notebooks.html">マークダウン、ノートブックス</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../techniques/%E5%85%B1%E6%8C%AF%E5%99%A8%E3%81%AE%E5%8F%8D%E5%B0%84%E5%BF%9C%E7%AD%94%E3%81%AE%E5%8F%A4%E5%85%B8%E6%B3%A2%E5%8B%95%E8%AB%96%E3%81%A7%E3%81%AE%E5%B0%8E%E5%87%BA.html">共振器の反射応答の古典波動論での導出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%E5%85%B1%E6%8C%AF%E5%99%A8%E3%81%AE%E5%8F%8D%E5%B0%84%E5%BF%9C%E7%AD%94%E3%81%AE%E5%8F%A4%E5%85%B8%E6%B3%A2%E5%8B%95%E8%AB%96%E3%81%A7%E3%81%AE%E5%B0%8E%E5%87%BA.html">共振器の反射応答の古典波動論での導出</a></li>
 
 </ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
@@ -245,7 +247,7 @@
       
       
       
-      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/SCQ_intro/two_qubit.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/techniques/周波数衝突_自動読み取り.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +277,7 @@
       
       
       
-      <li><a href="../../_sources/docs/SCQ_intro/two_qubit.md" target="_blank"
+      <li><a href="../../_sources/docs/techniques/周波数衝突_自動読み取り.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -351,7 +353,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2 qubit</h1>
+    <h1>周波数衝突の定義</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -361,9 +363,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">結合2 qubit系</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cz">CZゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">交差共鳴ゲート</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">数式と条件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static">静的条件（Static）</a></li>
 </ul>
             </nav>
         </div>
@@ -375,23 +376,147 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="qubit">
-<h1>2 qubit<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>結合2 qubit系<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>2qubit周波数が同じときと, 十分離れている時の2通りを説明する.</p>
-<p>Schrieffer-Wolff変換は軽く気持ちを説明する.
-qubit系での計算では常在ZZは出てこないが, 軽く言及する.<br />
-SW変換の気持ちを説明する.</p>
-</section>
-<section id="cz">
-<h2>CZゲート<a class="headerlink" href="#cz" title="Link to this heading">#</a></h2>
-<p>周波数可変型の場合.</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>周波数衝突の定義<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><strong>日付</strong>: 2025/01/28</p>
 <section id="id2">
-<h2>交差共鳴ゲート<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>クロストークは出てこない.<br />
-CNOTゲートの作り方.</p>
+<h2>数式と条件<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+- X + 2E_n
+\end{align}
+\]</div>
+<ul class="simple">
+<li><p>( g_{ei} f_{ge} )</p></li>
+<li><p>( E_F f_{aEtLEI} f_a = -0 )</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+0.05 f_{ge} \quad \text{Static}
+\end{align}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\frac{E_s}{E_n} = 501 = *
+\end{align}
+\]</div>
+<ul class="simple">
+<li><p>( J_{II} f_0 = &amp; \text{MHz}, iTi &lt; 12 )</p></li>
+<li><p>( CRY” - + 98% (15-2% ) + 4%D 3 “ver. )</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+EBE2EDE
+\end{align}
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="static">
+<h2>静的条件（Static）<a class="headerlink" href="#static" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><strong>条件1</strong>:<br />
+$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0536cfac-cff5-4879-bd04-226cbfa3de04">
+<span class="eqno">()<a class="headerlink" href="#equation-0536cfac-cff5-4879-bd04-226cbfa3de04" title="Permalink to this equation">#</a></span>\[\begin{align}
+f_{ge} &lt; 6500 \text{ MHz} \quad \text{or} \quad 9500 \text{ MHz} &lt; f_{ge}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[- **条件2**:  
+  \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-5e1f88c7-9f4c-4a93-b690-ca561706e075">
+<span class="eqno">()<a class="headerlink" href="#equation-5e1f88c7-9f4c-4a93-b690-ca561706e075" title="Permalink to this equation">#</a></span>\[\begin{align}
+f_{ge} - f_l &gt; 1500 \text{ MHz}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[- **条件3**:  
+  \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-b2bfbee1-d7e8-4416-ab88-d8b89f42e339">
+<span class="eqno">()<a class="headerlink" href="#equation-b2bfbee1-d7e8-4416-ab88-d8b89f42e339" title="Permalink to this equation">#</a></span>\[\begin{align}
+g_{e} - g_{e} : A(0.02)
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}---\\## 動的条件（Dynamic, for CR）\end{aligned}\end{align} \]</div>
+</li>
+</ul>
+<div class="amsmath math notranslate nohighlight" id="equation-1198850b-671f-4629-95b8-863ce95995b2">
+<span class="eqno">()<a class="headerlink" href="#equation-1198850b-671f-4629-95b8-863ce95995b2" title="Permalink to this equation">#</a></span>\[\begin{align}
+\text{TEI} : m
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[- 184-7.
+- *CR*  
+  - \( trey=1 \)
+  - \( = 0.08 \)
+  - **Static**
+  - \( T_{\text{enen}} \)\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-67ea002b-1776-4404-aee3-8f6d7681dad7">
+<span class="eqno">()<a class="headerlink" href="#equation-67ea002b-1776-4404-aee3-8f6d7681dad7" title="Permalink to this equation">#</a></span>\[\begin{align}
+T_{\text{ramp}} E_c, f_e f_{rage} \sim f_{\text{rew}} - 1E_F
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-86be44f9-55ee-4a4f-9649-89f17910ac3e">
+<span class="eqno">()<a class="headerlink" href="#equation-86be44f9-55ee-4a4f-9649-89f17910ac3e" title="Permalink to this equation">#</a></span>\[\begin{align}
+IZ_i \Rightarrow EDR \sim 1 \% 1 F
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}---\\## 追加条件\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-19fcb3ff-145b-4512-8931-bd5545357a27">
+<span class="eqno">()<a class="headerlink" href="#equation-19fcb3ff-145b-4512-8931-bd5545357a27" title="Permalink to this equation">#</a></span>\[\begin{align}
+CJK, g_{e}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-bce7bc1e-e3c5-4e7a-9720-9cfb2deb09f3">
+<span class="eqno">()<a class="headerlink" href="#equation-bce7bc1e-e3c5-4e7a-9720-9cfb2deb09f3" title="Permalink to this equation">#</a></span>\[\begin{align}
+t_{it} E_n t_{12} E_n
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[- *CRI&quot; -1*
+- **ターゲット量子ビットの条件**:  
+  \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ec510fb2-837b-4095-ac89-8d28a98ef487">
+<span class="eqno">()<a class="headerlink" href="#equation-ec510fb2-837b-4095-ac89-8d28a98ef487" title="Permalink to this equation">#</a></span>\[\begin{align}
+T_{\text{rot}} = 500 \text{ ns}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[  - \( 2565. \)
+  - \( f_{cr, i} + FETEED&quot;k1 : EE \)  
+  - \( 215. \)\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-19426482-d721-4a10-b656-fe50b46926d3">
+<span class="eqno">()<a class="headerlink" href="#equation-19426482-d721-4a10-b656-fe50b46926d3" title="Permalink to this equation">#</a></span>\[\begin{align}
+f_{ige} \sim T_{\text{en}} t_{#L}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[- **追加条件**:
+  \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-f98e6f69-a476-472d-84c0-d5c6c292026b">
+<span class="eqno">()<a class="headerlink" href="#equation-f98e6f69-a476-472d-84c0-d5c6c292026b" title="Permalink to this equation">#</a></span>\[\begin{align}
+i f - i = 12
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-6324a52a-2764-4b5a-86c5-b0e13abc29bb">
+<span class="eqno">()<a class="headerlink" href="#equation-6324a52a-2764-4b5a-86c5-b0e13abc29bb" title="Permalink to this equation">#</a></span>\[\begin{align}
+&amp; \text{cn} (ii)
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-655eb0af-0f46-497f-b84a-f16c41b02a4f">
+<span class="eqno">()<a class="headerlink" href="#equation-655eb0af-0f46-497f-b84a-f16c41b02a4f" title="Permalink to this equation">#</a></span>\[\begin{align}
+f_{ogi} (c -T)
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-7a6639e6-cb75-4ff2-b17e-e17c0f72d146">
+<span class="eqno">()<a class="headerlink" href="#equation-7a6639e6-cb75-4ff2-b17e-e17c0f72d146" title="Permalink to this equation">#</a></span>\[\begin{align}
+J_{ogi} (C . -Tz)
+\end{align}\]</div>
+<p>$$</p>
 </section>
 </section>
 
@@ -408,7 +533,7 @@ CNOTゲートの作り方.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs/SCQ_intro"
+            path: "./docs/techniques"
         },
         predefinedOutput: true
     }
@@ -425,24 +550,6 @@ CNOTゲートの作り方.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="single_qubit.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">1 qubit</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../samples/markdown-notebooks.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">マークダウン、ノートブックス</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -460,9 +567,8 @@ CNOTゲートの作り方.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">結合2 qubit系</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cz">CZゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">交差共鳴ゲート</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">数式と条件</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static">静的条件（Static）</a></li>
 </ul>
   </nav></div>
 

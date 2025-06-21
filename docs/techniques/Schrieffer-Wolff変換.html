@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>共振器の反射応答の古典波動論での導出 &#8212; 超伝導qubitノート</title>
+    <title>Schrieffer-Wolff変換 &#8212; 超伝導qubitノート</title>
   
   
   
@@ -62,10 +62,9 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/techniques/共振器の反射応答の古典波動論での導出';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/techniques/Schrieffer-Wolff変換';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="マークダウンファイル" href="../samples/mymarkdownfile.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -117,6 +116,8 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -163,17 +164,17 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_intro/SCQ_intro.html">入門編</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/single_qubit.html">1 qubit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/two_qubit.html">2 qubit</a></li>
 </ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../samples/markdown-notebooks.html">マークダウン、ノートブックス</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">共振器の反射応答の古典波動論での導出</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="%E5%85%B1%E6%8C%AF%E5%99%A8%E3%81%AE%E5%8F%8D%E5%B0%84%E5%BF%9C%E7%AD%94%E3%81%AE%E5%8F%A4%E5%85%B8%E6%B3%A2%E5%8B%95%E8%AB%96%E3%81%A7%E3%81%AE%E5%B0%8E%E5%87%BA.html">共振器の反射応答の古典波動論での導出</a></li>
 
-</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 </ul>
 
@@ -246,7 +247,7 @@
       
       
       
-      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/techniques/共振器の反射応答の古典波動論での導出.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/techniques/Schrieffer-Wolff変換.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -276,7 +277,7 @@
       
       
       
-      <li><a href="../../_sources/docs/techniques/共振器の反射応答の古典波動論での導出.md" target="_blank"
+      <li><a href="../../_sources/docs/techniques/Schrieffer-Wolff変換.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +353,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>共振器の反射応答の古典波動論での導出</h1>
+    <h1>Schrieffer-Wolff変換</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -362,10 +363,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">共振器の反射応答の古典波動論での導出</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">共振器の反射応答の過渡応答</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">具体例</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -376,167 +375,257 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>共振器の反射応答の古典波動論での導出<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>共振器QED理論から, 共振器に対する振幅反射率の周波数応答は</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="schrieffer-wolff">
+<h1>Schrieffer-Wolff変換<a class="headerlink" href="#schrieffer-wolff" title="Link to this heading">#</a></h1>
+<p>いま, 無摂動ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}_0\)</span>と摂動<span class="math notranslate nohighlight">\(\hat{V}\)</span>からなる以下のハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}_0\)</span>を考える:</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{align}
-\varGamma_{\rm q} = 
-\frac{(\kappa_{\rm i} - \kappa_{\rm e})/2 - \mathrm{i}\Delta\omega}
-{(\kappa_{\rm i} + \kappa_{\rm e})/2 - \mathrm{i}\Delta\omega}
+ \hat{H}=\hat{H}_0+\hat{V},
 \end{align}
 \]</div>
-<p>と表される. ここで<span class="math notranslate nohighlight">\(\Delta\omega:=\omega-\omega_{\rm r}\)</span>は入力電磁波の周波数<span class="math notranslate nohighlight">\(\omega\)</span>と共振器共鳴周波数<span class="math notranslate nohighlight">\(\omega_{\rm r}\)</span>の差, <span class="math notranslate nohighlight">\(\kappa_{\rm i}\)</span>, <span class="math notranslate nohighlight">\(\kappa_{\rm e}\)</span>はそれぞれ共振器の内部, 外部結合レートである. ここでは共振器QED理論ではなく古典波動論に基づいて共振器に対する振幅反射率を導出し, 各パラメータが古典と量子でどのように対応するかを調べる.</p>
-<!-- <img src="../../figs/classical_resonator.png" width="400px" style="display: block; margin: auto;"> -->
-<a class="reference internal image-reference" href="../../_images/classical_resonator.png"><img alt="../../_images/classical_resonator.png" class="align-center" src="../../_images/classical_resonator.png" style="width: 400px;" /></a>
-<p>上図のように, 距離<span class="math notranslate nohighlight">\(d\)</span>だけ離れた振幅反射率<span class="math notranslate nohighlight">\(r_1\)</span>, <span class="math notranslate nohighlight">\(r_2\)</span>の半透明鏡M1, M2からなる共振器を考える. ただし<span class="math notranslate nohighlight">\(r_1\)</span>, <span class="math notranslate nohighlight">\(r_2\)</span>は1に十分近い値であると仮定する. M1側から電磁波を入射するとすると, M1による透過は外部結合レートに関係し, M2による透過は内部結合レートに関係する. 入射電磁波の振幅を<span class="math notranslate nohighlight">\(E\mathrm{e}^{{\rm i}\omega t}\)</span>, 伝搬速度(位相速度)を<span class="math notranslate nohighlight">\(v\)</span>とすると, 出力される各項の振幅は,</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-E_{\rm r,0} &amp;= r_1E\mathrm{e}^{{\rm i}\omega t} \\
-E_{\rm r,1} &amp;= (1-r_1^2) r_2 E\mathrm{e}^{{\rm i}\omega (t-2d/v)} \\
-E_{\rm r,2} &amp;= -r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v} E_{\rm r,1}\\
-&amp;\cdots\nonumber\\
-E_{{\rm r},n} &amp;= \left(-r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}\right)^{n-1} E_{\rm r,1}\\
-\end{align}
-\end{split}\]</div>
-<p>と表せる(固定端反射, 開放端反射で<span class="math notranslate nohighlight">\(\pm\)</span>の符号が異なることに注意). したがって全反射波の総和は,</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-\sum_{n=0}^\infty E_{\rm r,n}
-&amp;= E_{\rm r,0} + \frac{E_{\rm r,1}}{1+r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}\nonumber\\
-&amp; = E\mathrm{e}^{{\rm i}\omega t}
-\frac{r_1+r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}
-{1+r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}
-\end{align}
-\end{split}\]</div>
-<p>となるため, 振幅反射係数は,</p>
+<p>ただし<span class="math notranslate nohighlight">\(\hat{V}\)</span>は<span class="math notranslate nohighlight">\(\hat{H}_0\)</span>に比べて微小パラメータ<span class="math notranslate nohighlight">\(\epsilon\)</span> (<span class="math notranslate nohighlight">\(\epsilon\ll 1\)</span>)の1次のオーダで小さいと仮定する. つまり</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{align}
-\varGamma_{\rm c} =
-\frac{r_1+r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}
-{1+r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}}
+\frac{\|\hat{V}\|}{\|\hat{H}_0\|}=O(\epsilon).
 \end{align}
 \]</div>
-<p>と求められる.</p>
-<p>次に<span class="math notranslate nohighlight">\(\varGamma_{\rm q}\)</span>と<span class="math notranslate nohighlight">\(\varGamma_{\rm c}\)</span>の関係を調べる. <span class="math notranslate nohighlight">\(\omega_{\rm r}\)</span>, <span class="math notranslate nohighlight">\(d\)</span>, <span class="math notranslate nohighlight">\(v\)</span>は以下の共鳴条件を満たす:</p>
+<p>例えば<span class="math notranslate nohighlight">\(\hat{H}_0\)</span>は結合がないときの各qubitや共振器の自由ハミルトニアンであり, その固有値<span class="math notranslate nohighlight">\(E_n\)</span>や固有状態<span class="math notranslate nohighlight">\(\ket{n}\)</span>は既知であると仮定する. 一方<span class="math notranslate nohighlight">\(\hat{V}\)</span>は<span class="math notranslate nohighlight">\(\hat{H}_0\)</span>の基底では対角成分を持たないと仮定する.</p>
+<p>ここで目指すのは, ユニタリ演算子<span class="math notranslate nohighlight">\({\rm e}^{-\hat{S}}\)</span>を用いた相互作用描像への変換:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+ \hat{H}\rightarrow\hat{H}'
+ &amp;={\rm e}^{-\hat{S}}\hat{H}{\rm e}^{\hat{S}}+{\rm i}\hbar\frac{\rm d}{{\rm d}t}{\rm e}^{-\hat{S}}\cdot({\rm e}^{-\hat{S}})^\dagger\nonumber\\
+ &amp;={\rm e}^{-\hat{S}}\hat{H}{\rm e}^{\hat{S}}-{\rm i}\hbar\dot{\hat{S}}
+ \quad(\hat{S}\text{は反エルミート演算子})
+\end{align}
+\end{split}\]</div>
+<p>によって, <span class="math notranslate nohighlight">\(\hat{H}'\)</span>が<span class="math notranslate nohighlight">\(O(\epsilon^3)\)</span>の項を除いて<span class="math notranslate nohighlight">\(\hat{H}_0\)</span>の基底で対角的となるような<span class="math notranslate nohighlight">\(\hat{S}\)</span>を探すことである. ただし<span class="math notranslate nohighlight">\(\hat{S}\)</span>は<span class="math notranslate nohighlight">\(O(\epsilon)\)</span>のオーダの大きさであると仮定する. また右辺第2項目は, <span class="math notranslate nohighlight">\(\hat{V}\)</span>が時間無依存である場合は0となる.</p>
+<p>Baker-Campbell-Hausdorffの補助公式より,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+ (\text{右辺第1項目})
+&amp;= {\rm e}^{-\hat{S}}\hat{H}{\rm e}^{\hat{S}} \nonumber\\
+&amp;= \hat{H} + [\hat{H},\hat{S}] + \frac{1}{2}[[\hat{H},\hat{S}],\hat{S}]+O(\epsilon^3)\nonumber\\
+&amp;=\hat{H}_0 +\underbrace{\hat{V} + [\hat{H}_0,\hat{S}]}_{\epsilon\text{の1次項}}
++ \underbrace{[\hat{V},\hat{S}]+\frac{1}{2}[[\hat{H}_0,\hat{S}],\hat{S}]}_{\epsilon\text{の2次項}}+O(\epsilon^3)
+\end{align}
+\end{split}\]</div>
+<p>と表せるため, 求める<span class="math notranslate nohighlight">\(\hat{S}\)</span>の必要十分条件は</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{align}
-\omega_{\rm r}\frac{2d}{v} = \pi,
+ \hat{V} + [\hat{H}_0,\hat{S}] = 0 \quad\text{かつ}\quad
+[\hat{V},\hat{S}]+\frac{1}{2}[[\hat{H}_0,\hat{S}],\hat{S}] \text{が対角的}
 \end{align}
 \]</div>
-<p>ここで<span class="math notranslate nohighlight">\(2d/v\)</span>は電磁波が共振器を往復するのにかかる時間, 右辺が<span class="math notranslate nohighlight">\(2\pi\)</span>ではなく<span class="math notranslate nohighlight">\(\pi\)</span>なのはM1とM2での反射における符号が異なる(=λ/4共振器である)ためである. 入射電磁波の周波数を<span class="math notranslate nohighlight">\(\omega=\omega_{\rm r}+\Delta\omega\)</span>と表すと,</p>
+<p>となる. <span class="math notranslate nohighlight">\(\hat{S}\)</span>として,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
+\[
 \begin{align}
-{\rm e}^{-{\rm i}\omega 2d/v}
-&amp;= {\rm e}^{-{\rm i}(\omega_{\rm r}+\Delta\omega) 2d/v}\nonumber\\
-&amp;= {\rm e}^{-{\rm i}\omega_{\rm r} 2d/v}
-{\rm e}^{-{\rm i}\Delta\omega 2d/v}\nonumber\\
-&amp;= -1\cdot {\rm e}^{-{\rm i}\pi\Delta\omega/\omega_{\rm r}}
-\nonumber\\
-&amp;\approx -1 +{\rm i}\pi\Delta\omega/\omega_{\rm r}
+ \hat{S}=-\sum_{m,n}\frac{\bra{m}{\hat{V}}\ket{n}}{E_m-E_n}\ket{m}\bra{n}
 \end{align}
-\end{split}\]</div>
-<p>となる. ただし<span class="math notranslate nohighlight">\(\Delta\omega \ll \omega_{\rm r}\)</span>と仮定した. したがって複素反射係数<span class="math notranslate nohighlight">\(\varGamma_{\rm c}\)</span>は次のように表せる:</p>
+\]</div>
+<p>と選べば, 1つ目の条件<span class="math notranslate nohighlight">\(\hat{V} + [\hat{H}_0,\hat{S}] = 0 \)</span>は満たされる.</p>
+<p>2つ目の条件は必ずしも満たされるわけではなく, 一般には<span class="math notranslate nohighlight">\((n, n+2)\)</span>成分と<span class="math notranslate nohighlight">\((n+2, n)\)</span>成分に<span class="math notranslate nohighlight">\(O(\epsilon^2)\)</span>のオーダの要素を持つ. これらの要素に対してさらに高次のSW変換を行うことで, <span class="math notranslate nohighlight">\((n, n+3)\)</span>成分と<span class="math notranslate nohighlight">\((n+3, n)\)</span>成分に<span class="math notranslate nohighlight">\(O(\epsilon^3)\)</span>のオーダの要素として押しやることができる. このようにして摂動つきハミルトニアンの近似的な対角化が行われ, 結果として</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
+\[
 \begin{align}
-\varGamma_{\rm c}
+\hat{H}' = \hat{H}_0 + \frac{1}{2}[\hat{V},\hat{S}]+O(\epsilon^3) 
+-{\rm i}\hbar\dot{\hat{S}}
+\end{align} 
+\]</div>
+<p>が得られる.</p>
+<p><span class="math notranslate nohighlight">\(\hat{H}'\)</span>の固有値, 固有状態をそれぞれ<span class="math notranslate nohighlight">\(E_n'\)</span>, <span class="math notranslate nohighlight">\(\ket{n}'\)</span>とし, <span class="math notranslate nohighlight">\(\hat{V}\)</span>は時間無依存(つまり<span class="math notranslate nohighlight">\(\dot{\hat{S}}=0\)</span>)とする. 固有方程式は<span class="math notranslate nohighlight">\(\hat{H}'\ket{n}'=E_n'\ket{n}'\)</span>であり, 両辺に左から<span class="math notranslate nohighlight">\({\rm e}^{\hat{S}}\)</span>をかけると,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+ {\rm e}^{\hat{S}}\hat{H}'\ket{n}'=E_n'{\rm e}^{\hat{S}}\ket{n}'
+\ \Leftrightarrow\ 
+\hat{H}\left({\rm e}^{\hat{S}}\ket{n}'\right)
+=E_n'\left({\rm e}^{\hat{S}}\ket{n}'\right),
+\end{align}
+\]</div>
+<p>つまり, SW変換後も固有値は変わらず<span class="math notranslate nohighlight">\(E_n'=E_n\)</span>であるが, 固有状態は少し変化する:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+ \ket{n}'={\rm e}^{-\hat{S}}\ket{n} = \left(1-\hat{S}\right)\ket{n}+O(\epsilon^2).
+\end{align}
+\]</div>
+<p>したがって, SW変換によって対角化できたからといって, 変換前の固有状態が時間発展で変化しないわけではないことに注意する必要がある.</p>
+<section id="id1">
+<h2>具体例<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>今, 複素振幅<span class="math notranslate nohighlight">\(\varOmega(t)\in\mathbb{C}\)</span>で駆動されているトランズモンを考える. 駆動周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>の回転座標系ではハミルトニアンは以下のように表される(<span class="math notranslate nohighlight">\(\hbar=1\)</span>とした):</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H}
 &amp;= 
-\frac{r_1+r_2 (-1 +{\rm i}\pi\Delta\omega/\omega_{\rm r})}
-{1+r_1r_2 (-1 +{\rm i}\pi\Delta\omega/\omega_{\rm r})}\nonumber\\
-&amp;= 
-\frac{\frac{r_1-r_2}{\pi/\omega_{\rm r}} 
-+ {\rm i}r_2\Delta\omega}
-{\frac{1-r_1r_2}{\pi/\omega_{\rm r}} 
-+{\rm i}r_1r_2\Delta\omega}
-\end{align}.
-\end{split}\]</div>
-<p>次に, 共振器の内部, 外部結合レート<span class="math notranslate nohighlight">\(\kappa_{\rm i}\)</span>, <span class="math notranslate nohighlight">\(\kappa_{\rm e}\)</span>は<span class="math notranslate nohighlight">\(r_1\)</span>, <span class="math notranslate nohighlight">\(r_2\)</span>, <span class="math notranslate nohighlight">\(d\)</span>, <span class="math notranslate nohighlight">\(v\)</span>を用いて以下のように表せる:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-\kappa_{\rm i}
-&amp;=\frac{1-r_2^2}{2d/v}
-=\frac{1-r_2^2}{\pi/\omega_{\rm r}},\\
-\kappa_{\rm e}
-&amp;=\frac{1-r_1^2}{2d/v}=\frac{1-r_1^2}{\pi/\omega_{\rm r}},\\
-\end{align}
-\end{split}\]</div>
-<p>ここでそれぞれの分子はM2, M1におけるエネルギー(振幅の2乗に対応する量)透過率, 分母は電磁波が共振器を往復するのにかかる時間である. これらの和と差は次のように近似できる:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
-\kappa_{\rm i} + \kappa_{\rm e} 
-&amp;=
-\frac{2-r_1^2-r_2^2}{\pi/\omega_{\rm r}}
-=
-\frac{2-2r_1r_2-(r_1-r_2)^2}{\pi/\omega_{\rm r}}\nonumber\\
-&amp;\approx
-\frac{2-2r_1r_2}{\pi/\omega_{\rm r}},
-\quad[(r_1-r_2)^2\approx 0 \text{とした}]\\
-\kappa_{\rm i} - \kappa_{\rm e} 
-&amp;=
-\frac{r_1^2-r_2^2}{\pi/\omega_{\rm r}}
-=
-\frac{(r_1+r_2)(r_1-r_2)}{\pi/\omega_{\rm r}}\nonumber\\
-&amp;\approx
-\frac{2(r_1-r_2)}{\pi/\omega_{\rm r}}.
-\quad[r_1+r_2\approx 2 \text{とした}]\\
-\end{align}
-\end{split}\]</div>
-<p>したがって,</p>
-<div class="math notranslate nohighlight">
-\[
-\begin{align}
-\varGamma_{\rm c}
-&amp;\approx
-\frac{(\kappa_{\rm i} - \kappa_{\rm e})/2
-+ {\rm i}r_2\Delta\omega}
-{(\kappa_{\rm i} + \kappa_{\rm e})/2
-+{\rm i}r_1r_2\Delta\omega}
-\end{align}
+\varDelta_{\rm qd}\hat{a}^\dagger\hat{a} 
++ 
+\frac{\alpha}{2}\hat{a}^{\dagger 2}\hat{a}^2
++
+\frac{\varOmega}{2}\hat{a}
++\frac{\varOmega^*}{2}\hat{a}^\dagger,
+\end{align} 
 \]</div>
-<p>であり, さらに<span class="math notranslate nohighlight">\(r_2\approx1\)</span>, <span class="math notranslate nohighlight">\(r_1r_2\approx1\)</span>と近似すれば, <span class="math notranslate nohighlight">\(\varGamma_{\rm c}\approx \varGamma_{\rm q}\)</span>の関係が得られる.</p>
+<p>ただし<span class="math notranslate nohighlight">\(\varDelta_{\rm qd}:=\omega_{\rm q}-\omega_{\rm d}\)</span>とする. 3準位系の部分空間のみに着目し, 行列で表すと,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H}
+&amp;= 
+\begin{bmatrix}
+0&amp;&amp;\\
+&amp;\varDelta_{\rm qd}&amp;\\
+&amp;&amp;2\varDelta_{\rm qd}+\alpha\\
+\end{bmatrix}
++
+\frac{1}{2}
+\begin{bmatrix}
+&amp;\varOmega&amp;\\
+\varOmega^*&amp;&amp;\sqrt{2}\varOmega\\
+&amp;\sqrt{2}\varOmega^*&amp;\\
+\end{bmatrix}
+\end{align}
+\end{split}\]</div>
+<p>と表せる. <span class="math notranslate nohighlight">\(\hat{S}\)</span>として</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{S}
+&amp;= 
+\frac{1}{2}
+\begin{bmatrix}
+&amp;\frac{\varOmega}{\varDelta_{\rm qd}}&amp;\\
+-\frac{\varOmega^*}{\varDelta_{\rm qd}}&amp;&amp;\frac{\sqrt{2}\varOmega}{\varDelta_{\rm qd}+\alpha}\\
+&amp;-\frac{\sqrt{2}\varOmega^*}{\varDelta_{\rm qd}+\alpha}&amp;\\
+\end{bmatrix}
+\end{align}
+\end{split}\]</div>
+<p>を用いてSW変換を行うと,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H}'
+&amp;= 
+\begin{bmatrix}
+-\frac{|\varOmega|^2}{4\varDelta_{\rm qd}}&amp;&amp;\\
+&amp;\varDelta_{\rm qd}+\frac{|\varOmega|^2}{4\varDelta_{\rm qd}}-\frac{|\varOmega|^2}{2(\varDelta_{\rm qd}+\alpha)}&amp;\\
+&amp;&amp;2\varDelta_{\rm qd}+\alpha+\frac{|\varOmega|^2}{2(\varDelta_{\rm qd}+\alpha)}\\
+\end{bmatrix}
+-
+\frac{\rm i}{2}
+\begin{bmatrix}
+&amp;\frac{\dot{\varOmega}}{\varDelta_{\rm qd}}&amp;\\
+-\frac{\dot{\varOmega}^*}{\varDelta_{\rm qd}}&amp;&amp;\frac{\sqrt{2}\dot{\varOmega}}{\varDelta_{\rm qd}+\alpha}\\
+&amp;-\frac{\sqrt{2}\dot{\varOmega}^*}{\varDelta_{\rm qd}+\alpha}&amp;\\
+\end{bmatrix}\nonumber\\
+&amp;\quad+
+\frac{\sqrt{2}}{8}
+\left(
+\frac{1}{\varDelta_{\rm qd}+\alpha} - \frac{1}{\varDelta_{\rm qd}}
+\right)
+\begin{bmatrix}
+&amp;&amp;\varOmega^{2}\\
+&amp;0&amp;\\
+\varOmega^{*2}&amp;&amp;\\
+\end{bmatrix}
+\end{align}
+\end{split}\]</div>
+<p>となる.</p>
+<p>右辺第1項目ではac-Starkシフトによってエネルギー準位のシフトが生じている.
+右辺第2項目では駆動パルスの時間微分に比例する形で, <span class="math notranslate nohighlight">\(\epsilon\)</span>の1次の項が非対角成分に残っている. 立ち上がりが急激なパルスによって望まない0↔︎1や1↔︎2の遷移が生じるのはこのためである.
+右辺第3項目では(0,2)成分と(2,0)成分に<span class="math notranslate nohighlight">\(\epsilon\)</span>の2次の項が残っており, これは0↔︎2間のgf2光子遷移を表している.</p>
+<p>さらに(0,2), (2,0)成分を消去するためのSW変換を考える. (0,0), (0,2), (2,0), (2,2)成分の部分空間に着目し,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H}_{02}
+&amp;= 
+\begin{bmatrix}
+-\frac{|\varOmega|^2}{4\varDelta_{\rm qd}}&amp;\\
+&amp;2\varDelta_{\rm qd}+\alpha+\frac{|\varOmega|^2}{2(\varDelta_{\rm qd}+\alpha)}\\
+\end{bmatrix}
++
+\frac{\sqrt{2}}{8}
+\left(
+\frac{1}{\varDelta_{\rm qd}+\alpha} - \frac{1}{\varDelta_{\rm qd}}
+\right)
+\begin{bmatrix}
+&amp;\varOmega^{2}\\
+\varOmega^{*2}&amp;\\
+\end{bmatrix}\nonumber\\
+&amp;=
+\begin{bmatrix}
+&amp;\varOmega_{02}\\
+\varOmega_{02}^*&amp;\varDelta_{\rm 02}\\
+\end{bmatrix}
+-\frac{|\varOmega|^2}{4\varDelta_{\rm qd}}I\\
+\varDelta_{\rm 02}
+&amp;:=
+2\varDelta_{\rm qd}+\alpha+\frac{|\varOmega|^2}{2}
+\left(
+\frac{1}{\varDelta_{\rm qd}+\alpha}
++\frac{1}{2\varDelta_{\rm qd}}
+\right)\\
+\varOmega_{02}
+&amp;:=
+\frac{\sqrt{2}}{8}
+\left(
+\frac{1}{\varDelta_{\rm qd}+\alpha} - \frac{1}{\varDelta_{\rm qd}}
+\right)\varOmega^2
+\end{align}
+\end{split}\]</div>
+<p>からスタートする. <span class="math notranslate nohighlight">\(\hat{S}\)</span>行列は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{S}_{02}
+&amp;=
+\frac{1}{\varDelta_{02}}
+\begin{bmatrix}
+&amp;\varOmega_{02}\\
+\varOmega_{02}^*&amp;\\
+\end{bmatrix}
+\end{align}
+\end{split}\]</div>
+<p>であり, これを用いてSW変換を行うと,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H}_{02}'
+&amp;=
+\begin{bmatrix}
+&amp;\\
+&amp;\varDelta_{\rm 02}\\
+\end{bmatrix}
+-\frac{|\varOmega|^2}{4\varDelta_{\rm qd}}I
++
+\frac{|\varOmega_{02}|^2}{2\varDelta_{02}}
+\begin{bmatrix}
+1&amp;\\
+&amp;-1\\
+\end{bmatrix}
+-\frac{\rm i}{\varDelta_{02}}
+\begin{bmatrix}
+&amp;\dot{\varOmega}_{02}\\
+\dot{\varOmega}_{02}^*&amp;\\
+\end{bmatrix}
+\end{align}
+\end{split}\]</div>
+<p>となる. やはり駆動振幅の時間変化が早いと, (0,2), (2,0)成分にある振幅の時間微分項のために遷移が生じる. 駆動振幅の時間変化が遅くこの項の影響が無視できる場合は, この座標系で見たときに0↔︎1遷移も1↔︎2遷移も生じないことになる.</p>
+<p>ただし実際に観測にかかるのは, SW変換前の座標系の状態である. したがってSW変換が有用であるための条件として,</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(O(\epsilon^2)\)</span>が十分無視できる</p></li>
+<li><p>駆動振幅の時間微分項が0, または十分小さく無視できる, または駆動振幅の変調によりキャンセルできる(DRAG)</p></li>
+</ul>
+<p>が満たされていないといけないことに留意する必要がある.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id2">
-<h1>共振器の反射応答の過渡応答<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
-<p>以下のFourier逆変換公式：</p>
-<div class="math notranslate nohighlight">
-\[
-\begin{align}
-\mathcal{F}^{-1} \left( \frac{a - i \omega}{b - i \omega} \right)
-= \delta(t) + (a - b) e^{-bt} \Theta(t)
-\end{align}
-\]</div>
-<p>のフーリエ逆変換は：
-$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d1e00b3-60b6-4a66-b7be-11ebbd8bea61">
-<span class="eqno">(2)<a class="headerlink" href="#equation-3d1e00b3-60b6-4a66-b7be-11ebbd8bea61" title="Permalink to this equation">#</a></span>\[\begin{align}
-\Gamma_{\mathrm{q}}(t)
-=
-\delta(t) + \left( \frac{\kappa_i - \kappa_e}{2} - \frac{\kappa_i + \kappa_e}{2} \right) e^{ -\frac{\kappa_i + \kappa_e}{2} t } \, \Theta(t)
-=
-\delta(t) - \kappa_e \cdot e^{ -\frac{\kappa_i + \kappa_e}{2} t } \, \Theta(t)
-\end{align}\]</div>
-<div class="math notranslate nohighlight">
-\[
-以下のような矩形波$f(t)$を入射した時の反射過渡応答を調べる:\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9feb63ed-c85a-40cc-b2e8-3110bbfb2407">
-<span class="eqno">(3)<a class="headerlink" href="#equation-9feb63ed-c85a-40cc-b2e8-3110bbfb2407" title="Permalink to this equation">#</a></span>\[\begin{align}
-f(t) = 
-\begin{cases}
-A &amp; t \in[-t_0, t_0]\\
-0 &amp;(\rm otherwise)\\
-\end{cases}
-\end{align}\]</div>
-<p>$$</p>
-<p>この波形のFourier変換<span class="math notranslate nohighlight">\(F(\omega)\)</span>は,</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -569,15 +658,6 @@ A &amp; t \in[-t_0, t_0]\\
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../samples/mymarkdownfile.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">マークダウンファイル</p>
-      </div>
-    </a>
 </div>
                 </footer>
               
@@ -595,10 +675,8 @@ A &amp; t \in[-t_0, t_0]\\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">共振器の反射応答の古典波動論での導出</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">共振器の反射応答の過渡応答</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">具体例</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

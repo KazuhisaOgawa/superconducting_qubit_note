@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2 qubit &#8212; 超伝導qubitノート</title>
+    <title>量子プロセストモグラフィ &#8212; 超伝導qubitノート</title>
   
   
   
@@ -60,11 +60,11 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/SCQ_intro/two_qubit';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/techniques/量子プロセストモグラフィ';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="マークダウン、ノートブックス" href="../samples/markdown-notebooks.html" />
-    <link rel="prev" title="1 qubit" href="single_qubit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,6 +116,8 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -162,15 +164,15 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="SCQ_intro.html">入門編</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="single_qubit.html">1 qubit</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2 qubit</a></li>
-</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_intro/SCQ_intro.html">入門編</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/single_qubit.html">1 qubit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/two_qubit.html">2 qubit</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../samples/markdown-notebooks.html">マークダウン、ノートブックス</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../techniques/%E5%85%B1%E6%8C%AF%E5%99%A8%E3%81%AE%E5%8F%8D%E5%B0%84%E5%BF%9C%E7%AD%94%E3%81%AE%E5%8F%A4%E5%85%B8%E6%B3%A2%E5%8B%95%E8%AB%96%E3%81%A7%E3%81%AE%E5%B0%8E%E5%87%BA.html">共振器の反射応答の古典波動論での導出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%E5%85%B1%E6%8C%AF%E5%99%A8%E3%81%AE%E5%8F%8D%E5%B0%84%E5%BF%9C%E7%AD%94%E3%81%AE%E5%8F%A4%E5%85%B8%E6%B3%A2%E5%8B%95%E8%AB%96%E3%81%A7%E3%81%AE%E5%B0%8E%E5%87%BA.html">共振器の反射応答の古典波動論での導出</a></li>
 
 </ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
@@ -245,7 +247,7 @@
       
       
       
-      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/SCQ_intro/two_qubit.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/techniques/量子プロセストモグラフィ.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +277,7 @@
       
       
       
-      <li><a href="../../_sources/docs/SCQ_intro/two_qubit.md" target="_blank"
+      <li><a href="../../_sources/docs/techniques/量子プロセストモグラフィ.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -351,7 +353,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2 qubit</h1>
+    <h1>量子プロセストモグラフィ</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -361,9 +363,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">結合2 qubit系</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cz">CZゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">交差共鳴ゲート</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pauli">Pauli転送行列</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi"><span class="math notranslate nohighlight">\(\chi\)</span>行列</a></li>
 </ul>
             </nav>
         </div>
@@ -375,23 +376,150 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="qubit">
-<h1>2 qubit<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>結合2 qubit系<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>2qubit周波数が同じときと, 十分離れている時の2通りを説明する.</p>
-<p>Schrieffer-Wolff変換は軽く気持ちを説明する.
-qubit系での計算では常在ZZは出てこないが, 軽く言及する.<br />
-SW変換の気持ちを説明する.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>量子プロセストモグラフィ<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>量子プロセスを特徴づける方法にはいくつかあり, ここではパウリ転送行列(Pauli transfar matrix; PMT)と<span class="math notranslate nohighlight">\(\chi\)</span>行列を取り上げ, それらの実験的実現方法を説明する.</p>
+<section id="pauli">
+<h2>Pauli転送行列<a class="headerlink" href="#pauli" title="Link to this heading">#</a></h2>
+<p>パウリ転送行列(Pauli transfar matrix; PMT)は, 量子プロセス<span class="math notranslate nohighlight">\(\mathcal{E}\)</span>に対して以下のように定義される:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+ {\rm PTM}(\mathcal{E})_{ij} := 
+ \frac{1}{2^n}
+ {\rm tr}\left[
+    \mathcal{E}(\hat{P}_i)\hat{P}_j
+ \right],
+\end{align}
+\]</div>
+<p>ここで<span class="math notranslate nohighlight">\(n\)</span>はqubit数である. つまり, あるパウリ状態<span class="math notranslate nohighlight">\(\hat{P}_i\)</span>を(一般に非物理的な状態であるが)仮に量子プロセス<span class="math notranslate nohighlight">\(\mathcal{E}\)</span>に入力した時に, 出力状態<span class="math notranslate nohighlight">\(\mathcal{E}(\hat{P}_i)\)</span>をパウリ基底<span class="math notranslate nohighlight">\(\{\hat{P}_j\}_j\)</span>で測定したときの期待値の分布を表している.</p>
+<p>実験的にはパウリ状態<span class="math notranslate nohighlight">\(\hat{P}_i\)</span>を直接準備することはできないので, 各固有状態<span class="math notranslate nohighlight">\(\{\ket{k}_i\}_k\)</span>に分けて測定し, 結果を各固有値<span class="math notranslate nohighlight">\(E_k\)</span>を重み付けして線形和をとれば, パウリ状態に対する結果が再構成される:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+ {\rm tr}\left[
+    \mathcal{E}(\hat{P}_i)\hat{P}_j
+ \right]
+ =
+ {\rm tr}\left[
+    \mathcal{E}\left(\sum_kE_k\ket{k}_i\bra{k}_i\right)\hat{P}_j
+ \right]
+ =
+ \sum_kE_k
+ {\rm tr}\left[
+    \mathcal{E}\left(\ket{k}_i\bra{k}_i\right)\hat{P}_j
+ \right].
+\end{align}
+\]</div>
+<p>したがって初期状態としては, 1 qubitの場合は<span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span>, <span class="math notranslate nohighlight">\(\ket{\pm}\)</span>, <span class="math notranslate nohighlight">\(\ket{\pm {\rm i}}\)</span>の6種類, 2 qubitの場合はそれら6状態が2 qubit分で36種類を準備すれば良いということになる.</p>
 </section>
-<section id="cz">
-<h2>CZゲート<a class="headerlink" href="#cz" title="Link to this heading">#</a></h2>
-<p>周波数可変型の場合.</p>
-</section>
-<section id="id2">
-<h2>交差共鳴ゲート<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>クロストークは出てこない.<br />
-CNOTゲートの作り方.</p>
+<section id="chi">
+<h2><span class="math notranslate nohighlight">\(\chi\)</span>行列<a class="headerlink" href="#chi" title="Link to this heading">#</a></h2>
+<p><span class="math notranslate nohighlight">\(\chi\)</span>行列は, 量子プロセス<span class="math notranslate nohighlight">\(\mathcal{E}\)</span>を</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+ \mathcal{E}(\hat{\rho}) = 
+ \sum_{mn}\chi_{mn}\hat{P}_m\hat{\rho}\hat{P}_n
+\end{align}
+\]</div>
+<p>と表した時の係数<span class="math notranslate nohighlight">\(\{\chi_{mn}\}_{mn}\)</span>である.</p>
+<p><span class="math notranslate nohighlight">\(\chi\)</span>行列を実験的に直接求めるのはややこしいので, PTMを経由する手法を説明する.
+<span class="math notranslate nohighlight">\(\chi\)</span>行列とPTMは以下のような関係がある:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+ {\rm PTM}(\mathcal{E})_{ij} 
+ &amp;= 
+ \frac{1}{2^n}
+ {\rm tr}\left[
+    \mathcal{E}(\hat{P}_i)\hat{P}_j
+ \right]\nonumber\\
+&amp;= 
+\frac{1}{2^n}
+ {\rm tr}\left[
+    \sum_{mn}\chi_{mn}\hat{P}_m\hat{P}_i\hat{P}_n\hat{P}_j
+ \right]\nonumber\\
+ &amp;= 
+2^n
+\sum_{mn}\chi_{mn}
+\frac{
+ {\rm tr}\left[
+    \hat{P}_m\hat{P}_i\hat{P}_n\hat{P}_j
+ \right]}
+ {2^{2n}}
+ \nonumber\\
+  &amp;= 
+2^n
+\sum_{mn}\chi_{mn}
+A_{ij,mn},
+\end{align}
+\end{split}\]</div>
+<p>ここで</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+ A_{ij,mn} :=
+\frac{
+ {\rm tr}\left[
+    \hat{P}_m\hat{P}_i\hat{P}_n\hat{P}_j
+ \right]}
+ {2^{2n}}
+\end{align}
+\]</div>
+<p>はエルミートかつユニタリ行列である. この行列はサイズが大きいが, 各qubit数に対する値を事前に求めておけば使い回しすることが可能である. この式を逆に解くことで, <span class="math notranslate nohighlight">\(\chi\)</span>行列はPTMを使って以下のように求めることができる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\begin{bmatrix}
+\\
+\vdots\\
+{\rm PTM}(\mathcal{E})_{ij}\\
+\vdots\\
+\\
+\end{bmatrix}
+&amp;=
+2^n
+\begin{bmatrix}
+\\
+\\
+\qquad\quad A \qquad\quad \\
+\\
+\\
+\end{bmatrix}
+\begin{bmatrix}
+\\
+\vdots\\
+\chi_{mn}\\
+\vdots\\
+\\
+\end{bmatrix}\nonumber\\
+\Leftrightarrow
+\begin{bmatrix}
+\\
+\vdots\\
+\chi_{mn}\\
+\vdots\\
+\\
+\end{bmatrix}
+&amp;=
+\frac{1}{2^n}
+\begin{bmatrix}
+\\
+\\
+\qquad\quad A \qquad\quad \\
+\\
+\\
+\end{bmatrix}
+\begin{bmatrix}
+\\
+\vdots\\
+{\rm PTM}(\mathcal{E})_{ij}\\
+\vdots\\
+\\
+\end{bmatrix}.
+\end{align}
+\end{split}\]</div>
 </section>
 </section>
 
@@ -408,7 +536,7 @@ CNOTゲートの作り方.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs/SCQ_intro"
+            path: "./docs/techniques"
         },
         predefinedOutput: true
     }
@@ -425,24 +553,6 @@ CNOTゲートの作り方.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="single_qubit.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">1 qubit</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../samples/markdown-notebooks.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">マークダウン、ノートブックス</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -460,9 +570,8 @@ CNOTゲートの作り方.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">結合2 qubit系</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cz">CZゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">交差共鳴ゲート</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pauli">Pauli転送行列</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chi"><span class="math notranslate nohighlight">\(\chi\)</span>行列</a></li>
 </ul>
   </nav></div>
 

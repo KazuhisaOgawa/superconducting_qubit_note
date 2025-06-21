@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2 qubit &#8212; 超伝導qubitノート</title>
+    <title>超伝導電気回路 &#8212; 超伝導qubitノート</title>
   
   
   
@@ -60,11 +60,9 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/SCQ_intro/two_qubit';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/SCQ_intro/SCcircuit';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="マークダウン、ノートブックス" href="../samples/markdown-notebooks.html" />
-    <link rel="prev" title="1 qubit" href="single_qubit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -116,6 +114,8 @@
       
       
       
+        
+      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -162,11 +162,11 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="SCQ_intro.html">入門編</a><ul class="current">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="SCQ_intro.html">入門編</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="single_qubit.html">1 qubit</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2 qubit</a></li>
-</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+<li class="toctree-l2"><a class="reference internal" href="two_qubit.html">2 qubit</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../samples/markdown-notebooks.html">マークダウン、ノートブックス</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><ul>
@@ -245,7 +245,7 @@
       
       
       
-      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/SCQ_intro/two_qubit.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/SCQ_intro/SCcircuit.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
       
       
       
-      <li><a href="../../_sources/docs/SCQ_intro/two_qubit.md" target="_blank"
+      <li><a href="../../_sources/docs/SCQ_intro/SCcircuit.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -351,7 +351,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>2 qubit</h1>
+    <h1>超伝導電気回路</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -361,9 +361,12 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">結合2 qubit系</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cz">CZゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">交差共鳴ゲート</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lc">古典LC共振器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">量子LC共振器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qubit">トランズモンqubit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部励振</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">結合</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">伝送線路</a></li>
 </ul>
             </nav>
         </div>
@@ -375,23 +378,26 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="qubit">
-<h1>2 qubit<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>結合2 qubit系<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>2qubit周波数が同じときと, 十分離れている時の2通りを説明する.</p>
-<p>Schrieffer-Wolff変換は軽く気持ちを説明する.
-qubit系での計算では常在ZZは出てこないが, 軽く言及する.<br />
-SW変換の気持ちを説明する.</p>
-</section>
-<section id="cz">
-<h2>CZゲート<a class="headerlink" href="#cz" title="Link to this heading">#</a></h2>
-<p>周波数可変型の場合.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>超伝導電気回路<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="lc">
+<h2>古典LC共振器<a class="headerlink" href="#lc" title="Link to this heading">#</a></h2>
 </section>
 <section id="id2">
-<h2>交差共鳴ゲート<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>クロストークは出てこない.<br />
-CNOTゲートの作り方.</p>
+<h2>量子LC共振器<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+</section>
+<section id="qubit">
+<h2>トランズモンqubit<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h2>
+<p>Josephson接合</p>
+</section>
+<section id="id3">
+<h2>外部励振<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+</section>
+<section id="id4">
+<h2>結合<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+</section>
+<section id="id5">
+<h2>伝送線路<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -425,24 +431,6 @@ CNOTゲートの作り方.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="single_qubit.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">1 qubit</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="../samples/markdown-notebooks.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">マークダウン、ノートブックス</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -460,9 +448,12 @@ CNOTゲートの作り方.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">結合2 qubit系</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cz">CZゲート</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">交差共鳴ゲート</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lc">古典LC共振器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">量子LC共振器</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qubit">トランズモンqubit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部励振</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">結合</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">伝送線路</a></li>
 </ul>
   </nav></div>
 
