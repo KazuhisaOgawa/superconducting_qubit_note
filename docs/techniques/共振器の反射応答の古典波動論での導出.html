@@ -172,7 +172,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../samples/markdown-notebooks.html">マークダウン、ノートブックス</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">共振器の反射応答の古典波動論での導出</a></li>
-
 </ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 </ul>
@@ -362,10 +361,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">共振器の反射応答の古典波動論での導出</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">共振器の反射応答の過渡応答</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定常応答</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">過渡応答(直観的理解)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">過渡応答(線形応答理論)</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -378,6 +377,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>共振器の反射応答の古典波動論での導出<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>定常応答<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>共振器QED理論から, 共振器に対する振幅反射率の周波数応答は</p>
 <div class="math notranslate nohighlight">
 \[
@@ -504,39 +505,172 @@ E_{{\rm r},n} &amp;= \left(-r_1r_2 \mathrm{e}^{-{\rm i}\omega 2d/v}\right)^{n-1}
 \]</div>
 <p>であり, さらに<span class="math notranslate nohighlight">\(r_2\approx1\)</span>, <span class="math notranslate nohighlight">\(r_1r_2\approx1\)</span>と近似すれば, <span class="math notranslate nohighlight">\(\varGamma_{\rm c}\approx \varGamma_{\rm q}\)</span>の関係が得られる.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id2">
-<h1>共振器の反射応答の過渡応答<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
-<p>以下のFourier逆変換公式：</p>
+<section id="id3">
+<h2>過渡応答(直観的理解)<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>共振器に共鳴周波数の矩形パルスが入射したときの反射波形を求める. 入射パルスの振幅を</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E_{\rm in}(t) &amp;= {\rm rect}_{0,T}(t)E{\rm e}^{{\rm i}\omega_{\rm r} t},\\
+{\rm rect}_{a,b}(t) &amp;:= 
+\begin{cases}
+1\quad(a\leq t\leq b)\\
+0\quad({\rm otherwise})
+\end{cases}
+\end{align}
+\end{split}\]</div>
+<p>とする. ここで<span class="math notranslate nohighlight">\(\omega_{\rm r}\)</span>は共振器の共鳴周波数, <span class="math notranslate nohighlight">\(T\)</span>は矩形パルスの時間長さである. 共振器内<span class="math notranslate nohighlight">\(n\)</span>往復して出力される各項の振幅は,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E_{\rm r,0}(t) &amp;= r_1\cdot{\rm rect}_{0,T}(t)E\mathrm{e}^{{\rm i}\omega_{\rm r} t} \\
+E_{\rm r,1}(t) &amp;= (1-r_1^2) r_2 \cdot{\rm rect}_{0,T}(t-2d/v)E\mathrm{e}^{{\rm i}\omega_{\rm r} (t-2d/v)} \\
+E_{\rm r,2}(t) &amp;= -r_1r_2 E_{\rm r,1}(t-2d/v)\\
+&amp;\cdots\nonumber\\
+E_{{\rm r},n}(t) &amp;= \left(-r_1r_2\right)^{n-1} E_{\rm r,1}[t-(n-1)2d/v]\\
+\end{align}
+\end{split}\]</div>
+<p>と表せる. ここで共鳴条件<span class="math notranslate nohighlight">\(2d/v=\pi/\omega_{\rm r}\)</span>を代入すると,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E_{\rm r,0}(t) &amp;= r_1\cdot{\rm rect}_{0,T}(t)E\mathrm{e}^{{\rm i}\omega_{\rm r} t} \\
+E_{\rm r,1}(t) &amp;= -(1-r_1^2) r_2 \cdot{\rm rect}_{0,T}(t-\pi/\omega_{\rm r})E\mathrm{e}^{{\rm i}\omega_{\rm r} t} \\
+E_{\rm r,2}(t) &amp;= -r_1r_2  E_{\rm r,1}(t-\pi/\omega_{\rm r})
+=-r_1r_2(1-r_1^2)r_2 \cdot{\rm rect}_{0,T}(t-2\pi/\omega_{\rm r})E\mathrm{e}^{{\rm i}\omega_{\rm r} t}\\
+&amp;\cdots\nonumber\\
+E_{{\rm r},n}(t) &amp;= -\left(r_1r_2\right)^{n-1} (1-r_1^2)r_2\cdot{\rm rect}_{0,T}(t-n\pi/\omega_{\rm r})E\mathrm{e}^{{\rm i}\omega_{\rm r} t},
+\end{align}
+\end{split}\]</div>
+<p>したがって全反射波の総和は,</p>
 <div class="math notranslate nohighlight">
 \[
+\begin{align}
+\sum_{n=0}^\infty E_{{\rm r},n}(t)
+&amp;= \left[
+    r_1\cdot{\rm rect}_{0,T}(t) - 
+\sum_{n=1}^\infty\left(r_1r_2\right)^{n-1}{\rm rect}_{0,T}(t-n\pi/\omega_{\rm r})\cdot (1-r_1^2)r_2
+\right]
+E\mathrm{e}^{{\rm i}\omega_{\rm r} t}
+\end{align}
+\]</div>
+<p>となる. 振幅部分の各項は図のようになる. 第1項目は共振器に入らず直接反射する項であり, 振幅は<span class="math notranslate nohighlight">\(r_1\)</span>倍で入射波と同位相である. 第2項目以降は共振器内を往復してから出てきた項であり, 入射波とは逆位相である.</p>
+<a class="reference internal image-reference" href="../../_images/resonator_reflection.png"><img alt="../../_images/resonator_reflection.png" class="align-center" src="../../_images/resonator_reflection.png" style="width: 400px;" /></a>
+<p>第2項目以降の総和波形</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+E_{\Sigma}(t) := - \sum_{n=1}^\infty\left(r_1r_2\right)^{n-1}{\rm rect}_{0,T}(t-n\pi/\omega_{\rm r})
+\end{align}
+\]</div>
+<p>の立ち上がり部分は指数関数で近似することができる. <span class="math notranslate nohighlight">\(E_{\Sigma}(0)=0\)</span>, <span class="math notranslate nohighlight">\(T\rightarrow \infty\)</span>の時,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\lim_{t\rightarrow \infty}E_{\Sigma}(t) 
+= - \sum_{n=1}^\infty\left(r_1r_2\right)^{n-1} = -\frac{1}{1-r_1r_2}
+\end{align}
+\]</div>
+<p>であるので,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+E_{\rm offset}(t) 
+:=  E_{\Sigma}(t) + \frac{1}{1-r_1r_2}
+\end{align}
+\]</div>
+<p>を<span class="math notranslate nohighlight">\(\frac{1}{1-r_1r_2}\exp(-\gamma t)\)</span>という関数形で近似させる. <span class="math notranslate nohighlight">\(t\)</span>が<span class="math notranslate nohighlight">\(\pi/\omega_{\rm r}\)</span>増加するごとに<span class="math notranslate nohighlight">\(E_{\rm offset}(t)\)</span>は<span class="math notranslate nohighlight">\((-r_1r_2+\frac{1}{1-r_1r_2}) / (\frac{1}{1-r_1r_2})=1-r_1r_2+r_1^2r_2^2\)</span>倍されるので,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+E_{\rm offset}(t) 
+\approx  \frac{1}{1-r_1r_2}(1-r_1r_2+r_1^2r_2^2)^{\frac{t}{\pi/\omega_{\rm r}}}
+\end{align}
+\]</div>
+<p>と表せる. さらに<span class="math notranslate nohighlight">\(g(r):=1-r+r^2\)</span>とすると, <span class="math notranslate nohighlight">\(r=r_1r_2\)</span>が1に近い時,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+g(1+\Delta r) \approx g(1) + g'(1)\Delta r = 1+\Delta r
+\end{align}
+\]</div>
+<p>と近似できるため,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+E_{\rm offset}(t) 
+\approx  \frac{1}{1-r_1r_2}(r_1r_2)^{\frac{t}{\pi/\omega_{\rm r}}}
+\end{align}
+\]</div>
+<p>と表せる. 前節で求めた近似式</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+r_1r_2 \approx 1 - \frac{\pi\kappa}{2\omega_{\rm r}} \quad(\kappa:=\kappa_{\rm e}+\kappa_{\rm i})
+\end{align}
+\]</div>
+<p>を代入すると,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E_{\rm offset}(t) 
+&amp;\approx  \frac{1}{1-r_1r_2}\left(1 - \frac{\pi\kappa}{2\omega_{\rm r}}\right)^{\frac{t}{\pi/\omega_{\rm r}}}\nonumber\\
+&amp;\approx  \frac{1}{1-r_1r_2}\exp\left(- \frac{\pi\kappa}{2\omega_{\rm r}}\right)^{\frac{t}{\pi/\omega_{\rm r}}}\nonumber\\
+&amp;=  \frac{1}{1-r_1r_2}\exp\left(- \frac{\kappa t}{2}\right)
+\end{align}
+\end{split}\]</div>
+<p>となる. 以上より,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+- 
+\sum_{n=1}^\infty\left(r_1r_2\right)^{n-1}{\rm rect}_{0,\infty}(t-n\pi/\omega_{\rm r})\cdot (1-r_1^2)r_2
+&amp;\approx  \frac{(1-r_1^2)r_2}{1-r_1r_2}\left[\exp\left(- \frac{\kappa t}{2}\right)-1\right]\nonumber\\
+&amp;\rightarrow  \frac{1-r_1^2}{1-r_1}\left[\exp\left(- \frac{\kappa t}{2}\right)-1\right]\quad(r_2\rightarrow 1)\nonumber\\
+&amp;=  (1+r_1)\left[\exp\left(- \frac{\kappa t}{2}\right)-1\right] \nonumber\\
+&amp;\rightarrow  2\left[\exp\left(- \frac{\kappa t}{2}\right)-1\right] \quad(r_1\rightarrow 1)
+\end{align}
+\end{split}\]</div>
+<p>と表せる. 立ち下がりの部分についても同様の議論が成り立つ. この共振器内を往復してから出てきた項と, 共振器に入らず直接反射する項の合成波形が, 過渡応答として観測される.</p>
+</section>
+<section id="id4">
+<h2>過渡応答(線形応答理論)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<!-- 以下のFourier逆変換公式：
+
+$$
 \begin{align}
 \mathcal{F}^{-1} \left( \frac{a - i \omega}{b - i \omega} \right)
 = \delta(t) + (a - b) e^{-bt} \Theta(t)
 \end{align}
-\]</div>
-<p>のフーリエ逆変換は：
-$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3d1e00b3-60b6-4a66-b7be-11ebbd8bea61">
-<span class="eqno">(2)<a class="headerlink" href="#equation-3d1e00b3-60b6-4a66-b7be-11ebbd8bea61" title="Permalink to this equation">#</a></span>\[\begin{align}
+$$
+
+
+のフーリエ逆変換は：
+$$
+\begin{align}
 \Gamma_{\mathrm{q}}(t)
 =
 \delta(t) + \left( \frac{\kappa_i - \kappa_e}{2} - \frac{\kappa_i + \kappa_e}{2} \right) e^{ -\frac{\kappa_i + \kappa_e}{2} t } \, \Theta(t)
 =
 \delta(t) - \kappa_e \cdot e^{ -\frac{\kappa_i + \kappa_e}{2} t } \, \Theta(t)
-\end{align}\]</div>
-<div class="math notranslate nohighlight">
-\[
-以下のような矩形波$f(t)$を入射した時の反射過渡応答を調べる:\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-9feb63ed-c85a-40cc-b2e8-3110bbfb2407">
-<span class="eqno">(3)<a class="headerlink" href="#equation-9feb63ed-c85a-40cc-b2e8-3110bbfb2407" title="Permalink to this equation">#</a></span>\[\begin{align}
+\end{align}
+$$
+
+
+以下のような矩形波$f(t)$を入射した時の反射過渡応答を調べる:
+
+$$
+\begin{align}
 f(t) = 
 \begin{cases}
-A &amp; t \in[-t_0, t_0]\\
-0 &amp;(\rm otherwise)\\
+A & t \in[-t_0, t_0]\\
+0 &(\rm otherwise)\\
 \end{cases}
-\end{align}\]</div>
-<p>$$</p>
-<p>この波形のFourier変換<span class="math notranslate nohighlight">\(F(\omega)\)</span>は,</p>
+\end{align}
+$$
+
+この波形のFourier変換$F(\omega)$は,  -->
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -595,10 +729,10 @@ A &amp; t \in[-t_0, t_0]\\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">共振器の反射応答の古典波動論での導出</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">共振器の反射応答の過渡応答</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定常応答</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">過渡応答(直観的理解)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">過渡応答(線形応答理論)</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
