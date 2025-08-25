@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="prev" title="マークダウンファイル" href="../samples/mymarkdownfile.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,11 +155,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -164,15 +175,15 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_intro/SCQ_intro.html">入門編</a><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_intro/SCQ_intro.html">入門編</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/single_qubit.html">1 qubit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/two_qubit.html">2 qubit</a></li>
-</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../samples/markdown-notebooks.html">マークダウン、ノートブックス</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../samples/mymarkdownfile.html">マークダウンファイル</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">共振器の反射応答の古典波動論での導出</a></li>
-</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</ul>
 </details></li>
 </ul>
 
@@ -328,16 +339,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -363,7 +382,7 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定常応答</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">過渡応答(直観的理解)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">過渡応答(線形応答理論)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">過渡応答(線形システム理論)</a></li>
 </ul>
             </nav>
         </div>
@@ -390,7 +409,8 @@
 \]</div>
 <p>と表される. ここで<span class="math notranslate nohighlight">\(\Delta\omega:=\omega-\omega_{\rm r}\)</span>は入力電磁波の周波数<span class="math notranslate nohighlight">\(\omega\)</span>と共振器共鳴周波数<span class="math notranslate nohighlight">\(\omega_{\rm r}\)</span>の差, <span class="math notranslate nohighlight">\(\kappa_{\rm i}\)</span>, <span class="math notranslate nohighlight">\(\kappa_{\rm e}\)</span>はそれぞれ共振器の内部, 外部結合レートである. ここでは共振器QED理論ではなく古典波動論に基づいて共振器に対する振幅反射率を導出し, 各パラメータが古典と量子でどのように対応するかを調べる.</p>
 <!-- <img src="../../figs/classical_resonator.png" width="400px" style="display: block; margin: auto;"> -->
-<a class="reference internal image-reference" href="../../_images/classical_resonator.png"><img alt="../../_images/classical_resonator.png" class="align-center" src="../../_images/classical_resonator.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/classical_resonator.png"><img alt="../../_images/classical_resonator.png" class="align-center" src="../../_images/classical_resonator.png" style="width: 400px;" />
+</a>
 <p>上図のように, 距離<span class="math notranslate nohighlight">\(d\)</span>だけ離れた振幅反射率<span class="math notranslate nohighlight">\(r_1\)</span>, <span class="math notranslate nohighlight">\(r_2\)</span>の半透明鏡M1, M2からなる共振器を考える. ただし<span class="math notranslate nohighlight">\(r_1\)</span>, <span class="math notranslate nohighlight">\(r_2\)</span>は1に十分近い値であると仮定する. M1側から電磁波を入射するとすると, M1による透過は外部結合レートに関係し, M2による透過は内部結合レートに関係する. 入射電磁波の振幅を<span class="math notranslate nohighlight">\(E\mathrm{e}^{{\rm i}\omega t}\)</span>, 伝搬速度(位相速度)を<span class="math notranslate nohighlight">\(v\)</span>とすると, 出力される各項の振幅は,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -555,7 +575,8 @@ E\mathrm{e}^{{\rm i}\omega_{\rm r} t}
 \end{align}
 \]</div>
 <p>となる. 振幅部分の各項は図のようになる. 第1項目は共振器に入らず直接反射する項であり, 振幅は<span class="math notranslate nohighlight">\(r_1\)</span>倍で入射波と同位相である. 第2項目以降は共振器内を往復してから出てきた項であり, 入射波とは逆位相である.</p>
-<a class="reference internal image-reference" href="../../_images/resonator_reflection.png"><img alt="../../_images/resonator_reflection.png" class="align-center" src="../../_images/resonator_reflection.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/resonator_reflection.png"><img alt="../../_images/resonator_reflection.png" class="align-center" src="../../_images/resonator_reflection.png" style="width: 500px;" />
+</a>
 <p>第2項目以降の総和波形</p>
 <div class="math notranslate nohighlight">
 \[
@@ -632,9 +653,126 @@ E_{\rm offset}(t)
 \end{align}
 \end{split}\]</div>
 <p>と表せる. 立ち下がりの部分についても同様の議論が成り立つ. この共振器内を往復してから出てきた項と, 共振器に入らず直接反射する項の合成波形が, 過渡応答として観測される.</p>
+<p><span class="math notranslate nohighlight">\(T\rightarrow \infty\)</span>かつ<span class="math notranslate nohighlight">\(t\rightarrow \infty\)</span>において, <span class="math notranslate nohighlight">\(\sum_{n=0}^\infty E_{{\rm r},n}(t) \rightarrow -1\)</span>となり, これは共振器における反射波の周波数応答が共鳴に付近で複素平面を1周し, 共鳴条件では反射率が<span class="math notranslate nohighlight">\(-1\)</span>となることと合致している. また過渡応答の時定数は<span class="math notranslate nohighlight">\(\kappa/2\)</span>であることから, 過渡応答の波形から共振器の損失パラメータ<span class="math notranslate nohighlight">\(\kappa=\kappa_{\rm e}+\kappa_{\rm i}\)</span>が推定できる.</p>
 </section>
 <section id="id4">
-<h2>過渡応答(線形応答理論)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2>過渡応答(線形システム理論)<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>共振器に矩形パルスを入力したときの反射信号の過渡応答を, 線形システム理論に基づいて厳密に求める.</p>
+<p>共振器の伝達関数は, 冒頭で示した通り:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+H(\omega) = \varGamma_{\rm q} = 
+\frac{(\kappa_{\rm i} - \kappa_{\rm e})/2 - \mathrm{i}(\omega-\omega_{\rm r})}
+{(\kappa_{\rm i} + \kappa_{\rm e})/2 - \mathrm{i}(\omega-\omega_{\rm r})}.
+\end{align}
+\]</div>
+<p>この伝達関数のFourier変換であるインパルス応答関数<span class="math notranslate nohighlight">\(h(t)\)</span>は,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+h(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} H(\omega) \mathrm{e}^{{\rm i}\omega t} {\rm d}\omega
+\end{align}
+\]</div>
+<p>と表せる. ここで変数変換:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\varDelta &amp;:= \omega - \omega_{\mathrm{r}} \quad \Rightarrow \quad {\rm d}\omega = {\rm d}\varDelta \\
+H(\omega) &amp;= \frac{(\kappa_{\mathrm{i}} - \kappa_{\mathrm{e}})/2 - \mathrm{i}\varDelta}{(\kappa_{\mathrm{i}} + \kappa_{\mathrm{e}})/2 - \mathrm{i}\varDelta}
+\end{align}
+\end{split}\]</div>
+<p>を行うと, インパルス応答は次の形になる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+h(t) &amp;= \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{(\kappa_{\mathrm{i}} - \kappa_{\mathrm{e}})/2 - \mathrm{i}\varDelta}{(\kappa_{\mathrm{i}} + \kappa_{\mathrm{e}})/2 - \mathrm{i}\varDelta} \cdot \mathrm{e}^{\mathrm{i}(\varDelta + \omega_{\mathrm{r}}) t} {\rm d}\varDelta \nonumber\\
+&amp;= \mathrm{e}^{\mathrm{i} \omega_{\mathrm{r}} t} \cdot \underbrace{\frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{(\kappa_{\mathrm{i}} - \kappa_{\mathrm{e}})/2 - \mathrm{i}\varDelta}{(\kappa_{\mathrm{i}} + \kappa_{\mathrm{e}})/2 - \mathrm{i}\varDelta} \cdot \mathrm{e}^{\mathrm{i} \varDelta t} {\rm d}\varDelta}_{=: f(t)}
+\end{align}
+\end{split}\]</div>
+<p>被積分関数は</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+f(t) &amp;= \frac{1}{2\pi} \int_{-\infty}^\infty \left[1 - \frac{\kappa_{\mathrm{e}}}{\kappa/2 - {\rm i}\Delta} \right] \mathrm{e}^{{\rm i}\Delta t} {\rm d}\Delta
+\quad(\kappa := \kappa_{\mathrm{i}} + \kappa_{\mathrm{e}})
+\nonumber\\
+ &amp;= \delta(t) - \kappa_{\mathrm{e}} \cdot \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{\mathrm{e}^{{\rm i}\Delta t}}{\kappa/2 - {\rm i}\Delta} {\rm d}\Delta
+\end{align}
+\end{split}\]</div>
+<p>と計算でき, さらに次のFourier変換公式：</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{\mathrm{e}^{{\rm i}\Delta t}}{\gamma - {\rm i}\Delta} {\rm d}\Delta
+= \theta(t) \mathrm{e}^{-\gamma t}, \quad (\gamma &gt; 0)
+\end{align}
+\]</div>
+<p>を用いると,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+f(t) = \delta(t) - \kappa_{\mathrm{e}} \theta(t) \mathrm{e}^{- \kappa t / 2}
+\end{align}
+\]</div>
+<p>と計算できる. 従って全体のインパルス応答関数は, 以下のように求められる:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+h(t) = f(t)\mathrm{e}^{\mathrm{i} \omega_{\mathrm{r}} t}
+= \left[ \delta(t) - \kappa_{\mathrm{e}} \theta(t) \mathrm{e}^{- \kappa t / 2} \right] \mathrm{e}^{\mathrm{i} \omega_{\mathrm{r}} t}.
+\end{align}
+\]</div>
+<p>入力波形に対してこのインパルス応答関数を畳み込むことで, 反射波形を得ることができる. 入力の矩形パルスを</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E_{\text{in}}(t) = E \cdot \Pi_T(t){\rm e}^{{\rm i}\omega_{\rm r}t} =
+\begin{cases}
+E{\rm e}^{{\rm i}\omega_{\rm r}t} &amp; (0 \le t \le T) \\
+0 &amp; ({\rm otherwise})
+\end{cases}
+\end{align}
+\end{split}\]</div>
+<p>とすると, 反射波形<span class="math notranslate nohighlight">\(E_{\rm out}(t)\)</span>は以下のように求められる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+E_{\text{out}}(t) &amp;= (h * E_{\text{in}})(t)
+\quad\left[
+(h*x)(t) = \int_{-\infty}^{t} {\rm d}\tau\, h(t-\tau) x(\tau) 
+\right]
+\nonumber\\
+&amp;=
+\begin{cases}
+0 &amp; (t &lt; 0) \\
+E \left[1 - \frac{2\kappa_{\rm e}}{\kappa} \left(1-{\rm e}^{- \kappa t / 2}\right) \right] &amp; (0 \le t \le T) \\
+E \left[1 - {\rm e}^{- \kappa T / 2} \right] \cdot {\rm e}^{- \kappa(t - T) / 2} &amp; (T &lt; t) \\
+\end{cases}
+\end{align}
+\end{split}\]</div>
+<p>⸻</p>
+<p>✅ 結論（反射信号の過渡応答）</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\boxed{
+a_{\text{out}}(t) =
+\begin{cases}
+A \left(1 - e^{- \frac{\kappa}{2} t} \right) &amp; 0 \le t \le T \\
+A \left(1 - e^{- \frac{\kappa}{2} T} \right) \cdot e^{- \frac{\kappa}{2} (t - T)} &amp; t &gt; T \\
+0 &amp; t &lt; 0
+\end{cases}
+}
+\end{align}
+\end{split}\]</div>
+<p>⸻</p>
+<p>🔸 物理的意味
+•	t = 0：共振器は空、完全反射（a_{\text{out}}(0) = 0）
+•	0 &lt; t &lt; T：共振器に蓄積し、反射波が増加
+•	t = T で入力停止 → 共振器からの自発放出が指数減衰</p>
+<p>⸻</p>
+<p>必要であれば、プロットや図示、複素振幅を含む解、量子雑音付きのモデルへの拡張なども可能です。</p>
 <!-- 以下のFourier逆変換公式：
 
 $$
@@ -719,8 +857,7 @@ $$
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -731,7 +868,7 @@ $$
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">定常応答</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">過渡応答(直観的理解)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">過渡応答(線形応答理論)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">過渡応答(線形システム理論)</a></li>
 </ul>
   </nav></div>
 
@@ -780,8 +917,8 @@ By 小川 和久
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
