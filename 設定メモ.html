@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>個人用アクセストークン &#8212; 超伝導qubitノート</title>
+    <title>公開手順（これだけ） &#8212; 超伝導qubitノート</title>
   
   
   
@@ -174,19 +174,15 @@
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="docs/SCQ_intro/SCQ_intro.html">入門編</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="docs/SCQ_intro/single_qubit.html">1 qubit制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docs/SCQ_intro/two_qubit.html">2 qubit</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="docs/%E5%85%A5%E9%96%80%E8%A7%A3%E8%AA%AC/0_%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD.html">入門解説</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="docs/%E5%85%A5%E9%96%80%E8%A7%A3%E8%AA%AC/1_1qubit%E5%88%B6%E5%BE%A1.html">1 qubit制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/%E5%85%A5%E9%96%80%E8%A7%A3%E8%AA%AC/2_2qubit%E5%88%B6%E5%BE%A1.html">2 qubit制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docs/%E5%85%A5%E9%96%80%E8%A7%A3%E8%AA%AC/3_%E8%AA%AD%E3%81%BF%E5%87%BA%E3%81%97.html">読み出し</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="docs/SCQ_fundamentals/SCQ_intro.html">入門編</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="docs/SCQ_fundamentals/single_qubit.html">1 qubit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docs/SCQ_fundamentals/two_qubit.html">2 qubit</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="docs/samples/markdown-notebooks.html">マークダウン、ノートブックス</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="docs/samples/mymarkdownfile.html">マークダウンファイル</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="docs/techniques/%E5%85%B1%E6%8C%AF%E5%99%A8%E3%81%AE%E5%8F%8D%E5%B0%84%E5%BF%9C%E7%AD%94%E3%81%AE%E5%8F%A4%E5%85%B8%E6%B3%A2%E5%8B%95%E8%AB%96%E3%81%A7%E3%81%AE%E5%B0%8E%E5%87%BA.html">共振器の反射応答の古典波動論での導出</a></li>
 </ul>
 </details></li>
 </ul>
@@ -374,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>個人用アクセストークン</h1>
+    <h1>公開手順（これだけ）</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -384,8 +380,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">個人用アクセストークン</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">操作方法</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">公開手順（これだけ）</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">個人用アクセストークン</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">操作方法</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jb-build">jb buildが通らない時に仮想環境の構築まとめ</a></li>
 </ul>
 
@@ -400,7 +397,14 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>個人用アクセストークン<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>公開手順（これだけ）<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>cd ./superconducting_qubit_note/
+source .venv/bin/activate
+jupyter-book build .
+ghp-import -n -p -f _build/html</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>個人用アクセストークン<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
 <p>右上のプロフィールアイコン
 →Settings
 →Developer settings
@@ -408,8 +412,8 @@ document.write(`
 →Tokens (classic)</p>
 <p>これをtoken3.txtに貼り付ける</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id2">
-<h1>操作方法<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="id3">
+<h1>操作方法<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
 <p>jb build ./
 でノートブックがビルドされる。
 ghp-import -n -p -f _build/html
@@ -519,8 +523,9 @@ ghp-import -n -p -f _build/html
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">個人用アクセストークン</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">操作方法</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">公開手順（これだけ）</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">個人用アクセストークン</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">操作方法</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jb-build">jb buildが通らない時に仮想環境の構築まとめ</a></li>
 </ul>
 
