@@ -383,12 +383,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">qubitのハミルトニアン</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">自由時間発展</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部駆動時の時間発展</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">回転波近似について補足</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rabi">Rabi振動</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z">Virtual-Zゲート</a></li>
 </ul>
             </nav>
@@ -405,7 +399,7 @@ document.write(`
 <h1>1 qubit制御<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>qubitのハミルトニアン<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>量子系の時間発展を適切に制御するためには, その系のハミルトニアンを正確に同定・設計できることが重要である. これは量子系の時間発展はSchrödinger方程式:</p>
+<p>ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}\)</span>が決まると, その量子系はシュレディンガー方程式:</p>
 <div class="math notranslate nohighlight">
 \[
 \begin{align}
@@ -413,38 +407,55 @@ document.write(`
 =\hat{H}\ket{\psi(t)}
 \end{align}
 \]</div>
-<p>に従うため, ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}\)</span>がその時間発展を特徴づけているからである.</p>
-<p>ハミルトニアンはその系のエネルギーを表す物理量演算子である. 下図のように, エネルギー固有値が<span class="math notranslate nohighlight">\(E_0\)</span>と<span class="math notranslate nohighlight">\(E_1\)</span> (<span class="math notranslate nohighlight">\(E_0&lt;E_1\)</span>)である2準位系 (qubit系) のハミルトニアンは,</p>
+<p>に従って決定論的に時間発展する.<br />
+ハミルトニアンは系のエネルギーを表す物理量演算子であり, エネルギー固有値を<span class="math notranslate nohighlight">\(E_0, E_1, \cdots\)</span>, それらに対応するエネルギー固有状態を<span class="math notranslate nohighlight">\(|0\rangle, |1\rangle, \cdots\)</span>とすると, ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}\)</span>は
+$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-02d9b17c-f046-4c8a-be0e-068ebbf9f4fd">
+<span class="eqno">(1)<a class="headerlink" href="#equation-02d9b17c-f046-4c8a-be0e-068ebbf9f4fd" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{H} = E_0|0\rangle\langle 0| + E_1|1\rangle\langle 1| + \cdots
+=
+\begin{bmatrix}
+E_0 &amp; 0 &amp; 0 &amp;\cdots \\
+0 &amp; E_1 &amp; 0 &amp;\cdots \\
+0 &amp; 0 &amp; E_2 &amp;\cdots \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots \\
+\end{bmatrix}
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}
+と表せる. \\例えば下図のように, エネルギー固有値が$E_0$と$E_1$ ($E_0&lt;E_1$)である2準位系 (qubit系) のハミルトニアンは, \end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-6c084b6b-6559-4150-bb9b-7616486e2c14">
+<span class="eqno">(2)<a class="headerlink" href="#equation-6c084b6b-6559-4150-bb9b-7616486e2c14" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H} = E_0|0\rangle\langle0| + E_1|1\rangle\langle1|
-\end{align}
-\]</div>
-<p>と表せる. 恒等演算子<span class="math notranslate nohighlight">\(\hat{I}=\begin{bmatrix} 1&amp;0\\0&amp;1\\ \end{bmatrix}\)</span>, Pauli-Z演算子<span class="math notranslate nohighlight">\(\hat{Z}=\begin{bmatrix} 1&amp;0\\0&amp;-1\\ \end{bmatrix}\)</span>を用いると,</p>
+=
+\begin{bmatrix}
+E_0 &amp; 0 \\
+0 &amp; E_1 \\
+\end{bmatrix}
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[\begin{split}と表せる. 恒等演算子$\hat{I}=\begin{bmatrix} 1&amp;0\\0&amp;1\\ \end{bmatrix}$, パウリZ演算子$\hat{Z}=\begin{bmatrix} 1&amp;0\\0&amp;-1\\ \end{bmatrix}$を用いると, \end{split}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-930dd2aa-c2dd-41f3-a836-cb88c9008f77">
+<span class="eqno">(3)<a class="headerlink" href="#equation-930dd2aa-c2dd-41f3-a836-cb88c9008f77" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H} = \frac{E_0+E_1}{2}\hat{I} + \frac{E_0-E_1}{2}\hat{Z}
-\end{align}
-\]</div>
-<p>と表せる. ここで<span class="math notranslate nohighlight">\(\hat{I}\)</span>に比例する項はエネルギーの基準値に対応する項であり, Schrödinger方程式の解としては量子状態全体にかかる全体位相というゲージ自由度に現れる. この量は観測には現れず, 実際に観測に現れるのは準位間のエネルギー差に対応する周波数である. したがって<span class="math notranslate nohighlight">\(\hat{I}\)</span>に比例する項は無視し, <span class="math notranslate nohighlight">\(\omega_{\rm q}:=(E_1-E_0)/\hbar&gt;0\)</span>とすると, ハミルトニアンは</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}と表せる.  \\ここで$\hat{I}$に比例する項はエネルギーの基準値に対応する項であり, シュレディンガー方程式の解としては量子状態全体にかかる全体位相という形で現れる. 
+この量は観測結果には現れず, 実際に観測に現れるのは準位間のエネルギー差に対応する周波数である. 
+したがって$\hat{I}$に比例する項は無視し, $\omega_{\rm q}:=(E_1-E_0)/\hbar&gt;0$とすると, ハミルトニアンは\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-068e3ed2-52b3-4847-a9e1-75b4eeae9779">
+<span class="eqno">(4)<a class="headerlink" href="#equation-068e3ed2-52b3-4847-a9e1-75b4eeae9779" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H} = -\hbar\omega_{\rm q}\frac{\hat{Z}}{2}
-\end{align}
-\]</div>
-<p>と表せる. これが外部駆動がない時の1 qubitのハミルトニアンである.</p>
-<a class="reference internal image-reference" href="../../_images/TLS.png"><img alt="../../_images/TLS.png" class="align-center" src="../../_images/TLS.png" style="width: 200px;" />
-</a>
-</section>
-<section id="id2">
-<h2>自由時間発展<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>このハミルトニアンにおける時間発展は, Schrödinger方程式を解くことで求めることができる. 今はハミルトニアンが時間変化しないので, 以下のように簡単に求められる:</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[ \begin{align}\begin{aligned}と表せる. これが外部駆動がない時の1 qubitのハミルトニアンである. \\
+```{image} ../../figs/TLS.png
+:width: 200px
+:align: center
+```\\
+## 自由時間発展\\このハミルトニアンにおける時間発展は, Schr&amp;ouml;dinger方程式を解くことで求めることができる. 今はハミルトニアンが時間変化しないので, 以下のように簡単に求められる:\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-b28871ef-9b97-4e65-8ae5-d58d70e5a12e">
+<span class="eqno">(5)<a class="headerlink" href="#equation-b28871ef-9b97-4e65-8ae5-d58d70e5a12e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \ket{\psi(t)} &amp;= \hat{U}(t)\ket{\psi(0)},\\
 \hat{U}(t) &amp;:= \exp
 \left(
@@ -456,37 +467,32 @@ document.write(`
     \frac{{\rm i}\omega_{\rm q}t\hat{Z}}{2}
 \right)
 = \hat{R}_z(-\omega_{\rm q}t).
-\end{align}
-\end{split}\]</div>
-<p>これは静止系（実験室系）から見たBloch球上では, Z軸周りを角速度<span class="math notranslate nohighlight">\(-\omega_{\rm q}\)</span>で回転（XYZ軸が右手系配置の場合は左ネジ方向回転に対応）する描像となる. 典型的にqubitの共鳴周波数<span class="math notranslate nohighlight">\(\omega_{\rm q}\)</span>は数GHzであるのに対しコヒーレンス時間は数10 µsであるので, 注目する時間スケール内で高速に回転することになり, 時間発展を追いかけるには不都合である (下図左).</p>
-<p>そこで, 外部駆動がない自由時間発展の際にqubitを静止した描像で捉えるために<strong>回転座標変換</strong>という手法が用いられる. これはBloch球回転と同じ角速度で回転するフレーム（回転座標系）に観測者が乗ることで, Bloch球が静止して見えるという考え方である (下図右). 数式としては, 状態ケット<span class="math notranslate nohighlight">\(\ket{\psi(t)}\)</span>（Z軸周り<span class="math notranslate nohighlight">\(-\omega_{\rm q}\)</span>回転している）に対して,</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}これは静止系（実験室系）から見たBloch球上では, Z軸周りを角速度$-\omega_{\rm q}$で回転（XYZ軸が右手系配置の場合は左ネジ方向回転に対応）する描像となる. 典型的にqubitの共鳴周波数$\omega_{\rm q}$は数GHzであるのに対しコヒーレンス時間は数10 µsであるので, 注目する時間スケール内で高速に回転することになり, 時間発展を追いかけるには不都合である (下図左). \\そこで, 外部駆動がない自由時間発展の際にqubitを静止した描像で捉えるために**回転座標変換**という手法が用いられる. これはBloch球回転と同じ角速度で回転するフレーム（回転座標系）に観測者が乗ることで, Bloch球が静止して見えるという考え方である (下図右). 数式としては, 状態ケット$\ket{\psi(t)}$（Z軸周り$-\omega_{\rm q}$回転している）に対して, \end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-141409df-b294-4947-8175-783ddf022f2b">
+<span class="eqno">(6)<a class="headerlink" href="#equation-141409df-b294-4947-8175-783ddf022f2b" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{U}_{\rm r}(t) := 
 \exp
 \left(
     \frac{-{\rm i}\omega_{\rm r}t\hat{Z}}{2}
 \right)
-\end{align}
-\]</div>
-<p>という変換（Z軸周り<span class="math notranslate nohighlight">\(\omega_{\rm r}\)</span>回転させるユニタリ変換）を行った状態</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[という変換（Z軸周り$\omega_{\rm r}$回転させるユニタリ変換）を行った状態\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-3178f592-a4a7-4023-a1a4-dbd440c79622">
+<span class="eqno">(7)<a class="headerlink" href="#equation-3178f592-a4a7-4023-a1a4-dbd440c79622" title="Permalink to this equation">#</a></span>\[\begin{align}
 \ket{\psi_{\rm r}(t)}:=\hat{U}_{\rm r}(t)\ket{\psi(t)} = 
 \exp
 \left(
     \frac{{\rm i}(\omega_{\rm q} - \omega_{\rm r})t\hat{Z}}{2}
 \right)
 \ket{\psi(0)}
-\end{align}
-\]</div>
-<p>を考えることに対応する (相互作用描像と呼ばれる). 特に<span class="math notranslate nohighlight">\(\omega_{\rm r}=\omega_{\rm q}\)</span>と選べば, 状態は静止して見えるはずである.</p>
-<p>では実際に回転座標系に乗った時の実効的なハミルトニアンの形を求めておく（qubitの回転を打ち消すような座標系に乗っているので, ハミルトニアンは0となるはずである）. 実験室系でのSchrödinger方程式に<span class="math notranslate nohighlight">\(\hat{I} = \hat{U}_{\rm r}^\dagger(t)\hat{U}_{\rm r}(t)\)</span>を挿入して,</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[ \begin{align}\begin{aligned}を考えることに対応する (相互作用描像と呼ばれる). 特に$\omega_{\rm r}=\omega_{\rm q}$と選べば, 状態は静止して見えるはずである. \\では実際に回転座標系に乗った時の実効的なハミルトニアンの形を求めておく（qubitの回転を打ち消すような座標系に乗っているので, ハミルトニアンは0となるはずである）. 実験室系でのSchr&amp;ouml;dinger方程式に$\hat{I} = \hat{U}_{\rm r}^\dagger(t)\hat{U}_{\rm r}(t)$を挿入して, \end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-e08d0bed-4a29-4f75-afd2-5345479f0d05">
+<span class="eqno">(8)<a class="headerlink" href="#equation-e08d0bed-4a29-4f75-afd2-5345479f0d05" title="Permalink to this equation">#</a></span>\[\begin{align}
 &amp;{\rm i}\hbar\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dagger(t)\hat{U}_{\rm r}(t)\ket{\psi(t)}
 =\hat{H}\hat{U}_{\rm r}^\dagger(t)\hat{U}_{\rm r}(t)\ket{\psi(t)} \\
 %
@@ -523,12 +529,11 @@ document.write(`
 \hat{U}_{\rm r}(t) \frac{\rm d}{{\rm d}t} \hat{U}_{\rm r}^\dagger(t)
 \right]
 \ket{\psi_{\rm r}(t)}, \\
-\end{align}
-\end{split}\]</div>
-<p>よって回転座標系における実効ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}_{\rm r}\)</span>は,</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[よって回転座標系における実効ハミルトニアン$\hat{H}_{\rm r}$は, \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-842535ed-2d0e-49b4-8dfb-91a29c436673">
+<span class="eqno">(9)<a class="headerlink" href="#equation-842535ed-2d0e-49b4-8dfb-91a29c436673" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H}_{\rm r} 
 &amp;= \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
 -{\rm i}\hbar
@@ -536,60 +541,51 @@ document.write(`
 &amp;= \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
 +{\rm i}\hbar
 \frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}(t) \cdot\hat{U}_{\rm r}^\dagger(t)
-\end{align} 
-\end{split}\]</div>
-<p>と表せる. 今の場合は,</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[と表せる. 今の場合は, \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-61e0ba02-d063-4f90-b6e1-e20d6aa4ff5e">
+<span class="eqno">(10)<a class="headerlink" href="#equation-61e0ba02-d063-4f90-b6e1-e20d6aa4ff5e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
 +{\rm i}\hbar
 \frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}(t) \cdot\hat{U}_{\rm r}^\dagger(t)
 = -\hbar\omega_{\rm q}\frac{\hat{Z}}{2}
 +\hbar\omega_{\rm r}\frac{\hat{Z}}{2}
 = -\hbar(\omega_{\rm q}-\omega_{\rm r})\frac{\hat{Z}}{2}
-\end{align} 
-\]</div>
-<p>であり, 特に<span class="math notranslate nohighlight">\(\omega_{\rm r}=\omega_{\rm q}\)</span>の時は<span class="math notranslate nohighlight">\(\hat{H}_{\rm r}=0\)</span>となり, 確かにこれは時間発展しない（状態は静止して見える）ことに対応する.</p>
-<a class="reference internal image-reference" href="../../_images/rotating_frame.png"><img alt="../../_images/rotating_frame.png" class="align-center" src="../../_images/rotating_frame.png" style="width: 600px;" />
-</a>
-</section>
-<section id="id3">
-<h2>外部駆動時の時間発展<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>超伝導qubitに共鳴する周波数のマイクロ波を照射することで, qubitの状態を励起または脱励起することができる. 超伝導qubitに対して周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>のマイクロ波駆動を行った場合のハミルトニアンは, 以下の形で表される(導出は超伝導電気回路の節を参照):</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}であり, 特に$\omega_{\rm r}=\omega_{\rm q}$の時は$\hat{H}_{\rm r}=0$となり, 確かにこれは時間発展しない（状態は静止して見える）ことに対応する.\\```{image} ../../figs/rotating_frame.png
+:width: 600px
+:align: center
+```\\## 外部駆動時の時間発展\\超伝導qubitに共鳴する周波数のマイクロ波を照射することで, qubitの状態を励起または脱励起することができる. 超伝導qubitに対して周波数$\omega_{\rm d}$のマイクロ波駆動を行った場合のハミルトニアンは, 以下の形で表される(導出は超伝導電気回路の節を参照):\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-7bdd2c9a-50b1-4ac1-84a8-37d0c68c4850">
+<span class="eqno">(11)<a class="headerlink" href="#equation-7bdd2c9a-50b1-4ac1-84a8-37d0c68c4850" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H}(t) = -\hbar\omega_{\rm q}\frac{\hat{Z}}{2} + \hbar\varOmega\cos(\omega_{\rm d}t+\phi)\hat{X}
-\end{align}
-\]</div>
-<p>右辺第1項目の自由ハミルトニアンの項に加えて, 右辺第2項目にマイクロ波駆動時はPauli-Xを含む振動項が現れる. ここで<span class="math notranslate nohighlight">\(\varOmega\)</span>はマイクロ波の振幅をRabi周波数換算した量, <span class="math notranslate nohighlight">\(\phi\)</span>は駆動マイクロ波の位相である. 伝送線路におけるマイクロ波の振幅の単位は通常V (Volt)で表されるが, 回路QEDの文脈では, その振幅の共鳴マイクロ波がqubitに照射された際に生じるRabi振動の振動数(単位Hz)に換算された量<span class="math notranslate nohighlight">\(\varOmega\)</span>で扱われる. また右辺第2項目のPauli演算子を<span class="math notranslate nohighlight">\(\hat{X}\)</span>とするか<span class="math notranslate nohighlight">\(\hat{Y}\)</span>とするかには任意性があり, ここでは実験者が有する位相基準に対して位相差ゼロ<span class="math notranslate nohighlight">\((\phi=0)\)</span>のマイクロ波を照射した際に<span class="math notranslate nohighlight">\(\hbar\varOmega\cos(\omega_{\rm d}t)\hat{X}\)</span>の駆動項が現れるとした.</p>
-<p>このハミルトニアンの時間依存性を消去して時間発展を直観的に捉えるために, ここでは駆動周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>の回転座標系に変換することを考える. つまり, 回転座標変換のユニタリ演算子</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}右辺第1項目の自由ハミルトニアンの項に加えて, 右辺第2項目にマイクロ波駆動時はPauli-Xを含む振動項が現れる. ここで$\varOmega$はマイクロ波の振幅をRabi周波数換算した量, $\phi$は駆動マイクロ波の位相である. 伝送線路におけるマイクロ波の振幅の単位は通常V (Volt)で表されるが, 回路QEDの文脈では, その振幅の共鳴マイクロ波がqubitに照射された際に生じるRabi振動の振動数(単位Hz)に換算された量$\varOmega$で扱われる. また右辺第2項目のPauli演算子を$\hat{X}$とするか$\hat{Y}$とするかには任意性があり, ここでは実験者が有する位相基準に対して位相差ゼロ$(\phi=0)$のマイクロ波を照射した際に$\hbar\varOmega\cos(\omega_{\rm d}t)\hat{X}$の駆動項が現れるとした. \\このハミルトニアンの時間依存性を消去して時間発展を直観的に捉えるために, ここでは駆動周波数$\omega_{\rm d}$の回転座標系に変換することを考える. つまり, 回転座標変換のユニタリ演算子\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-42e9945f-32cf-4767-a4a9-d33619612927">
+<span class="eqno">(12)<a class="headerlink" href="#equation-42e9945f-32cf-4767-a4a9-d33619612927" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{U}_{\rm r}(t) = 
 \exp
 \left(
     \frac{-{\rm i}\omega_{\rm d}t\hat{Z}}{2}
 \right)
-\end{align}
-\]</div>
-<p>を用いて回転座標変換を行うと, 実効ハミルトニアンは以下のように変換される:</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[を用いて回転座標変換を行うと, 実効ハミルトニアンは以下のように変換される:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-5aa81d3f-aae7-4c43-9981-a4f1e5f5474a">
+<span class="eqno">(13)<a class="headerlink" href="#equation-5aa81d3f-aae7-4c43-9981-a4f1e5f5474a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H}_{\rm r} 
 &amp;= \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
 +{\rm i}\hbar
 \frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}(t) \cdot\hat{U}_{\rm r}^\dagger(t)\nonumber\\
 &amp;= -\hbar(\omega_{\rm q}-\omega_{\rm d})\frac{\hat{Z}}{2} + \hbar\varOmega\cos(\omega_{\rm d}t+\phi)\hat{U}_{\rm r}(t)\hat{X}\hat{U}_{\rm r}^\dagger(t)
-\end{align} 
-\end{split}\]</div>
-<p>ここで右辺第2項目における</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ここで右辺第2項目における\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-e7314d4e-d791-41c5-aea5-a02e4b403d18">
+<span class="eqno">(14)<a class="headerlink" href="#equation-e7314d4e-d791-41c5-aea5-a02e4b403d18" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{U}_{\rm r}(t)\hat{X}\hat{U}_{\rm r}^\dagger(t)
 =
 \exp
@@ -601,21 +597,19 @@ document.write(`
 \left(
     \frac{{\rm i}\omega_{\rm d}t\hat{Z}}{2}
 \right)
-\end{align} 
-\]</div>
-<p>は, Baker-Campbell-Hausdorffの公式:</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[は, Baker-Campbell-Hausdorffの公式:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-03ecadac-d712-412a-9f3a-80efa5fd9f86">
+<span class="eqno">(15)<a class="headerlink" href="#equation-03ecadac-d712-412a-9f3a-80efa5fd9f86" title="Permalink to this equation">#</a></span>\[\begin{align}
 {\rm e}^{\hat{A}}\hat{B}{\rm e}^{-\hat{A}}
 =
 \hat{B} + [\hat{A},\hat{B}] + \frac{1}{2!}[\hat{A},[\hat{A},\hat{B}]] + \frac{1}{3!}[\hat{A}, [\hat{A},[\hat{A},\hat{B}]]]+ \cdots
-\end{align} 
-\]</div>
-<p>を用いると解析的に解くことができる. つまり<span class="math notranslate nohighlight">\(k:=-{\rm i}\omega_{\rm d}t/2\)</span>とおいて,</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[を用いると解析的に解くことができる. つまり$k:=-{\rm i}\omega_{\rm d}t/2$とおいて, \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-e7d62385-8413-4ef9-b227-64b16cb272b7">
+<span class="eqno">(16)<a class="headerlink" href="#equation-e7d62385-8413-4ef9-b227-64b16cb272b7" title="Permalink to this equation">#</a></span>\[\begin{align}
 {\rm e}^{k\hat{Z}}
 \hat{X}
 {\rm e}^{-k\hat{Z}}
@@ -641,24 +635,21 @@ document.write(`
 \right)\hat{Y}\nonumber\\
 &amp;=
 \cos(\omega_{\rm d}t)\hat{X} + \sin(\omega_{\rm d}t)\hat{Y}
-\end{align} 
-\end{split}\]</div>
-<p>となる.</p>
-<p>このようにして座標変換して得られた右辺第2項目</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}となる. \\このようにして座標変換して得られた右辺第2項目\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-095c2809-8c96-472b-90f9-76066b8628ca">
+<span class="eqno">(17)<a class="headerlink" href="#equation-095c2809-8c96-472b-90f9-76066b8628ca" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hbar\varOmega\cos(\omega_{\rm d}t+\phi)
 \left[
     \cos(\omega_{\rm d}t)\hat{X} + \sin(\omega_{\rm d}t)\hat{Y}
 \right]
-\end{align} 
-\]</div>
-<p>に対して, さらに以下のように<strong>回転波近似</strong>を行うことで時間依存項を消去する(回転波近似についての詳細は以下の項を参照).
-まずcosとsinを指数関数で展開する:</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[に対して, さらに以下のように**回転波近似**を行うことで時間依存項を消去する(回転波近似についての詳細は以下の項を参照). 
+まずcosとsinを指数関数で展開する:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-84a96667-729b-4f07-be8f-865c2da6516e">
+<span class="eqno">(18)<a class="headerlink" href="#equation-84a96667-729b-4f07-be8f-865c2da6516e" title="Permalink to this equation">#</a></span>\[\begin{align}
 &amp;\hbar\varOmega\cos(\omega_{\rm d}t+\phi)
 \left[
     \cos(\omega_{\rm d}t)\hat{X} + \sin(\omega_{\rm d}t)\hat{Y}
@@ -699,12 +690,11 @@ document.write(`
     }{4{\rm i}}
     \hat{Y}
 \right)
-\end{align} 
-\end{split}\]</div>
-<p>ここで現れる角周波数<span class="math notranslate nohighlight">\(\pm 2\omega_{\rm d}\)</span>の振動項は, ハミルトニアンの他の項と同じオーダかそれ以下のノルムを持ち, 振動周波数 (<span class="math notranslate nohighlight">\(\sim\)</span>数GHz) の逆数 (振動周期; <span class="math notranslate nohighlight">\(\sim\)</span>数100 ps) は今注目している時間発展の時間スケール (<span class="math notranslate nohighlight">\(\sim\)</span>数µs) に比べて非常に小さい. この時, この高速振動項は時間発展にはほとんど影響せず, 近似的に無視しても良い. これを<strong>回転波近似</strong>という. したがって上の式は近似的に</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[ここで現れる角周波数$\pm 2\omega_{\rm d}$の振動項は, ハミルトニアンの他の項と同じオーダかそれ以下のノルムを持ち, 振動周波数 ($\sim$数GHz) の逆数 (振動周期; $\sim$数100 ps) は今注目している時間発展の時間スケール ($\sim$数µs) に比べて非常に小さい. この時, この高速振動項は時間発展にはほとんど影響せず, 近似的に無視しても良い. これを**回転波近似**という. したがって上の式は近似的に\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-a2c8e9ca-cfe5-411a-8e6c-4b038690024e">
+<span class="eqno">(19)<a class="headerlink" href="#equation-a2c8e9ca-cfe5-411a-8e6c-4b038690024e" title="Permalink to this equation">#</a></span>\[\begin{align}
 &amp;\hbar\varOmega\cos(\omega_{\rm d}t+\phi)
 \left[
     \cos(\omega_{\rm d}t)\hat{X} + \sin(\omega_{\rm d}t)\hat{Y}
@@ -730,44 +720,38 @@ document.write(`
     \sin\phi
     \frac{\hat{Y}}{2}
 \right)
-\end{align} 
-\end{split}\]</div>
-<p>と表すことができ, 時間依存項を消去することができる.</p>
-<section id="id4">
-<h3>回転波近似について補足<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>回転波近似が成立する理由を直観的に説明する. 今, 以下のように同じオーダのノルムを持つ時間無依存項<span class="math notranslate nohighlight">\(\hat{H}_0\)</span>と周波数<span class="math notranslate nohighlight">\(\omega\)</span>の振動項<span class="math notranslate nohighlight">\(\hat{H}_1{\rm e}^{{\rm i}\omega t}\)</span>からなるハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}(t)\)</span>を考える:</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}と表すことができ, 時間依存項を消去することができる. \\
+### 回転波近似について補足\\回転波近似が成立する理由を直観的に説明する. 今, 以下のように同じオーダのノルムを持つ時間無依存項$\hat{H}_0$と周波数$\omega$の振動項$\hat{H}_1{\rm e}^{{\rm i}\omega t}$からなるハミルトニアン$\hat{H}(t)$を考える:\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-20a8293c-d7dd-4765-bcb3-d0c1f2c8f71f">
+<span class="eqno">(20)<a class="headerlink" href="#equation-20a8293c-d7dd-4765-bcb3-d0c1f2c8f71f" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H}(t) = \hat{H}_0 + \hat{H}_1{\rm e}^{{\rm i}\omega t}.
-\end{align}
-\]</div>
-<p>この時間依存ハミルトニアンによる時間発展を, 小さな時間区分<span class="math notranslate nohighlight">\(\Delta t\)</span>ごとに分割して以下のように表す:</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[この時間依存ハミルトニアンによる時間発展を, 小さな時間区分$\Delta t$ごとに分割して以下のように表す:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-b484b933-9562-407f-9cb5-a08a524c8861">
+<span class="eqno">(21)<a class="headerlink" href="#equation-b484b933-9562-407f-9cb5-a08a524c8861" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{U}(0, N\Delta t)
 =
 \hat{U}((N-1)\Delta t, N\Delta t)\cdots
 \hat{U}(0\Delta t, 1\Delta t),
-\end{align}
-\]</div>
-<p>ただし<span class="math notranslate nohighlight">\(\hat{U}(t_{\rm start}, t_{\rm end})\)</span>は<span class="math notranslate nohighlight">\(t_{\rm start}\)</span>から<span class="math notranslate nohighlight">\(t_{\rm end}\)</span>における上記<span class="math notranslate nohighlight">\(H(t)\)</span>による時間発展ユニタリ演算子である. それぞれのユニタリ要素は,</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[ただし$\hat{U}(t_{\rm start}, t_{\rm end})$は$t_{\rm start}$から$t_{\rm end}$における上記$H(t)$による時間発展ユニタリ演算子である. それぞれのユニタリ要素は, \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-d79c4f8f-5008-4fdd-b7aa-0f0769549e10">
+<span class="eqno">(22)<a class="headerlink" href="#equation-d79c4f8f-5008-4fdd-b7aa-0f0769549e10" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{U}(m\Delta t, (m+1)\Delta t)
 &amp;\approx
 \exp\left(
 \frac{-{\rm i}\hat{H}(n\Delta t)\Delta t}{\hbar}
 \right)\nonumber\\
 &amp;=1 + \frac{-{\rm i}\hat{H}(n\Delta t)\Delta t}{\hbar} + O\left[(\|\hat{H}\|\Delta t)^2\right]
-\end{align}
-\end{split}\]</div>
-<p>と表せるので, 全体としては,</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[と表せるので, 全体としては, \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-bac2183e-d67b-40b5-865f-635d0a2933d9">
+<span class="eqno">(23)<a class="headerlink" href="#equation-bac2183e-d67b-40b5-865f-635d0a2933d9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{U}(0, N\Delta t)
 &amp;=\left(
     1 + \frac{-{\rm i}\hat{H}((N-1)\Delta t)\Delta t}{\hbar}
@@ -780,13 +764,11 @@ document.write(`
 &amp;=
 1 + \frac{-{\rm i}\sum_{m=0}^{N-1}\hat{H}(m\Delta t)\Delta t}{\hbar}
 + O\left[(\|\hat{H}\|\Delta t)^2\right]
-\end{align}
-\end{split}\]</div>
-<p>と表せる. この時, <span class="math notranslate nohighlight">\(\sum_{m=0}^{N-1}\hat{H}(m\Delta t)\)</span>において高速振動項<span class="math notranslate nohighlight">\(\hat{H}_1{\rm e}^{{\rm i}\omega t}\)</span>は平均化されるため, 十分小さくなり無視することができる. これが回転波近似の直観的な考え方である.</p>
-<p>なお, 上の計算で回転波近似後の駆動ハミルトニアン</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}と表せる. この時, $\sum_{m=0}^{N-1}\hat{H}(m\Delta t)$において高速振動項$\hat{H}_1{\rm e}^{{\rm i}\omega t}$は平均化されるため, 十分小さくなり無視することができる. これが回転波近似の直観的な考え方である. \\なお, 上の計算で回転波近似後の駆動ハミルトニアン\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-cea8696e-9044-4c77-8e55-9c3130d8b891">
+<span class="eqno">(24)<a class="headerlink" href="#equation-cea8696e-9044-4c77-8e55-9c3130d8b891" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hbar\varOmega
 \left(
     \cos\phi
@@ -795,12 +777,11 @@ document.write(`
     \sin\phi
     \frac{\hat{Y}}{2}
 \right)
-\end{align} 
-\]</div>
-<p>を逆回転座標変換して実験室フレームに戻すと,</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[を逆回転座標変換して実験室フレームに戻すと, \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-17fb7fb7-baa0-4398-a06a-637191dd64d3">
+<span class="eqno">(25)<a class="headerlink" href="#equation-17fb7fb7-baa0-4398-a06a-637191dd64d3" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hbar\varOmega
 \left[
     \cos(\omega_{\rm d}t+\phi)
@@ -809,16 +790,11 @@ document.write(`
     \sin(\omega_{\rm d}t+\phi)
     \frac{\hat{Y}}{2}
 \right]
-\end{align} 
-\]</div>
-<p>となる. これは駆動電場のかかる方向がX軸方向だけの振動ではなく, XY平面を回転している描像となる. これが回転波近似の名前の由来である.</p>
-</section>
-<section id="rabi">
-<h3>Rabi振動<a class="headerlink" href="#rabi" title="Link to this heading">#</a></h3>
-<p><span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>の回転座標系に乗り, 回転波近似を行った後の全体のハミルトニアンは以下のように表せる:</p>
+\end{align} \]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[ \begin{align}\begin{aligned}となる. これは駆動電場のかかる方向がX軸方向だけの振動ではなく, XY平面を回転している描像となる. これが回転波近似の名前の由来である. \\### Rabi振動\\$\omega_{\rm d}$の回転座標系に乗り, 回転波近似を行った後の全体のハミルトニアンは以下のように表せる:\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-2e713876-22c0-435a-81b8-e438c94e7f06">
+<span class="eqno">(26)<a class="headerlink" href="#equation-2e713876-22c0-435a-81b8-e438c94e7f06" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H} = -\hbar(\omega_{\rm q}-\omega_{\rm d})\frac{\hat{Z}}{2} + 
 \hbar\varOmega
 \left(
@@ -828,12 +804,11 @@ document.write(`
     \sin\phi
     \frac{\hat{Y}}{2}
 \right).
-\end{align}
-\]</div>
-<p>まず, <span class="math notranslate nohighlight">\(\cos\phi\hat{X}-\sin\phi\hat{Y}\)</span>は, XY平面内のX軸から角度<span class="math notranslate nohighlight">\(-\phi\)</span>の方向のハミルトニアンであり, これを新たに<span class="math notranslate nohighlight">\(\hat{X}_{-\phi}\)</span>とおく (下図を参照). この時, ハミルトニアンは以下のように変形できる:</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[まず, $\cos\phi\hat{X}-\sin\phi\hat{Y}$は, XY平面内のX軸から角度$-\phi$の方向のハミルトニアンであり, これを新たに$\hat{X}_{-\phi}$とおく (下図を参照). この時, ハミルトニアンは以下のように変形できる:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-4d3fc110-3afb-4704-bbd2-5fc4dd2f04bd">
+<span class="eqno">(27)<a class="headerlink" href="#equation-4d3fc110-3afb-4704-bbd2-5fc4dd2f04bd" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H} 
 &amp;= -\hbar(\omega_{\rm q}-\omega_{\rm d})\frac{\hat{Z}}{2} + 
 \hbar\varOmega\frac{\hat{X}_{-\phi}}{2}\nonumber\\
@@ -844,23 +819,21 @@ document.write(`
 \frac{\varOmega}{\sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}}
 \hat{X}_{-\phi}
 \right)
-\end{align}
-\end{split}\]</div>
-<p>いま,</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{align}
+\[いま, \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-7aa8d6c9-c7f1-4300-890c-88ba576f6bbd">
+<span class="eqno">(28)<a class="headerlink" href="#equation-7aa8d6c9-c7f1-4300-890c-88ba576f6bbd" title="Permalink to this equation">#</a></span>\[\begin{align}
 \varOmega_{\rm Rabi}&amp;:= \sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}\\
 \cos\theta &amp;= 
 \frac{-(\omega_{\rm q}-\omega_{\rm d})}{\sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}}\\
 \sin\theta &amp;=
 \frac{\varOmega}{\sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}}
-\end{align}
-\end{split}\]</div>
-<p>とおくと, ハミルトニアン全体は</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[とおくと, ハミルトニアン全体は\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-bddb2300-a008-47cf-9805-605fb668b0f2">
+<span class="eqno">(29)<a class="headerlink" href="#equation-bddb2300-a008-47cf-9805-605fb668b0f2" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{H} 
 &amp;= \frac{\hbar\varOmega_{\rm Rabi}}{2}
 \left(
@@ -869,12 +842,11 @@ document.write(`
 \sin\theta
 \hat{X}_{-\phi}
 \right)
-\end{align}
-\]</div>
-<p>と表すことができる. ここで<span class="math notranslate nohighlight">\(\cos\theta\hat{Z}+\sin\theta\hat{X}_{-\phi}\)</span>はPauli演算子 (例えば<span class="math notranslate nohighlight">\(\hat{Z}\)</span>) を回転移動させたものであり, 他のPauli演算子と同様に<span class="math notranslate nohighlight">\(\pm1\)</span>の固有値を持つトレースレスのHermite演算子である. このハミルトニアンの下での時間発展ユニタリ演算子</p>
+\end{align}\]</div>
 <div class="math notranslate nohighlight">
-\[
-\begin{align}
+\[と表すことができる. ここで$\cos\theta\hat{Z}+\sin\theta\hat{X}_{-\phi}$はPauli演算子 (例えば$\hat{Z}$) を回転移動させたものであり, 他のPauli演算子と同様に$\pm1$の固有値を持つトレースレスのHermite演算子である. このハミルトニアンの下での時間発展ユニタリ演算子\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-8086f903-958f-4d66-ad76-7820d73e1744">
+<span class="eqno">(30)<a class="headerlink" href="#equation-8086f903-958f-4d66-ad76-7820d73e1744" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{U}(t) 
 &amp;= \exp\left[-{\rm i}
 \frac{\varOmega_{\rm Rabi}t}{2}
@@ -885,14 +857,13 @@ document.write(`
 \hat{X}_{-\phi}
 \right)
 \right]
-\end{align}
-\]</div>
+\end{align}\]</div>
+<p>$$</p>
 <p>は, <span class="math notranslate nohighlight">\(\cos\theta\hat{Z}+\sin\theta\hat{X}_{-\phi}\)</span>の軸まわりに角速度<span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}\)</span>での回転と理解することができる. この回転をしている状態をZ測定して観測される振動は<strong>Rabi振動</strong>, <span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}\)</span>は<strong>Rabi周波数</strong>と呼ばれる.</p>
 <a class="reference internal image-reference" href="figs/rabi_bloch.png"><img alt="figs/rabi_bloch.png" class="align-center" src="figs/rabi_bloch.png" style="width: 600px;" />
 </a>
 <p>Rabi振動の挙動は駆動周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>のqubit周波数<span class="math notranslate nohighlight">\(\omega_{\rm q}\)</span>からの離調<span class="math notranslate nohighlight">\(\omega_{\rm q}-\omega_{\rm d}\)</span>に応じて大きく変化する. <span class="math notranslate nohighlight">\(|\omega_{\rm q}-\omega_{\rm d}|\)</span>が大きい時, 回転軸の角度を表す<span class="math notranslate nohighlight">\(\theta\)</span>は<span class="math notranslate nohighlight">\(0\)</span>または<span class="math notranslate nohighlight">\(\pi\)</span>に近づき(つまり回転軸はZ軸に近づき), Rabi周波数は大きくなる. つまり非共鳴駆動の場合は, Rabi振動としては振幅は小さく, 振動は早く見える. 一方<span class="math notranslate nohighlight">\(\omega_{\rm q}=\omega_{\rm d}\)</span>の共鳴駆動の場合, <span class="math notranslate nohighlight">\(\theta=\pi/2\)</span>となり(つまり回転軸はXY平面上にあり), Rabi周波数は最小値<span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}=\varOmega\)</span>となる. つまり共鳴駆動の場合は, Rabi振動としては振幅は最大(<span class="math notranslate nohighlight">\(+1\)</span>から<span class="math notranslate nohighlight">\(-1\)</span>までの大円運動)に, 振動数は最小値となり駆動振幅<span class="math notranslate nohighlight">\(\varOmega\)</span>に等しくなる.</p>
 <p>この性質を用いて, qubitの共鳴周波数を求めることが可能である. つまり駆動周波数を掃引しながら, 各駆動周波数の場合のRabi振動を観測し, Rabi周波数が最小となる条件の駆動周波数を探索することで, 未知のqubit共鳴周波数を調べることが可能である. このようにして得られる振動パターンは山模様をしているのでChevronパターンと呼ばれる.</p>
-</section>
 </section>
 <section id="virtual-z">
 <h2>Virtual-Zゲート<a class="headerlink" href="#virtual-z" title="Link to this heading">#</a></h2>
@@ -967,12 +938,6 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">qubitのハミルトニアン</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">自由時間発展</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部駆動時の時間発展</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">回転波近似について補足</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rabi">Rabi振動</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z">Virtual-Zゲート</a></li>
 </ul>
   </nav></div>
