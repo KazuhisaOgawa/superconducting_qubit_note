@@ -1,0 +1,1031 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1 qubit制御 &#8212; 超伝導qubitノート</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/入門解説/1_1qubit制御';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2 qubit制御" href="2_2qubit%E5%88%B6%E5%BE%A1.html" />
+    <link rel="prev" title="入門解説" href="0_%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">超伝導qubitノート</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    超伝導qubitノート
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="0_%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD.html">入門解説</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1 qubit制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2qubit%E5%88%B6%E5%BE%A1.html">2 qubit制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_%E8%AA%AD%E3%81%BF%E5%87%BA%E3%81%97.html">読み出し</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_fundamentals/SCQ_intro.html">入門編</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../SCQ_fundamentals/single_qubit.html">1 qubit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SCQ_fundamentals/two_qubit.html">2 qubit</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/入門解説/1_1qubit制御.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/入門解説/1_1qubit制御.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1 qubit制御</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">qubitのハミルトニアン</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">自由時間発展</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部駆動時の時間発展</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">回転波近似について補足</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rabi">Rabi振動</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z">Virtual-Zゲート</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="qubit">
+<h1>1 qubit制御<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>qubitのハミルトニアン<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>量子系の時間発展を適切に制御するためには, その系のハミルトニアンを正確に同定・設計できることが重要である. これは量子系の時間発展はSchrödinger方程式:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+{\rm i}\hbar\frac{\rm d}{{\rm d}t}\ket{\psi(t)}
+=\hat{H}\ket{\psi(t)}
+\end{align}
+\]</div>
+<p>に従うため, ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}\)</span>がその時間発展を特徴づけているからである.</p>
+<p>ハミルトニアンはその系のエネルギーを表す物理量演算子である. 下図のように, エネルギー固有値が<span class="math notranslate nohighlight">\(E_0\)</span>と<span class="math notranslate nohighlight">\(E_1\)</span> (<span class="math notranslate nohighlight">\(E_0&lt;E_1\)</span>)である2準位系 (qubit系) のハミルトニアンは,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H} = E_0|0\rangle\langle0| + E_1|1\rangle\langle1|
+\end{align}
+\]</div>
+<p>と表せる. 恒等演算子<span class="math notranslate nohighlight">\(\hat{I}=\begin{bmatrix} 1&amp;0\\0&amp;1\\ \end{bmatrix}\)</span>, Pauli-Z演算子<span class="math notranslate nohighlight">\(\hat{Z}=\begin{bmatrix} 1&amp;0\\0&amp;-1\\ \end{bmatrix}\)</span>を用いると,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H} = \frac{E_0+E_1}{2}\hat{I} + \frac{E_0-E_1}{2}\hat{Z}
+\end{align}
+\]</div>
+<p>と表せる. ここで<span class="math notranslate nohighlight">\(\hat{I}\)</span>に比例する項はエネルギーの基準値に対応する項であり, Schrödinger方程式の解としては量子状態全体にかかる全体位相というゲージ自由度に現れる. この量は観測には現れず, 実際に観測に現れるのは準位間のエネルギー差に対応する周波数である. したがって<span class="math notranslate nohighlight">\(\hat{I}\)</span>に比例する項は無視し, <span class="math notranslate nohighlight">\(\omega_{\rm q}:=(E_1-E_0)/\hbar&gt;0\)</span>とすると, ハミルトニアンは</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H} = -\hbar\omega_{\rm q}\frac{\hat{Z}}{2}
+\end{align}
+\]</div>
+<p>と表せる. これが外部駆動がない時の1 qubitのハミルトニアンである.</p>
+<a class="reference internal image-reference" href="../../_images/TLS.png"><img alt="../../_images/TLS.png" class="align-center" src="../../_images/TLS.png" style="width: 200px;" />
+</a>
+</section>
+<section id="id2">
+<h2>自由時間発展<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>このハミルトニアンにおける時間発展は, Schrödinger方程式を解くことで求めることができる. 今はハミルトニアンが時間変化しないので, 以下のように簡単に求められる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\ket{\psi(t)} &amp;= \hat{U}(t)\ket{\psi(0)},\\
+\hat{U}(t) &amp;:= \exp
+\left(
+    \frac{-{\rm i}\hat{H}t}{\hbar}
+\right)
+=
+\exp
+\left(
+    \frac{{\rm i}\omega_{\rm q}t\hat{Z}}{2}
+\right)
+= \hat{R}_z(-\omega_{\rm q}t).
+\end{align}
+\end{split}\]</div>
+<p>これは静止系（実験室系）から見たBloch球上では, Z軸周りを角速度<span class="math notranslate nohighlight">\(-\omega_{\rm q}\)</span>で回転（XYZ軸が右手系配置の場合は左ネジ方向回転に対応）する描像となる. 典型的にqubitの共鳴周波数<span class="math notranslate nohighlight">\(\omega_{\rm q}\)</span>は数GHzであるのに対しコヒーレンス時間は数10 µsであるので, 注目する時間スケール内で高速に回転することになり, 時間発展を追いかけるには不都合である (下図左).</p>
+<p>そこで, 外部駆動がない自由時間発展の際にqubitを静止した描像で捉えるために<strong>回転座標変換</strong>という手法が用いられる. これはBloch球回転と同じ角速度で回転するフレーム（回転座標系）に観測者が乗ることで, Bloch球が静止して見えるという考え方である (下図右). 数式としては, 状態ケット<span class="math notranslate nohighlight">\(\ket{\psi(t)}\)</span>（Z軸周り<span class="math notranslate nohighlight">\(-\omega_{\rm q}\)</span>回転している）に対して,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}_{\rm r}(t) := 
+\exp
+\left(
+    \frac{-{\rm i}\omega_{\rm r}t\hat{Z}}{2}
+\right)
+\end{align}
+\]</div>
+<p>という変換（Z軸周り<span class="math notranslate nohighlight">\(\omega_{\rm r}\)</span>回転させるユニタリ変換）を行った状態</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\ket{\psi_{\rm r}(t)}:=\hat{U}_{\rm r}(t)\ket{\psi(t)} = 
+\exp
+\left(
+    \frac{{\rm i}(\omega_{\rm q} - \omega_{\rm r})t\hat{Z}}{2}
+\right)
+\ket{\psi(0)}
+\end{align}
+\]</div>
+<p>を考えることに対応する (相互作用描像と呼ばれる). 特に<span class="math notranslate nohighlight">\(\omega_{\rm r}=\omega_{\rm q}\)</span>と選べば, 状態は静止して見えるはずである.</p>
+<p>では実際に回転座標系に乗った時の実効的なハミルトニアンの形を求めておく（qubitの回転を打ち消すような座標系に乗っているので, ハミルトニアンは0となるはずである）. 実験室系でのSchrödinger方程式に<span class="math notranslate nohighlight">\(\hat{I} = \hat{U}_{\rm r}^\dagger(t)\hat{U}_{\rm r}(t)\)</span>を挿入して,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+&amp;{\rm i}\hbar\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dagger(t)\hat{U}_{\rm r}(t)\ket{\psi(t)}
+=\hat{H}\hat{U}_{\rm r}^\dagger(t)\hat{U}_{\rm r}(t)\ket{\psi(t)} \\
+%
+\Leftrightarrow&amp;
+{\rm i}\hbar\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dagger(t)\ket{\psi_{\rm r}(t)}
+=\hat{H}\hat{U}_{\rm r}^\dagger(t)\ket{\psi_{\rm r}(t)} \\
+%
+\Leftrightarrow&amp;
+{\rm i}\hbar
+\left\{
+\left[\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dagger(t)\right]\ket{\psi_{\rm r}(t)}
++\hat{U}_{\rm r}^\dagger(t)\left[\frac{\rm d}{{\rm d}t}\ket{\psi_{\rm r}(t)}\right]
+\right\}
+=\hat{H}\hat{U}_{\rm r}^\dagger(t)\ket{\psi_{\rm r}(t)} \\
+%
+\Leftrightarrow&amp;
+{\rm i}\hbar
+\hat{U}_{\rm r}^\dagger(t)
+\frac{\rm d}{{\rm d}t}\ket{\psi_{\rm r}(t)}
+=
+\left[
+\hat{H}\hat{U}_{\rm r}^\dagger(t)
+-{\rm i}\hbar\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}^\dagger(t)
+\right]
+\ket{\psi_{\rm r}(t)} \\
+%
+\Leftrightarrow&amp;
+{\rm i}\hbar
+\frac{\rm d}{{\rm d}t}\ket{\psi_{\rm r}(t)}
+=
+\left[
+\hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
+-{\rm i}\hbar
+\hat{U}_{\rm r}(t) \frac{\rm d}{{\rm d}t} \hat{U}_{\rm r}^\dagger(t)
+\right]
+\ket{\psi_{\rm r}(t)}, \\
+\end{align}
+\end{split}\]</div>
+<p>よって回転座標系における実効ハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}_{\rm r}\)</span>は,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H}_{\rm r} 
+&amp;= \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
+-{\rm i}\hbar
+\hat{U}_{\rm r}(t) \frac{\rm d}{{\rm d}t} \hat{U}_{\rm r}^\dagger(t)\nonumber\\
+&amp;= \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
++{\rm i}\hbar
+\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}(t) \cdot\hat{U}_{\rm r}^\dagger(t)
+\end{align} 
+\end{split}\]</div>
+<p>と表せる. 今の場合は,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
++{\rm i}\hbar
+\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}(t) \cdot\hat{U}_{\rm r}^\dagger(t)
+= -\hbar\omega_{\rm q}\frac{\hat{Z}}{2}
++\hbar\omega_{\rm r}\frac{\hat{Z}}{2}
+= -\hbar(\omega_{\rm q}-\omega_{\rm r})\frac{\hat{Z}}{2}
+\end{align} 
+\]</div>
+<p>であり, 特に<span class="math notranslate nohighlight">\(\omega_{\rm r}=\omega_{\rm q}\)</span>の時は<span class="math notranslate nohighlight">\(\hat{H}_{\rm r}=0\)</span>となり, 確かにこれは時間発展しない（状態は静止して見える）ことに対応する.</p>
+<a class="reference internal image-reference" href="../../_images/rotating_frame.png"><img alt="../../_images/rotating_frame.png" class="align-center" src="../../_images/rotating_frame.png" style="width: 600px;" />
+</a>
+</section>
+<section id="id3">
+<h2>外部駆動時の時間発展<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>超伝導qubitに共鳴する周波数のマイクロ波を照射することで, qubitの状態を励起または脱励起することができる. 超伝導qubitに対して周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>のマイクロ波駆動を行った場合のハミルトニアンは, 以下の形で表される(導出は超伝導電気回路の節を参照):</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H}(t) = -\hbar\omega_{\rm q}\frac{\hat{Z}}{2} + \hbar\varOmega\cos(\omega_{\rm d}t+\phi)\hat{X}
+\end{align}
+\]</div>
+<p>右辺第1項目の自由ハミルトニアンの項に加えて, 右辺第2項目にマイクロ波駆動時はPauli-Xを含む振動項が現れる. ここで<span class="math notranslate nohighlight">\(\varOmega\)</span>はマイクロ波の振幅をRabi周波数換算した量, <span class="math notranslate nohighlight">\(\phi\)</span>は駆動マイクロ波の位相である. 伝送線路におけるマイクロ波の振幅の単位は通常V (Volt)で表されるが, 回路QEDの文脈では, その振幅の共鳴マイクロ波がqubitに照射された際に生じるRabi振動の振動数(単位Hz)に換算された量<span class="math notranslate nohighlight">\(\varOmega\)</span>で扱われる. また右辺第2項目のPauli演算子を<span class="math notranslate nohighlight">\(\hat{X}\)</span>とするか<span class="math notranslate nohighlight">\(\hat{Y}\)</span>とするかには任意性があり, ここでは実験者が有する位相基準に対して位相差ゼロ<span class="math notranslate nohighlight">\((\phi=0)\)</span>のマイクロ波を照射した際に<span class="math notranslate nohighlight">\(\hbar\varOmega\cos(\omega_{\rm d}t)\hat{X}\)</span>の駆動項が現れるとした.</p>
+<p>このハミルトニアンの時間依存性を消去して時間発展を直観的に捉えるために, ここでは駆動周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>の回転座標系に変換することを考える. つまり, 回転座標変換のユニタリ演算子</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}_{\rm r}(t) = 
+\exp
+\left(
+    \frac{-{\rm i}\omega_{\rm d}t\hat{Z}}{2}
+\right)
+\end{align}
+\]</div>
+<p>を用いて回転座標変換を行うと, 実効ハミルトニアンは以下のように変換される:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H}_{\rm r} 
+&amp;= \hat{U}_{\rm r}(t)\hat{H}\hat{U}_{\rm r}^\dagger(t)
++{\rm i}\hbar
+\frac{\rm d}{{\rm d}t}\hat{U}_{\rm r}(t) \cdot\hat{U}_{\rm r}^\dagger(t)\nonumber\\
+&amp;= -\hbar(\omega_{\rm q}-\omega_{\rm d})\frac{\hat{Z}}{2} + \hbar\varOmega\cos(\omega_{\rm d}t+\phi)\hat{U}_{\rm r}(t)\hat{X}\hat{U}_{\rm r}^\dagger(t)
+\end{align} 
+\end{split}\]</div>
+<p>ここで右辺第2項目における</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}_{\rm r}(t)\hat{X}\hat{U}_{\rm r}^\dagger(t)
+=
+\exp
+\left(
+    \frac{-{\rm i}\omega_{\rm d}t\hat{Z}}{2}
+\right)
+\hat{X}
+\exp
+\left(
+    \frac{{\rm i}\omega_{\rm d}t\hat{Z}}{2}
+\right)
+\end{align} 
+\]</div>
+<p>は, Baker-Campbell-Hausdorffの公式:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+{\rm e}^{\hat{A}}\hat{B}{\rm e}^{-\hat{A}}
+=
+\hat{B} + [\hat{A},\hat{B}] + \frac{1}{2!}[\hat{A},[\hat{A},\hat{B}]] + \frac{1}{3!}[\hat{A}, [\hat{A},[\hat{A},\hat{B}]]]+ \cdots
+\end{align} 
+\]</div>
+<p>を用いると解析的に解くことができる. つまり<span class="math notranslate nohighlight">\(k:=-{\rm i}\omega_{\rm d}t/2\)</span>とおいて,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+{\rm e}^{k\hat{Z}}
+\hat{X}
+{\rm e}^{-k\hat{Z}}
+&amp;=
+\hat{X} + k[\hat{Z},\hat{X}] + \frac{k^2}{2!}[\hat{Z},[\hat{Z},\hat{X}]] + \frac{k^3}{3!}[\hat{Z}, [\hat{Z},[\hat{Z},\hat{X}]]] + \cdots\nonumber\\
+&amp;=
+\hat{X} + {\rm i}2k\hat{Y} + \frac{(2k)^2}{2!}\hat{X} + {\rm i}\frac{(2k)^3}{3!}\hat{Y} + \cdots\nonumber\\
+&amp;=
+\left(
+1 + \frac{(2k)^2}{2!} + \cdots
+\right)\hat{X}
++ {\rm i}
+\left(
+2k + \frac{(2k)^3}{3!} + \cdots
+\right)\hat{Y}\nonumber\\
+&amp;=
+\left(
+1 - \frac{(\omega_{\rm d}t)^2}{2!} + \cdots
+\right)\hat{X}
++ 
+\left(
+\omega_{\rm d}t - \frac{(\omega_{\rm d}t)^3}{3!} + \cdots
+\right)\hat{Y}\nonumber\\
+&amp;=
+\cos(\omega_{\rm d}t)\hat{X} + \sin(\omega_{\rm d}t)\hat{Y}
+\end{align} 
+\end{split}\]</div>
+<p>となる.</p>
+<p>このようにして座標変換して得られた右辺第2項目</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hbar\varOmega\cos(\omega_{\rm d}t+\phi)
+\left[
+    \cos(\omega_{\rm d}t)\hat{X} + \sin(\omega_{\rm d}t)\hat{Y}
+\right]
+\end{align} 
+\]</div>
+<p>に対して, さらに以下のように<strong>回転波近似</strong>を行うことで時間依存項を消去する(回転波近似についての詳細は以下の項を参照).
+まずcosとsinを指数関数で展開する:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+&amp;\hbar\varOmega\cos(\omega_{\rm d}t+\phi)
+\left[
+    \cos(\omega_{\rm d}t)\hat{X} + \sin(\omega_{\rm d}t)\hat{Y}
+\right]\nonumber\\
+&amp; = 
+\hbar\varOmega
+\frac{
+    {\rm e}^{{\rm i}(\omega_{\rm d}t+\phi)} + 
+    {\rm e}^{{\rm -i}(\omega_{\rm d}t+\phi)}
+    }{2}
+\left(
+    \frac{
+    {\rm e}^{{\rm i}\omega_{\rm d}t} + 
+    {\rm e}^{{\rm -i}\omega_{\rm d}t}
+    }{2}\hat{X} 
+    + 
+    \frac{
+    {\rm e}^{{\rm i}\omega_{\rm d}t} - 
+    {\rm e}^{{\rm -i}\omega_{\rm d}t}
+    }{2{\rm i}}
+    \hat{Y}
+\right)\nonumber\\
+&amp; = 
+\hbar\varOmega
+\left(
+    \frac{
+    {\rm e}^{{\rm i}(2\omega_{\rm d}t+\phi)} + 
+    {\rm e}^{{\rm i}\phi} +
+    {\rm e}^{{\rm -i}\phi} + 
+    {\rm e}^{{\rm -i}(2\omega_{\rm d}t+\phi)}
+    }{4}\hat{X} 
+    + 
+    \frac{
+    {\rm e}^{{\rm i}(2\omega_{\rm d}t+\phi)} - 
+    {\rm e}^{{\rm i}\phi} +
+    {\rm e}^{{\rm -i}\phi} - 
+    {\rm e}^{{\rm -i}(2\omega_{\rm d}t+\phi)}
+    }{4{\rm i}}
+    \hat{Y}
+\right)
+\end{align} 
+\end{split}\]</div>
+<p>ここで現れる角周波数<span class="math notranslate nohighlight">\(\pm 2\omega_{\rm d}\)</span>の振動項は, ハミルトニアンの他の項と同じオーダかそれ以下のノルムを持ち, 振動周波数 (<span class="math notranslate nohighlight">\(\sim\)</span>数GHz) の逆数 (振動周期; <span class="math notranslate nohighlight">\(\sim\)</span>数100 ps) は今注目している時間発展の時間スケール (<span class="math notranslate nohighlight">\(\sim\)</span>数µs) に比べて非常に小さい. この時, この高速振動項は時間発展にはほとんど影響せず, 近似的に無視しても良い. これを<strong>回転波近似</strong>という. したがって上の式は近似的に</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+&amp;\hbar\varOmega\cos(\omega_{\rm d}t+\phi)
+\left[
+    \cos(\omega_{\rm d}t)\hat{X} + \sin(\omega_{\rm d}t)\hat{Y}
+\right]\nonumber\\
+&amp; \approx
+\hbar\varOmega
+\left(
+    \frac{
+    {\rm e}^{{\rm i}\phi} + {\rm e}^{{\rm -i}\phi}
+    }{4}\hat{X} 
+    + 
+    \frac{
+    - {\rm e}^{{\rm i}\phi} +{\rm e}^{{\rm -i}\phi} 
+    }{4{\rm i}}
+    \hat{Y}
+\right)\nonumber\\
+&amp; =
+\hbar\varOmega
+\left(
+    \cos\phi
+    \frac{\hat{X}}{2}
+    -
+    \sin\phi
+    \frac{\hat{Y}}{2}
+\right)
+\end{align} 
+\end{split}\]</div>
+<p>と表すことができ, 時間依存項を消去することができる.</p>
+<section id="id4">
+<h3>回転波近似について補足<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>回転波近似が成立する理由を直観的に説明する. 今, 以下のように同じオーダのノルムを持つ時間無依存項<span class="math notranslate nohighlight">\(\hat{H}_0\)</span>と周波数<span class="math notranslate nohighlight">\(\omega\)</span>の振動項<span class="math notranslate nohighlight">\(\hat{H}_1{\rm e}^{{\rm i}\omega t}\)</span>からなるハミルトニアン<span class="math notranslate nohighlight">\(\hat{H}(t)\)</span>を考える:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H}(t) = \hat{H}_0 + \hat{H}_1{\rm e}^{{\rm i}\omega t}.
+\end{align}
+\]</div>
+<p>この時間依存ハミルトニアンによる時間発展を, 小さな時間区分<span class="math notranslate nohighlight">\(\Delta t\)</span>ごとに分割して以下のように表す:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}(0, N\Delta t)
+=
+\hat{U}((N-1)\Delta t, N\Delta t)\cdots
+\hat{U}(0\Delta t, 1\Delta t),
+\end{align}
+\]</div>
+<p>ただし<span class="math notranslate nohighlight">\(\hat{U}(t_{\rm start}, t_{\rm end})\)</span>は<span class="math notranslate nohighlight">\(t_{\rm start}\)</span>から<span class="math notranslate nohighlight">\(t_{\rm end}\)</span>における上記<span class="math notranslate nohighlight">\(H(t)\)</span>による時間発展ユニタリ演算子である. それぞれのユニタリ要素は,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{U}(m\Delta t, (m+1)\Delta t)
+&amp;\approx
+\exp\left(
+\frac{-{\rm i}\hat{H}(n\Delta t)\Delta t}{\hbar}
+\right)\nonumber\\
+&amp;=1 + \frac{-{\rm i}\hat{H}(n\Delta t)\Delta t}{\hbar} + O\left[(\|\hat{H}\|\Delta t)^2\right]
+\end{align}
+\end{split}\]</div>
+<p>と表せるので, 全体としては,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{U}(0, N\Delta t)
+&amp;=\left(
+    1 + \frac{-{\rm i}\hat{H}((N-1)\Delta t)\Delta t}{\hbar}
+\right)
+\cdots
+\left(
+    1 + \frac{-{\rm i}\hat{H}(0\Delta t)\Delta t}{\hbar}
+\right)
++ O\left[(\|\hat{H}\|\Delta t)^2\right]\nonumber\\
+&amp;=
+1 + \frac{-{\rm i}\sum_{m=0}^{N-1}\hat{H}(m\Delta t)\Delta t}{\hbar}
++ O\left[(\|\hat{H}\|\Delta t)^2\right]
+\end{align}
+\end{split}\]</div>
+<p>と表せる. この時, <span class="math notranslate nohighlight">\(\sum_{m=0}^{N-1}\hat{H}(m\Delta t)\)</span>において高速振動項<span class="math notranslate nohighlight">\(\hat{H}_1{\rm e}^{{\rm i}\omega t}\)</span>は平均化されるため, 十分小さくなり無視することができる. これが回転波近似の直観的な考え方である.</p>
+<p>なお, 上の計算で回転波近似後の駆動ハミルトニアン</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hbar\varOmega
+\left(
+    \cos\phi
+    \frac{\hat{X}}{2}
+    -
+    \sin\phi
+    \frac{\hat{Y}}{2}
+\right)
+\end{align} 
+\]</div>
+<p>を逆回転座標変換して実験室フレームに戻すと,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hbar\varOmega
+\left[
+    \cos(\omega_{\rm d}t+\phi)
+    \frac{\hat{X}}{2}
+    -
+    \sin(\omega_{\rm d}t+\phi)
+    \frac{\hat{Y}}{2}
+\right]
+\end{align} 
+\]</div>
+<p>となる. これは駆動電場のかかる方向がX軸方向だけの振動ではなく, XY平面を回転している描像となる. これが回転波近似の名前の由来である.</p>
+</section>
+<section id="rabi">
+<h3>Rabi振動<a class="headerlink" href="#rabi" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>の回転座標系に乗り, 回転波近似を行った後の全体のハミルトニアンは以下のように表せる:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H} = -\hbar(\omega_{\rm q}-\omega_{\rm d})\frac{\hat{Z}}{2} + 
+\hbar\varOmega
+\left(
+    \cos\phi
+    \frac{\hat{X}}{2}
+    -
+    \sin\phi
+    \frac{\hat{Y}}{2}
+\right).
+\end{align}
+\]</div>
+<p>まず, <span class="math notranslate nohighlight">\(\cos\phi\hat{X}-\sin\phi\hat{Y}\)</span>は, XY平面内のX軸から角度<span class="math notranslate nohighlight">\(-\phi\)</span>の方向のハミルトニアンであり, これを新たに<span class="math notranslate nohighlight">\(\hat{X}_{-\phi}\)</span>とおく (下図を参照). この時, ハミルトニアンは以下のように変形できる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H} 
+&amp;= -\hbar(\omega_{\rm q}-\omega_{\rm d})\frac{\hat{Z}}{2} + 
+\hbar\varOmega\frac{\hat{X}_{-\phi}}{2}\nonumber\\
+&amp;= \frac{\hbar\sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}}{2}
+\left(
+\frac{-(\omega_{\rm q}-\omega_{\rm d})}{\sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}}\hat{Z}
++
+\frac{\varOmega}{\sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}}
+\hat{X}_{-\phi}
+\right)
+\end{align}
+\end{split}\]</div>
+<p>いま,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\varOmega_{\rm Rabi}&amp;:= \sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}\\
+\cos\theta &amp;= 
+\frac{-(\omega_{\rm q}-\omega_{\rm d})}{\sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}}\\
+\sin\theta &amp;=
+\frac{\varOmega}{\sqrt{(\omega_{\rm q}-\omega_{\rm d})^2 + \varOmega^2}}
+\end{align}
+\end{split}\]</div>
+<p>とおくと, ハミルトニアン全体は</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{H} 
+&amp;= \frac{\hbar\varOmega_{\rm Rabi}}{2}
+\left(
+\cos\theta\hat{Z}
++
+\sin\theta
+\hat{X}_{-\phi}
+\right)
+\end{align}
+\]</div>
+<p>と表すことができる. ここで<span class="math notranslate nohighlight">\(\cos\theta\hat{Z}+\sin\theta\hat{X}_{-\phi}\)</span>はPauli演算子 (例えば<span class="math notranslate nohighlight">\(\hat{Z}\)</span>) を回転移動させたものであり, 他のPauli演算子と同様に<span class="math notranslate nohighlight">\(\pm1\)</span>の固有値を持つトレースレスのHermite演算子である. このハミルトニアンの下での時間発展ユニタリ演算子</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}(t) 
+&amp;= \exp\left[-{\rm i}
+\frac{\varOmega_{\rm Rabi}t}{2}
+\left(
+\cos\theta\hat{Z}
++
+\sin\theta
+\hat{X}_{-\phi}
+\right)
+\right]
+\end{align}
+\]</div>
+<p>は, <span class="math notranslate nohighlight">\(\cos\theta\hat{Z}+\sin\theta\hat{X}_{-\phi}\)</span>の軸まわりに角速度<span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}\)</span>での回転と理解することができる. この回転をしている状態をZ測定して観測される振動は<strong>Rabi振動</strong>, <span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}\)</span>は<strong>Rabi周波数</strong>と呼ばれる.</p>
+<a class="reference internal image-reference" href="figs/rabi_bloch.png"><img alt="figs/rabi_bloch.png" class="align-center" src="figs/rabi_bloch.png" style="width: 600px;" />
+</a>
+<p>Rabi振動の挙動は駆動周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>のqubit周波数<span class="math notranslate nohighlight">\(\omega_{\rm q}\)</span>からの離調<span class="math notranslate nohighlight">\(\omega_{\rm q}-\omega_{\rm d}\)</span>に応じて大きく変化する. <span class="math notranslate nohighlight">\(|\omega_{\rm q}-\omega_{\rm d}|\)</span>が大きい時, 回転軸の角度を表す<span class="math notranslate nohighlight">\(\theta\)</span>は<span class="math notranslate nohighlight">\(0\)</span>または<span class="math notranslate nohighlight">\(\pi\)</span>に近づき(つまり回転軸はZ軸に近づき), Rabi周波数は大きくなる. つまり非共鳴駆動の場合は, Rabi振動としては振幅は小さく, 振動は早く見える. 一方<span class="math notranslate nohighlight">\(\omega_{\rm q}=\omega_{\rm d}\)</span>の共鳴駆動の場合, <span class="math notranslate nohighlight">\(\theta=\pi/2\)</span>となり(つまり回転軸はXY平面上にあり), Rabi周波数は最小値<span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}=\varOmega\)</span>となる. つまり共鳴駆動の場合は, Rabi振動としては振幅は最大(<span class="math notranslate nohighlight">\(+1\)</span>から<span class="math notranslate nohighlight">\(-1\)</span>までの大円運動)に, 振動数は最小値となり駆動振幅<span class="math notranslate nohighlight">\(\varOmega\)</span>に等しくなる.</p>
+<p>この性質を用いて, qubitの共鳴周波数を求めることが可能である. つまり駆動周波数を掃引しながら, 各駆動周波数の場合のRabi振動を観測し, Rabi周波数が最小となる条件の駆動周波数を探索することで, 未知のqubit共鳴周波数を調べることが可能である. このようにして得られる振動パターンは山模様をしているのでChevronパターンと呼ばれる.</p>
+</section>
+</section>
+<section id="virtual-z">
+<h2>Virtual-Zゲート<a class="headerlink" href="#virtual-z" title="Link to this heading">#</a></h2>
+<p>測定はZ測定しかできない。
+結局回路は,</p>
+<p>任意の1 qubitゲートがこれで実現できる.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs/入門解説"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="0_%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">入門解説</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2_2qubit%E5%88%B6%E5%BE%A1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2 qubit制御</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">qubitのハミルトニアン</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">自由時間発展</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部駆動時の時間発展</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">回転波近似について補足</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rabi">Rabi振動</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z">Virtual-Zゲート</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 小川 和久
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

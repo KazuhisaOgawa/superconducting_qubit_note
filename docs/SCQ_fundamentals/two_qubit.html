@@ -57,6 +57,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/SCQ_fundamentals/two_qubit';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -175,7 +177,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_intro/SCQ_intro.html">入門編</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/single_qubit.html">1 qubit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/single_qubit.html">1 qubit制御</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../SCQ_intro/two_qubit.html">2 qubit</a></li>
 </ul>
 </details></li>
@@ -415,6 +417,97 @@ SW変換の気持ちを説明する.</p>
 <h2>交差共鳴ゲート<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>クロストークは出てこない.<br />
 CNOTゲートの作り方.</p>
+<p>いいね、その“別ルート”の骨子は合っています。ここでは、完全に行列（3準位×3準位）に落として、どこで <span class="math notranslate nohighlight">\(\cos(\phi_0-\phi_1)\)</span> や <span class="math notranslate nohighlight">\(\alpha_i\)</span>・4本の分母が出るのかを、計算の手触りが残る形で丁寧に辿ります。結論は最後に再掲します。</p>
+<p>⸻</p>
+<p>A) 準備：3準位Duffing＋回転枠＋RWA</p>
+<p>各トランズモン <span class="math notranslate nohighlight">\(i\in\{0,1\}\)</span> を <span class="math notranslate nohighlight">\(|0\rangle,|1\rangle,|2\rangle\)</span> に切り詰め、回転枠（<span class="math notranslate nohighlight">\(\omega_d\)</span>）＋RWA に移します。
+•	数演算子 <span class="math notranslate nohighlight">\(n_i=a_i^\dag a_i\)</span>（行列表現：<span class="math notranslate nohighlight">\(a=|0\rangle\langle1|+\sqrt2\,|1\rangle\langle2|\)</span>）。
+•	<span class="math notranslate nohighlight">\(\Delta_{i,d}=\omega_i-\omega_d, \beta_i=\Omega_i e^{i\phi_i}\)</span>。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+H_0 &amp;= \sum_i\Big(\Delta_{i,d}\,n_i+\tfrac{\alpha_i}{2}n_i(n_i-1)\Big),\\
+H_J &amp;= J\,(a_0+a_0^\dag)(a_1+a_1^\dag),\\
+H_d &amp;= \sum_i \tfrac12\big(\beta_i a_i^\dag+\beta_i^\ast a_i\big).
+\end{aligned}
+\end{split}\]</div>
+<p>⸻</p>
+<p>B) 第1段：駆動をSWで消去 → 対角（縦）ACシュタルク</p>
+<p>「<span class="math notranslate nohighlight">\([H_0,S_\Omega]=-H_d\)</span> を満たす」反エルミート生成子を取ると
+<span class="math notranslate nohighlight">\(S_\Omega = -\sum_i \frac12\big(\beta_i\Lambda_i-\beta_i^\ast\Lambda_i^\dag\big),
+\quad
+\Lambda_i=\frac{|1\rangle\!\langle0|}{\Delta_{i,d}}+\frac{\sqrt2\,|2\rangle\!\langle1|}{\Delta_{i,d}+\alpha_i}\)</span>.
+（<span class="math notranslate nohighlight">\([H_0,\Lambda_i]=a_i^\dag\)</span> に注意。）</p>
+<p>2次の有効ハミルトニアンは
+<span class="math notranslate nohighlight">\(H_{\rm eff}
+= e^{S_\Omega}(H_0+H_J+H_d)e^{-S_\Omega}
+\simeq H_0+H_J+\underbrace{\tfrac12[S_\Omega,H_d]}_{\text{各ビットのACシュタルク}}
+	•	\underbrace{\tfrac12[S_\Omega,[S_\Omega,H_J]]}_{\color{#C00}{\Omega^2J\;\text{項(ZZの源)}}}
++\cdots\)</span> .</p>
+<p>ここで、後で効いてくる交換子
+<span class="math notranslate nohighlight">\(D_i\equiv[\Lambda_i,a_i]
+= -\frac{|0\rangle\langle0|}{\Delta_{i,d}}
++\Big(\frac{1}{\Delta_{i,d}}-\frac{2}{\Delta_{i,d}+\alpha_i}\Big)|1\rangle\langle1|
++\frac{2}{\Delta_{i,d}+\alpha_i}|2\rangle\langle2|\)</span>
+は完全に対角です。
+<span class="math notranslate nohighlight">\(|0\rangle\)</span> と <span class="math notranslate nohighlight">\(|1\rangle\)</span> の差分
+<span class="math notranslate nohighlight">\(\delta D_i\equiv\langle1|D_i|1\rangle-\langle0|D_i|0\rangle
+=\frac{2}{\Delta_{i,d}}-\frac{2}{\Delta_{i,d}+\alpha_i}
+=\frac{2\alpha_i}{\Delta_{i,d}(\Delta_{i,d}+\alpha_i)}\)</span>
+\tag{★}
+が後で Z 成分に写ります。ここで早くも「下枝 <span class="math notranslate nohighlight">\(\Delta_{i,d}\)</span> と上枝 <span class="math notranslate nohighlight">\(\Delta_{i,d}+\alpha_i\)</span> の直列」が現れています。</p>
+<p>⸻</p>
+<p>C) 第2段：交換結合 H_J の“二重ドレッシング” → ZZ</p>
+<p>肝は
+<span class="math notranslate nohighlight">\(\tfrac12[S_\Omega,[S_\Omega,H_J]]\)</span>.
+<span class="math notranslate nohighlight">\(S_\Omega=S_{\Omega,0}+S_{\Omega,1}\)</span> と分け、<span class="math notranslate nohighlight">\(H_J=J(a_0+a_0^\dag)(a_1+a_1^\dag)\)</span> に対して (0を1回)(1を1回) のクロス項だけを拾います（同じビットで2回は1体項や定数に落ちる）：</p>
+<p>1回目の交換で
+<span class="math notranslate nohighlight">\([S_{\Omega,0},a_0] = -\tfrac12(\beta_0 D_0-\beta_0^\ast D_0)\)</span>,
+<span class="math notranslate nohighlight">\([S_{\Omega,1},a_1] = -\tfrac12(\beta_1 D_1-\beta_1^\ast D_1)\)</span>
+（<span class="math notranslate nohighlight">\(D_i\)</span> は実対角なので <span class="math notranslate nohighlight">\(\dagger\)</span> を省略可）。</p>
+<p>さらにもう一度別ビットで交換すると、
+<span class="math notranslate nohighlight">\(\tfrac12[S_\Omega,[S_\Omega,H_J]]
+\;\Rightarrow\;
+\frac{J}{2}\,\big(\beta_0\beta_1^\ast+\beta_0^\ast\beta_1\big)\;
+\frac{D_0^{(01)}D_1^{(01)}}{4}
+\;+\;(\text{1体項と定数})\)</span>.
+ここで <span class="math notranslate nohighlight">\(D_i^{(01)}\)</span> は <span class="math notranslate nohighlight">\(|0\rangle,|1\rangle\)</span> 部分へ射影した <span class="math notranslate nohighlight">\(D_i\)</span>。
+<span class="math notranslate nohighlight">\(\beta_0\beta_1^\ast+\beta_0^\ast\beta_1=2\Omega_0\Omega_1\cos(\phi_0-\phi_1)\)</span> なので位相差の実部が効きます（<span class="math notranslate nohighlight">\(\cos(\phi_0-\phi_1)\)</span> の由来）。</p>
+<p>次に、二体系の <span class="math notranslate nohighlight">\(|00\rangle,|01\rangle,|10\rangle,|11\rangle\)</span> の対角要素から <span class="math notranslate nohighlight">\(Z\otimes Z\)</span> の係数だけを抽出する組合せ
+<span class="math notranslate nohighlight">\(f_{11}+f_{00}-f_{10}-f_{01}\)</span>
+を取ると、「各ビットで <span class="math notranslate nohighlight">\(|1\rangle\)</span> と <span class="math notranslate nohighlight">\(|0\rangle\)</span> の差」すなわち <span class="math notranslate nohighlight">\(\delta D_0\delta D_1\)</span> が出ます。式(★)を代入して
+<span class="math notranslate nohighlight">\(\delta D_0\,\delta D_1
+=\frac{4\,\alpha_0\alpha_1}{\Delta_{0,d}\Delta_{1,d}(\Delta_{0,d}+\alpha_0)(\Delta_{1,d}+\alpha_1)}\)</span>.
+係数の数え上げは
+•	交換順序（0→1, 1→0）で <span class="math notranslate nohighlight">\(\times2\)</span>
+•	実部取り（<span class="math notranslate nohighlight">\(\beta_0\beta_1^\ast+\text{c.c.}\)</span>）で <span class="math notranslate nohighlight">\(\times2\)</span>
+•	ただし前因子の <span class="math notranslate nohighlight">\(\tfrac12\)</span> と、<span class="math notranslate nohighlight">\(S_\Omega\)</span> 内の <span class="math notranslate nohighlight">\(\tfrac12\)</span> が2回で <span class="math notranslate nohighlight">\(\div 4\)</span>
+→ 全体として <span class="math notranslate nohighlight">\(\times2\)</span> が残ります。</p>
+<p>よって <span class="math notranslate nohighlight">\(\Omega^2J\)</span> 次の ZZ 係数 は
+<span class="math notranslate nohighlight">\(\boxed{
+\tilde\nu_{ZZ}^{(\text{siZZle})}
+=\frac{2J\,\alpha_0\alpha_1\,\Omega_0\Omega_1\cos(\phi_0-\phi_1)}
+{\Delta_{0,d}\Delta_{1,d}(\Delta_{0,d}+\alpha_0)(\Delta_{1,d}+\alpha_1)}
+}\)</span>.</p>
+<p>⸻</p>
+<p>D) 静的ZZを足して最終式</p>
+<p>静的な（駆動なしの）2体分散相互作用は J^2 の2次摂動から出て
+\nu_{ZZ,\rm s}
+= -\frac{2J^2(\alpha_0+\alpha_1)}{(\alpha_1-\Delta_{01})(\alpha_0+\Delta_{01})},
+\qquad \Delta_{01}=\omega_0-\omega_1,
+（標準結果）なので、合成すれば
+\boxed{
+\tilde\nu_{ZZ}
+= \nu_{ZZ,\mathrm{s}}
++\frac{2J,\alpha_0\alpha_1,\Omega_0\Omega_1\cos(\phi_0-\phi_1)}
+{\Delta_{0,d}\Delta_{1,d}(\Delta_{0,d}+\alpha_0)(\Delta_{1,d}+\alpha_1)} }.</p>
+<p>⸻</p>
+<p>物理チェック（妥当性）
+•	\alpha_i!\to!0（線形振動子）で \tilde\nu_{ZZ}^{(\text{siZZle})}\to 0（ZZは消える）
+•	\phi_0-\phi_1=\pi で最小振幅で静的ZZを打ち消せる（符号反転）
+•	4本の分母は「二系×二枝」の仮想遷移の直列</p>
+<p>⸻</p>
+<p>必要なら、この導出を9×9の行列での数値対角化と比較して（弱駆動・大デチューニングでの一致、強駆動でのずれ）をその場で検算するミニコードも用意できます。パラメータ（\omega_{0,1},\alpha_{0,1},J,\omega_d,\Omega_{0,1},\phi_{0,1}）を教えてください。</p>
 </section>
 </section>
 
