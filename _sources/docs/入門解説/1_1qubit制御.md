@@ -621,10 +621,109 @@ $$
 :align: center
 ```
 
-Rabi振動の挙動は駆動周波数$\omega_{\rm d}$のqubit周波数$\omega_{\rm q}$からの離調$\omega_{\rm q}-\omega_{\rm d}$に応じて大きく変化する. $|\omega_{\rm q}-\omega_{\rm d}|$が大きい時, 回転軸の角度を表す$\theta$は$0$または$\pi$に近づき(つまり回転軸はZ軸に近づき), Rabi周波数は大きくなる. つまり非共鳴駆動の場合は, Rabi振動としては振幅は小さく, 振動は早く見える. 一方$\omega_{\rm q}=\omega_{\rm d}$の共鳴駆動の場合, $\theta=\pi/2$となり(つまり回転軸はXY平面上にあり), Rabi周波数は最小値$\varOmega_{\rm Rabi}=\varOmega$となる. つまり共鳴駆動の場合は, Rabi振動としては振幅は最大($+1$から$-1$までの大円運動)に, 振動数は最小値となり駆動振幅$\varOmega$に等しくなる. 
+### ラビ振動の挙動
 
-この性質を用いて, qubitの共鳴周波数を求めることが可能である. つまり駆動周波数を掃引しながら, 各駆動周波数の場合のRabi振動を観測し, Rabi周波数が最小となる条件の駆動周波数を探索することで, 未知のqubit共鳴周波数を調べることが可能である. このようにして得られる振動パターンは山模様をしているのでChevronパターンと呼ばれる. 
+初期状態$\ket{0}$にあるqubit系に対して一定時間マイクロ波駆動を行った後のZ期待値の測定結果を計算する. 
+振幅$\varOmega$, 周波数$\omega_{\rm d}$, 位相$\phi$のマイクロ波を時間$t$だけ駆動した時のユニタリ時間発展演算子は, 上の計算により
 
+$$
+\begin{align}
+\hat{U}(t) 
+&= \exp\left[-{\rm i}
+\frac{\varOmega_{\rm Rabi}t}{2}
+\left(
+\cos\theta\hat{Z}
++
+\sin\theta
+\hat{X}_{-\phi}
+\right)
+\right]
+\end{align}
+$$
+
+と与えられる. 
+ここで
+
+$$
+\begin{align}
+\left(
+\cos\theta\hat{Z}
++
+\sin\theta
+\hat{X}_{-\phi}
+\right)^2
+= \hat{I}
+\end{align}
+$$
+
+であり, $\hat{A}^2=\hat{I}$を満たす演算子$\hat{A}$に対して成り立つ公式
+
+$$
+\begin{align}
+\exp({\rm i}\theta\hat{A}) = \cos\theta\hat{I} + {\rm i}\sin\theta{\hat{A}}
+\end{align}
+$$
+
+を用いると, 
+
+$$
+\begin{align}
+\hat{U}(t)\ket{0}
+&= \cos
+\frac{\varOmega_{\rm Rabi}t}{2}
+\hat{I}
+-{\rm i}
+\sin\frac{\varOmega_{\rm Rabi}t}{2}
+\left(
+\cos\theta\hat{Z}
++
+\sin\theta
+\hat{X}_{-\phi}
+\right)
+\ket{0}\nonumber\\
+& = 
+\left(
+\cos
+\frac{\varOmega_{\rm Rabi}t}{2}
+-{\rm i}
+\sin\frac{\varOmega_{\rm Rabi}t}{2}
+\cos\theta
+\right)
+\ket{0}
+-{\rm i}
+\sin\frac{\varOmega_{\rm Rabi}t}{2}
+\sin\theta
+{\rm e}^{-{\rm i}\phi}
+\ket{1}
+\end{align}
+$$
+
+となる.
+この状態に対するZ期待値を計算すると, 
+
+$$
+\begin{align}
+\langle \hat{Z} \rangle = 
+\frac{1+\cos(2\theta)}{2} + \frac{1-\cos(2\theta)}{2}\cos(\varOmega_{\rm Rabi}t)
+\end{align}
+$$
+
+が得られる. 
+
+様々な駆動周波数$\omega_{\rm d}$の場合のラビ振動の結果を下図にプロットした. 
+ラビ振動の振る舞いは, 駆動周波数のqubit周波数$\omega_{\rm q}$からの離調$\omega_{\rm q}-\omega_{\rm d}$に応じて大きく変化する. 
+$|\omega_{\rm q}-\omega_{\rm d}|$が大きい時, 回転軸の角度を表す$\theta$は$0$または$\pi$に近づき(つまり回転軸はZ軸に近づき), Rabi周波数は大きくなる. 
+つまり非共鳴駆動の場合は, Rabi振動としては振幅は小さく, 振動は早く見える. 
+一方$\omega_{\rm q}=\omega_{\rm d}$の共鳴駆動の場合, $\theta=\pi/2$となり(つまり回転軸はXY平面上にあり), Rabi周波数は最小値$\varOmega_{\rm Rabi}=\varOmega$となる. 
+つまり共鳴駆動の場合は, Rabi振動としては振幅は最大($+1$から$-1$までの大円運動)に, 振動数は最小値となり駆動振幅$\varOmega$に等しくなる. 
+
+この性質を用いて, qubitの共鳴周波数を求めることが可能である. 
+駆動周波数を掃引しながら, 各駆動周波数の場合のRabi振動を観測し, Rabi周波数が最小となる条件の駆動周波数を探索することで, 未知のqubit共鳴周波数を調べることが可能である. このようにして得られる振動パターンは山模様をしているのでChevronパターンと呼ばれる. 
+
+```{image} ../../figs/rabi_chevron.png
+:width: 800px
+:align: center
+```
 
 ## Virtual-Zゲート
 

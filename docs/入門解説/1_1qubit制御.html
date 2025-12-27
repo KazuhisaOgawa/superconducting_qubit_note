@@ -387,6 +387,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部駆動時の時間発展</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">回転波近似について補足</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ラビ振動</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ラビ振動の挙動</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z">Virtual-Zゲート</a></li>
@@ -967,8 +968,100 @@ E_0 &amp; 0 \\
 この回転をしている状態をZ測定して観測される振動は<strong>Rabi振動</strong>, <span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}\)</span>は<strong>Rabi周波数</strong>と呼ばれる.</p>
 <a class="reference internal image-reference" href="../../_images/rabi_bloch.png"><img alt="../../_images/rabi_bloch.png" class="align-center" src="../../_images/rabi_bloch.png" style="width: 600px;" />
 </a>
-<p>Rabi振動の挙動は駆動周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>のqubit周波数<span class="math notranslate nohighlight">\(\omega_{\rm q}\)</span>からの離調<span class="math notranslate nohighlight">\(\omega_{\rm q}-\omega_{\rm d}\)</span>に応じて大きく変化する. <span class="math notranslate nohighlight">\(|\omega_{\rm q}-\omega_{\rm d}|\)</span>が大きい時, 回転軸の角度を表す<span class="math notranslate nohighlight">\(\theta\)</span>は<span class="math notranslate nohighlight">\(0\)</span>または<span class="math notranslate nohighlight">\(\pi\)</span>に近づき(つまり回転軸はZ軸に近づき), Rabi周波数は大きくなる. つまり非共鳴駆動の場合は, Rabi振動としては振幅は小さく, 振動は早く見える. 一方<span class="math notranslate nohighlight">\(\omega_{\rm q}=\omega_{\rm d}\)</span>の共鳴駆動の場合, <span class="math notranslate nohighlight">\(\theta=\pi/2\)</span>となり(つまり回転軸はXY平面上にあり), Rabi周波数は最小値<span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}=\varOmega\)</span>となる. つまり共鳴駆動の場合は, Rabi振動としては振幅は最大(<span class="math notranslate nohighlight">\(+1\)</span>から<span class="math notranslate nohighlight">\(-1\)</span>までの大円運動)に, 振動数は最小値となり駆動振幅<span class="math notranslate nohighlight">\(\varOmega\)</span>に等しくなる.</p>
-<p>この性質を用いて, qubitの共鳴周波数を求めることが可能である. つまり駆動周波数を掃引しながら, 各駆動周波数の場合のRabi振動を観測し, Rabi周波数が最小となる条件の駆動周波数を探索することで, 未知のqubit共鳴周波数を調べることが可能である. このようにして得られる振動パターンは山模様をしているのでChevronパターンと呼ばれる.</p>
+</section>
+<section id="id6">
+<h3>ラビ振動の挙動<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>初期状態<span class="math notranslate nohighlight">\(\ket{0}\)</span>にあるqubit系に対して一定時間マイクロ波駆動を行った後のZ期待値の測定結果を計算する.
+振幅<span class="math notranslate nohighlight">\(\varOmega\)</span>, 周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>, 位相<span class="math notranslate nohighlight">\(\phi\)</span>のマイクロ波を時間<span class="math notranslate nohighlight">\(t\)</span>だけ駆動した時のユニタリ時間発展演算子は, 上の計算により</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}(t) 
+&amp;= \exp\left[-{\rm i}
+\frac{\varOmega_{\rm Rabi}t}{2}
+\left(
+\cos\theta\hat{Z}
++
+\sin\theta
+\hat{X}_{-\phi}
+\right)
+\right]
+\end{align}
+\]</div>
+<p>と与えられる.
+ここで</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\left(
+\cos\theta\hat{Z}
++
+\sin\theta
+\hat{X}_{-\phi}
+\right)^2
+= \hat{I}
+\end{align}
+\]</div>
+<p>であり, <span class="math notranslate nohighlight">\(\hat{A}^2=\hat{I}\)</span>を満たす演算子<span class="math notranslate nohighlight">\(\hat{A}\)</span>に対して成り立つ公式</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\exp({\rm i}\theta\hat{A}) = \cos\theta\hat{I} + {\rm i}\sin\theta{\hat{A}}
+\end{align}
+\]</div>
+<p>を用いると,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{U}(t)\ket{0}
+&amp;= \cos
+\frac{\varOmega_{\rm Rabi}t}{2}
+\hat{I}
+-{\rm i}
+\sin\frac{\varOmega_{\rm Rabi}t}{2}
+\left(
+\cos\theta\hat{Z}
++
+\sin\theta
+\hat{X}_{-\phi}
+\right)
+\ket{0}\nonumber\\
+&amp; = 
+\left(
+\cos
+\frac{\varOmega_{\rm Rabi}t}{2}
+-{\rm i}
+\sin\frac{\varOmega_{\rm Rabi}t}{2}
+\cos\theta
+\right)
+\ket{0}
+-{\rm i}
+\sin\frac{\varOmega_{\rm Rabi}t}{2}
+\sin\theta
+{\rm e}^{-{\rm i}\phi}
+\ket{1}
+\end{align}
+\end{split}\]</div>
+<p>となる.
+この状態に対するZ期待値を計算すると,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\langle \hat{Z} \rangle = 
+\frac{1+\cos(2\theta)}{2} + \frac{1-\cos(2\theta)}{2}\cos(\varOmega_{\rm Rabi}t)
+\end{align}
+\]</div>
+<p>が得られる.</p>
+<p>様々な駆動周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>の場合のラビ振動の結果を下図にプロットした.
+ラビ振動の振る舞いは, 駆動周波数のqubit周波数<span class="math notranslate nohighlight">\(\omega_{\rm q}\)</span>からの離調<span class="math notranslate nohighlight">\(\omega_{\rm q}-\omega_{\rm d}\)</span>に応じて大きく変化する.
+<span class="math notranslate nohighlight">\(|\omega_{\rm q}-\omega_{\rm d}|\)</span>が大きい時, 回転軸の角度を表す<span class="math notranslate nohighlight">\(\theta\)</span>は<span class="math notranslate nohighlight">\(0\)</span>または<span class="math notranslate nohighlight">\(\pi\)</span>に近づき(つまり回転軸はZ軸に近づき), Rabi周波数は大きくなる.
+つまり非共鳴駆動の場合は, Rabi振動としては振幅は小さく, 振動は早く見える.
+一方<span class="math notranslate nohighlight">\(\omega_{\rm q}=\omega_{\rm d}\)</span>の共鳴駆動の場合, <span class="math notranslate nohighlight">\(\theta=\pi/2\)</span>となり(つまり回転軸はXY平面上にあり), Rabi周波数は最小値<span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}=\varOmega\)</span>となる.
+つまり共鳴駆動の場合は, Rabi振動としては振幅は最大(<span class="math notranslate nohighlight">\(+1\)</span>から<span class="math notranslate nohighlight">\(-1\)</span>までの大円運動)に, 振動数は最小値となり駆動振幅<span class="math notranslate nohighlight">\(\varOmega\)</span>に等しくなる.</p>
+<p>この性質を用いて, qubitの共鳴周波数を求めることが可能である.
+駆動周波数を掃引しながら, 各駆動周波数の場合のRabi振動を観測し, Rabi周波数が最小となる条件の駆動周波数を探索することで, 未知のqubit共鳴周波数を調べることが可能である. このようにして得られる振動パターンは山模様をしているのでChevronパターンと呼ばれる.</p>
+<a class="reference internal image-reference" href="../../_images/rabi_chevron.png"><img alt="../../_images/rabi_chevron.png" class="align-center" src="../../_images/rabi_chevron.png" style="width: 800px;" />
+</a>
 </section>
 </section>
 <section id="virtual-z">
@@ -1048,6 +1141,7 @@ E_0 &amp; 0 \\
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">外部駆動時の時間発展</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">回転波近似について補足</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">ラビ振動</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ラビ振動の挙動</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z">Virtual-Zゲート</a></li>
