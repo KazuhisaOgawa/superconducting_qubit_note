@@ -390,7 +390,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ラビ振動の挙動</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z">Virtual-Zゲート</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quit">任意の1 quitゲートの実装</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hat-r-x-pi-2">π/2パルスによる<span class="math notranslate nohighlight">\(\hat{R}_x(\pi/2)\)</span>ゲート</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z-hat-r-z-phi">virtual-Zによる<span class="math notranslate nohighlight">\(\hat{R}_z(\phi)\)</span>ゲート</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -1054,21 +1058,73 @@ E_0 &amp; 0 \\
 <p>が得られる.</p>
 <p>様々な駆動周波数<span class="math notranslate nohighlight">\(\omega_{\rm d}\)</span>の場合のラビ振動の結果を下図にプロットした.
 ラビ振動の振る舞いは, 駆動周波数のqubit周波数<span class="math notranslate nohighlight">\(\omega_{\rm q}\)</span>からの離調<span class="math notranslate nohighlight">\(\omega_{\rm q}-\omega_{\rm d}\)</span>に応じて大きく変化する.
-<span class="math notranslate nohighlight">\(|\omega_{\rm q}-\omega_{\rm d}|\)</span>が大きい時, 回転軸の角度を表す<span class="math notranslate nohighlight">\(\theta\)</span>は<span class="math notranslate nohighlight">\(0\)</span>または<span class="math notranslate nohighlight">\(\pi\)</span>に近づき(つまり回転軸はZ軸に近づき), Rabi周波数は大きくなる.
+<span class="math notranslate nohighlight">\(|\omega_{\rm q}-\omega_{\rm d}|\)</span>が大きい時, 回転軸の角度を表す<span class="math notranslate nohighlight">\(\theta\)</span>は<span class="math notranslate nohighlight">\(0\)</span>または<span class="math notranslate nohighlight">\(\pi\)</span>に近づき（つまり回転軸はZ軸に近づき）, Rabi周波数は大きくなる.
 つまり非共鳴駆動の場合は, Rabi振動としては振幅は小さく, 振動は早く見える.
-一方<span class="math notranslate nohighlight">\(\omega_{\rm q}=\omega_{\rm d}\)</span>の共鳴駆動の場合, <span class="math notranslate nohighlight">\(\theta=\pi/2\)</span>となり(つまり回転軸はXY平面上にあり), Rabi周波数は最小値<span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}=\varOmega\)</span>となる.
-つまり共鳴駆動の場合は, Rabi振動としては振幅は最大(<span class="math notranslate nohighlight">\(+1\)</span>から<span class="math notranslate nohighlight">\(-1\)</span>までの大円運動)に, 振動数は最小値となり駆動振幅<span class="math notranslate nohighlight">\(\varOmega\)</span>に等しくなる.</p>
+一方<span class="math notranslate nohighlight">\(\omega_{\rm q}=\omega_{\rm d}\)</span>の共鳴駆動の場合, <span class="math notranslate nohighlight">\(\theta=\pi/2\)</span>となり（つまり回転軸はXY平面上にあり）, Rabi周波数は最小値<span class="math notranslate nohighlight">\(\varOmega_{\rm Rabi}=\varOmega\)</span>となる.
+つまり共鳴駆動の場合は, Rabi振動としては振幅は最大（<span class="math notranslate nohighlight">\(+1\)</span>から<span class="math notranslate nohighlight">\(-1\)</span>までの大円運動）に, 振動数は最小値となり駆動振幅<span class="math notranslate nohighlight">\(\varOmega\)</span>に等しくなる.</p>
 <p>この性質を用いて, qubitの共鳴周波数を求めることが可能である.
-駆動周波数を掃引しながら, 各駆動周波数の場合のRabi振動を観測し, Rabi周波数が最小となる条件の駆動周波数を探索することで, 未知のqubit共鳴周波数を調べることが可能である. このようにして得られる振動パターンは山模様をしているのでChevronパターンと呼ばれる.</p>
+駆動周波数を掃引しながら, 各駆動周波数の場合のRabi振動を観測し, Rabi周波数が最小となる条件の駆動周波数を探索することで, 未知のqubit共鳴周波数を調べることが可能である. このようにして得られる振動パターンは山模様をしているので<strong>シェブロンパターン</strong>と呼ばれる.</p>
 <a class="reference internal image-reference" href="../../_images/rabi_chevron.png"><img alt="../../_images/rabi_chevron.png" class="align-center" src="../../_images/rabi_chevron.png" style="width: 800px;" />
 </a>
 </section>
 </section>
-<section id="virtual-z">
-<h2>Virtual-Zゲート<a class="headerlink" href="#virtual-z" title="Link to this heading">#</a></h2>
-<p>測定はZ測定しかできない。
-結局回路は,</p>
-<p>任意の1 qubitゲートがこれで実現できる.</p>
+<section id="quit">
+<h2>任意の1 quitゲートの実装<a class="headerlink" href="#quit" title="Link to this heading">#</a></h2>
+<p>任意の1 qubitゲートは, 共鳴マイクロ波の<strong>π/2パルス</strong>（half-pi, hpi）によるX軸回りの90°回転ゲート<span class="math notranslate nohighlight">\(\hat{R}_x(\pi/2)\)</span>と, 駆動マイクロ波の基準位相シフトによる<strong>virtual-Zゲート</strong><span class="math notranslate nohighlight">\(\hat{R}_z(\phi)\)</span>を組み合わせて実現できる.
+実際, 任意の任意の1 qubitゲート<span class="math notranslate nohighlight">\(\hat{U}\)</span>はグローバル位相<span class="math notranslate nohighlight">\({\rm e}^{{\rm i}\alpha}\)</span>を除いて</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U} = {\rm e}^{{\rm i}\alpha}\, \hat{R}_z(\beta)\,\hat{R}_y(\gamma)\,\hat{R}_z(\delta)
+\qquad (\beta,\gamma,\delta\in\mathbb{R})
+\end{align}
+\]</div>
+<p>と書ける（いわゆるZYZ Euler分解）.
+そして<span class="math notranslate nohighlight">\(\hat{R}_y(\gamma)\)</span>は<span class="math notranslate nohighlight">\(\hat{R}_x(\pi/2)\)</span>と<span class="math notranslate nohighlight">\(\hat{R}_z(\cdot)\)</span>を用いて以下のように構成できる:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\hat{R}_y(\gamma)
+&amp;= \hat{R}_x\!\left(\frac{\pi}{2}\right)\hat{R}_z(\gamma)\hat{R}_x\!\left(-\frac{\pi}{2}\right)\\
+&amp;= \hat{R}_x\!\left(\frac{\pi}{2}\right)\,\hat{R}_z(\gamma)\,
+\Bigl[\hat{R}_x\!\left(\frac{\pi}{2}\right)\Bigr]^3.
+\end{aligned}
+\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\hat{R}_x(\pi/2)\)</span>と<span class="math notranslate nohighlight">\(\hat{R}_z(\phi)\)</span>は以下の方法で実現できるため, これらを組み合わせることで任意の1 qubitゲートが実現可能である.</p>
+<section id="hat-r-x-pi-2">
+<h3>π/2パルスによる<span class="math notranslate nohighlight">\(\hat{R}_x(\pi/2)\)</span>ゲート<a class="headerlink" href="#hat-r-x-pi-2" title="Link to this heading">#</a></h3>
+<p>共鳴マイクロ波駆動によるラビ振動によって,</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+\hat{U}(t) = \exp\left(
+\frac{-{\rm i}\varOmega t\hat{X}}{2}
+    \right)
+\end{align}
+\]</div>
+<p>という時間発展が誘起される.
+したがって<span class="math notranslate nohighlight">\(\varOmega t=\pi/2\)</span>となるようにパルス振幅<span class="math notranslate nohighlight">\(\varOmega\)</span>とパルス時間長さ<span class="math notranslate nohighlight">\(t\)</span>を較正する事で, <span class="math notranslate nohighlight">\(\hat{R}_x(\pi/2)\)</span>ゲートが実現できる.
+なお, <span class="math notranslate nohighlight">\(\varOmega t=\pi\)</span>と選ぶことでπ回転ゲートや, 駆動マイクロ波位相を変えることでY軸回転ゲートなども実現可能である.</p>
+</section>
+<section id="virtual-z-hat-r-z-phi">
+<h3>virtual-Zによる<span class="math notranslate nohighlight">\(\hat{R}_z(\phi)\)</span>ゲート<a class="headerlink" href="#virtual-z-hat-r-z-phi" title="Link to this heading">#</a></h3>
+<p>Z軸回転は, マイクロ波駆動によるX軸回転やY軸回転ゲートを組みわせることでも実現できるが, より簡単には, マイクロ波の位相基準をシフトさせることでマイクロ波駆動無しにZ軸回転を実現する, <strong>virtual-Z</strong>という手法が一般には用いられる.</p>
+<p>virtual-Zを説明するために, まず超伝導qubit系におけるX測定, Y測定の方法について説明する.
+超伝導qubit系では, Z測定は後で説明する分散読み出しという手法で実現することができるが, X測定, Y測定は直接実現するこはできない.
+したがってπ/2ゲートとZ測定を組みわせて実現される.
+X測定の場合, Z測定の直前で<span class="math notranslate nohighlight">\(\hat{R}_y(-\pi/2)\)</span>ゲートを実行すれば, <span class="math notranslate nohighlight">\(\ket{+}\)</span>, <span class="math notranslate nohighlight">\(\ket{-}\)</span>状態がそれぞれ<span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span>状態に移されるため, この後のZ測定は実効的にX測定を行っていることと等価となる.
+Y測定の場合も同様であり, Z測定の直前で<span class="math notranslate nohighlight">\(\hat{R}_x(\pi/2)\)</span>ゲートを実行すれば, <span class="math notranslate nohighlight">\(\ket{+{\rm i}}\)</span>, <span class="math notranslate nohighlight">\(\ket{-{\rm i}}\)</span>状態がそれぞれ<span class="math notranslate nohighlight">\(\ket{0}\)</span>, <span class="math notranslate nohighlight">\(\ket{1}\)</span>状態に移されるため, この後のZ測定は実効的にY測定を行っていることと等価となる.
+以上より, 超伝導qubit系における測定を含む任意の量子回路では, 必ず最後はZ測定が行われると仮定して良い.</p>
+<p>さて, 今下図の1段目の回路のように, <span class="math notranslate nohighlight">\(\hat{R}_{\phi_1}(\theta_1)\)</span>ゲート, <span class="math notranslate nohighlight">\(\hat{R}_{\phi_2}(\theta_2)\)</span>ゲート, …とゲート操作が続いた後, 最後にZ測定を行うと仮定し, <span class="math notranslate nohighlight">\(\hat{R}_{\phi_1}(\theta_1)\)</span>ゲートの直前でZ回転ゲート<span class="math notranslate nohighlight">\(\hat{R}_z(\phi)\)</span>を実現することを考える（ここで<span class="math notranslate nohighlight">\(\hat{R}_{\phi_i}(\theta_i)\)</span>ゲートは, <span class="math notranslate nohighlight">\(\cos\phi_i\,\hat{X} + \sin\phi_i\,\hat{Y}\)</span>軸周りの角度<span class="math notranslate nohighlight">\(\theta_i\)</span>回転を表す）.
+下図の2段目の回路のように, <span class="math notranslate nohighlight">\(\hat{R}_{\phi_1}(\theta_1)\)</span>, <span class="math notranslate nohighlight">\(\hat{R}_{\phi_2}(\theta_2)\)</span>は, それぞれ<span class="math notranslate nohighlight">\(\phi_1-\phi\)</span>, <span class="math notranslate nohighlight">\(\phi_2-\phi\)</span>軸回りの回転ゲートを, 回転角<span class="math notranslate nohighlight">\(\pm\phi\)</span>のZ回転ゲートで挟んだ形に変形することができる.
+そうすると, 左右の<span class="math notranslate nohighlight">\(\hat{R}_z(\pm\phi)\)</span>ゲートは隣にある<span class="math notranslate nohighlight">\(\hat{R}_z(\mp\phi)\)</span>ゲートとそれぞれ打ち消しあって消えることになる.
+一番最後にお釣りのZ回転ゲートが残るが, このゲートは最後のZ測定の結果に影響を与えないため省略することができる.
+したがって下図の3段目の回路のように, Z軸回転ゲートを行う代わりに, それ以降の<span class="math notranslate nohighlight">\(\hat{R}_{\phi_i}(\theta_i)\)</span>ゲートの回転軸を<span class="math notranslate nohighlight">\(-\phi\)</span>だけずらす事でも同じ測定結果が実現できる.
+<span class="math notranslate nohighlight">\(\hat{R}_{\phi_i}(\theta_i)\)</span>ゲートの回転軸を<span class="math notranslate nohighlight">\(-\phi\)</span>だけずらす事は, 超伝導qubit系では駆動マイクロ波の位相を, 本来の角度から<span class="math notranslate nohighlight">\(-\phi\)</span>だけずらす事に対応する.
+このように, マイクロ波の位相基準をシフトさせることでマイクロ波駆動無しにZ軸回転を実現することができる.</p>
+<a class="reference internal image-reference" href="../../_images/virtual-Z.png"><img alt="../../_images/virtual-Z.png" class="align-center" src="../../_images/virtual-Z.png" style="width: 800px;" />
+</a>
+</section>
 </section>
 </section>
 
@@ -1144,7 +1200,11 @@ E_0 &amp; 0 \\
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">ラビ振動の挙動</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z">Virtual-Zゲート</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quit">任意の1 quitゲートの実装</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hat-r-x-pi-2">π/2パルスによる<span class="math notranslate nohighlight">\(\hat{R}_x(\pi/2)\)</span>ゲート</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#virtual-z-hat-r-z-phi">virtual-Zによる<span class="math notranslate nohighlight">\(\hat{R}_z(\phi)\)</span>ゲート</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
