@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>読み出し &#8212; 超伝導qubitノート</title>
+    <title>分散読み出し &#8212; 超伝導qubitノート</title>
   
   
   
@@ -57,11 +57,13 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/入門解説/3_読み出し';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="入門編" href="../SCQ_fundamentals/SCQ_intro.html" />
-    <link rel="prev" title="2 qubit" href="2_2qubit%E5%88%B6%E5%BE%A1.html" />
+    <link rel="prev" title="2 qubit制御" href="2_2qubit%E5%88%B6%E5%BE%A1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,8 +178,8 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="0_%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD.html">入門解説</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="1_1qubit%E5%88%B6%E5%BE%A1.html">1 qubit制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_2qubit%E5%88%B6%E5%BE%A1.html">2 qubit</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">読み出し</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2qubit%E5%88%B6%E5%BE%A1.html">2 qubit制御</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">分散読み出し</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_fundamentals/SCQ_intro.html">入門編</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -370,7 +372,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>読み出し</h1>
+    <h1>分散読み出し</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -381,8 +383,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">調和振動子</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qubit">qubitと調和振動子の結合系</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分散読み出し</a></li>
 </ul>
             </nav>
         </div>
@@ -395,15 +395,288 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>読み出し<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<h1>分散読み出し<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>超伝導qubitの測定では, qubitに弱く結合した読み出し共振器にマイクロ波を印加し, 反射波の位相からqubitの状態を判別するという<strong>分散読み出し</strong>という手法が一般的に用いられる.
+ここでは分散読み出しの理論について解説する.</p>
 <section id="id2">
 <h2>調和振動子<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-</section>
-<section id="qubit">
-<h2>qubitと調和振動子の結合系<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h2>
-</section>
-<section id="id3">
-<h2>分散読み出し<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>読み出し共振器はLC共振回路で構成されており, 量子的な調和振動子として扱われる.
+調和振動子はエネルギー準位が等間隔に並んでおり, その間隔を<span class="math notranslate nohighlight">\(\hbar\omega_{\rm r}\)</span>とすると, 以下のハミルトニアンで表される:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\hat{H} &amp;= 
+0\cdot\hbar\omega_{\rm r}|0\rangle\langle 0|
++1\cdot\hbar\omega_{\rm r}|1\rangle\langle 1|
++2\cdot\hbar\omega_{\rm r}|2\rangle\langle 2|
++\cdots
+=
+\hbar
+\begin{bmatrix}
+0&amp; &amp; &amp; &amp;\\
+ &amp;\omega_{\rm r}&amp; &amp; &amp;\\
+ &amp; &amp;2\omega_{\rm r}&amp; &amp;\\
+ &amp; &amp; &amp;3\omega_{\rm r}&amp;\\
+ &amp; &amp; &amp; &amp;\ddots\\
+\end{bmatrix}.
+\end{align}
+\end{split}\]</div>
+<p>ここで消滅演算子<span class="math notranslate nohighlight">\(\hat{a}\)</span>, 生成演算子<span class="math notranslate nohighlight">\(\hat{a}^\dagger\)</span>:
+$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cedfb88a-acaa-4b7b-9a12-2243dbb07ecf">
+<span class="eqno">(1)<a class="headerlink" href="#equation-cedfb88a-acaa-4b7b-9a12-2243dbb07ecf" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{a}=
+\begin{bmatrix}
+0&amp;1&amp;        &amp;        &amp;\\
+ &amp;0&amp;\sqrt{2}&amp;        &amp;\\
+ &amp; &amp;0       &amp;\sqrt{3}&amp;\\
+ &amp; &amp;        &amp;\ddots  &amp;\ddots\\
+\end{bmatrix},
+\quad
+\hat{a}^\dagger=
+\begin{bmatrix}
+0&amp;        &amp;        &amp;\\
+1&amp;0       &amp;&amp;        \\
+ &amp;\sqrt{2}&amp;0       &amp;\\
+ &amp;        &amp;\sqrt{3}&amp;\ddots\\
+ &amp;        &amp;        &amp;\ddots\\
+\end{bmatrix}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[を用いると, 個数演算子$\hat{n}:=\hat{a}^\dagger\hat{a}$は\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-8889bab9-096d-48e6-81c2-b9e922b159cf">
+<span class="eqno">(2)<a class="headerlink" href="#equation-8889bab9-096d-48e6-81c2-b9e922b159cf" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{n}=
+\hat{a}^\dagger\hat{a}=
+\begin{bmatrix}
+0&amp; &amp; &amp; &amp;\\
+ &amp;1&amp; &amp; &amp;\\
+ &amp; &amp;2&amp; &amp;\\
+ &amp; &amp; &amp;3&amp;\\
+ &amp; &amp; &amp; &amp;\ddots\\
+\end{bmatrix}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[となり, 調和振動子のハミルトニアンは\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-5b52377a-685a-4440-ab0d-2d41398b99ce">
+<span class="eqno">(3)<a class="headerlink" href="#equation-5b52377a-685a-4440-ab0d-2d41398b99ce" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{H} &amp;= 
+\hbar\omega_{\rm r}\hat{a}^\dagger\hat{a}=
+\hbar
+\begin{bmatrix}
+0&amp; &amp; &amp; &amp;\\
+ &amp;\omega_{\rm r}&amp; &amp; &amp;\\
+ &amp; &amp;2\omega_{\rm r}&amp; &amp;\\
+ &amp; &amp; &amp;3\omega_{\rm r}&amp;\\
+ &amp; &amp; &amp; &amp;\ddots\\
+\end{bmatrix}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}と表せる. \\## qubitと調和振動子の結合系\\分散読み出しの系は, 読み出されるqubitと読み出し共振器が弱く結合した系となっている. 
+このようなqubitと調和振動子の結合系は**ジェインズ・カミングズ（JC）モデル**と呼ばれ, そのハミルトニアンは解析的に対角化可能な都合の良い系となっている.  \\JCハミルトニアンは以下の形で与えられる:\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-4a3f903a-ae38-4cce-9e44-f4f730b58549">
+<span class="eqno">(4)<a class="headerlink" href="#equation-4a3f903a-ae38-4cce-9e44-f4f730b58549" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{H}_{\mathrm{JC}}
+=
+-\hbar\omega_{\rm q}\frac{\hat{Z}}{2}
++\hbar\omega_{\rm r} \hat{a}^\dagger \hat{a}
++\hbar g \left(\hat{a}^\dagger\hat{\sigma} + \hat{a}\hat{\sigma}^\dagger\right).
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[右辺第1項目, 2項目は, それぞれqubit, 読み出し共振器の自由ハミルトニアン, 第3項目は両者の結合を表すハミルトニアンである. 
+この結合項によって, 両者の間で励起が交換される. 
+実際, 全励起数演算子を$\hat{N} := \hat{a}^\dagger \hat{a} + \hat{\sigma}^\dagger\hat{\sigma}$とすると, JCハミルトニアンは全励起数演算子と可換である:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-011cebfc-928c-4538-bbf7-a8f8c63fd471">
+<span class="eqno">(5)<a class="headerlink" href="#equation-011cebfc-928c-4538-bbf7-a8f8c63fd471" title="Permalink to this equation">#</a></span>\[\begin{align}
+[\hat{N}, \hat{H}_{\mathrm{JC}}] = 0
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[したがって, $\hat{N}$についてのハイゼンベルク方程式は\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-06564623-1016-4b84-a77a-fb159377d26d">
+<span class="eqno">(6)<a class="headerlink" href="#equation-06564623-1016-4b84-a77a-fb159377d26d" title="Permalink to this equation">#</a></span>\[\begin{align}
+{\rm i}\hbar {\frac {\mathrm {d} {\hat N}}{\mathrm {d} t}}
+=[\hat{N}, \hat{H}_{\mathrm{JC}}] = 0
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}となるため, $\hat{N}$は時間変化しない.
+つまり全励起数は保存されたままで, qubitと共振器それぞれの励起数が交換されるというダイナミクスが生じる.  \\### JCモデルの解法\\JCモデルにおける時間発展では全励起数は保存されるため, JCハミルトニアンは各総励起数の部分空間でブロック対角化されている:\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-0f17f8a3-1616-471c-a774-0be00e6b6b86">
+<span class="eqno">(7)<a class="headerlink" href="#equation-0f17f8a3-1616-471c-a774-0be00e6b6b86" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{H}_{\rm JC}
+&amp;=
+\begin{bmatrix}
+\bra{\rm g, 0}\hat{H}_{\rm JC}\ket{\rm g, 0} \\
+&amp; \bra{\rm g, 1}\hat{H}_{\rm JC}\ket{\rm g, 1} &amp; \bra{\rm g, 1}\hat{H}_{\rm JC}\ket{\rm e, 0}\\
+&amp; \bra{\rm g, 1}\hat{H}_{\rm JC}\ket{\rm e, 0} &amp; \bra{\rm e, 0}\hat{H}_{\rm JC}\ket{\rm e, 0}\\
+&amp;&amp;&amp; \bra{\rm g, 2}\hat{H}_{\rm JC}\ket{\rm g, 2} &amp; \bra{\rm g, 2}\hat{H}_{\rm JC}\ket{\rm e, 1}\\
+&amp;&amp;&amp; \bra{\rm g, 2}\hat{H}_{\rm JC}\ket{\rm e, 1} &amp; \bra{\rm e, 1}\hat{H}_{\rm JC}\ket{\rm e, 1}\\
+&amp;&amp;&amp;&amp;&amp; \ddots\\
+\end{bmatrix}.
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ここでブラおよびケットにおいて, 左側のスロットはqubitの状態（$\ket{\rm g}$: 基底状態, $\ket{\rm e}$: 基底状態）, 左側のスロットは読み出し共振器の光子数状態を表す.
+したがってJCハミルトニアンの対角化では, $\{|{\rm g},n\rangle, |{\rm e},n-1\rangle\}$で張られる全励起数 $n$（$n \ge 1$）の2次元部分空間だけを考えれば十分である.   
+ 
+全励起数 $n$（$n \ge 1$）の部分空間におけるJCハミルトニアンは, 以下のように表せる:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-94183704-8d11-4d4d-a0af-a3bc52d141bb">
+<span class="eqno">(8)<a class="headerlink" href="#equation-94183704-8d11-4d4d-a0af-a3bc52d141bb" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{H}_{{\rm JC},n}
+&amp;=
+\hbar
+\begin{bmatrix}
+-\frac{\omega_{\rm q}}{2} + \omega_{\rm r} n &amp; g\sqrt{n}\\
+g\sqrt{n} &amp; \frac{\omega_{\rm q}}{2} + \omega_{\rm r}(n-1)
+\end{bmatrix}\nonumber\\
+&amp;=
+\hbar\omega_{\rm r}\left(n-\frac{1}{2}\right)\hat{I}
++
+\hbar\frac{\omega_{\rm r}-\omega_{\rm q}}{2}\hat{Z}
++
+\hbar g\sqrt{n}\hat{X}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ここで, $a\hat{Z}+b\hat{X}$という形のハミルトニアンは, 以下のように変形することができる:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-098c8ba3-865b-4c75-be6b-c20b099fffa3">
+<span class="eqno">(9)<a class="headerlink" href="#equation-098c8ba3-865b-4c75-be6b-c20b099fffa3" title="Permalink to this equation">#</a></span>\[\begin{align}
+a\hat{Z} + b\hat{X}
+&amp;=
+\sqrt{a^2+b^2}\left(\frac{a}{\sqrt{a^2+b^2}} \hat{Z} + \frac{b}{\sqrt{a^2+b^2}} \hat{X}\right)\nonumber\\
+&amp;=\epsilon\left(\cos\theta\,\hat{Z} + \sin\theta\,\hat{X}\right)
+,\\
+\epsilon &amp;:= \sqrt{a^2+b^2},\\
+\theta &amp;:= \arctan \frac{b}{a}.
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[このハミルトニアンの固有値は$\pm\epsilon$, その固有値に属する固有ベクトルは, それぞれ\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-dca1c44a-5fbc-4c65-93a6-cce2309e89a5">
+<span class="eqno">(10)<a class="headerlink" href="#equation-dca1c44a-5fbc-4c65-93a6-cce2309e89a5" title="Permalink to this equation">#</a></span>\[\begin{align}
+\ket{+} &amp;:= \cos\frac{\theta}{2}\ket{0} + \sin\frac{\theta}{2}\ket{1},\\
+\ket{-} &amp;:= \sin\frac{\theta}{2}\ket{0} - \cos\frac{\theta}{2}\ket{1}
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[である. 
+これを踏まえると, $\hat{H}_{{\rm JC},n}$の固有エネルギー$E_{n,\pm}$, 固有状態$\ket{n,\pm}$は以下のように求められる:\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-5dbf79cd-5587-4571-9a05-6af60669d8dc">
+<span class="eqno">(11)<a class="headerlink" href="#equation-5dbf79cd-5587-4571-9a05-6af60669d8dc" title="Permalink to this equation">#</a></span>\[\begin{align}
+E_{n,\pm}
+&amp;=
+\hbar\omega_{\rm r}\left(n-\frac{1}{2}\right)
+\pm
+\frac{\hbar}{2}\sqrt{(\omega_{\rm r}-\omega_{\rm q})^2 + 4g^2 n},\\
+\ket{n,+} &amp;= \cos\frac{\theta_n}{2}\ket{0} + \sin\frac{\theta_n}{2}\ket{1},\\
+\ket{n,-} &amp;= \sin\frac{\theta_n}{2}\ket{0} - \cos\frac{\theta_n}{2}\ket{1},\\
+\theta_n &amp;:= \arctan \frac{2g \sqrt{n}}{\omega_{\rm r}-\omega_{\rm q}}.
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}### 分散条件における近似\\⸻\\次の発展トピック（必要なら）
+	•	分散極限と Schrieffer–Wolff 変換
+	•	Jaynes–Cummings 梯子
+	•	Rabiモデルとの違い（反回転項）
+	•	トランズモンへの拡張（多準位）\\そのまま講義資料に進める構成にもできます。\\## 分散読み出し\\
+分散読み出し（Dispersive Readout）\\⸻\\1. 分散読み出しとは何か\\分散読み出しとは、
+量子ビットの状態を直接遷移させることなく、共振器の応答の変化として間接的に読み出す手法である。\\回路QEDや原子QEDにおいて、
+**非破壊測定（QND測定）**を実現する標準的な読み出し方式として用いられている。\\⸻\\2. 基本構成
+	•	量子ビット（2準位系）
+	•	単一モード共振器
+	•	Jaynes–Cummings 型結合\\⸻\\ハミルトニアン\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ecb09c39-f0bf-49f0-9da0-da745d9118d3">
+<span class="eqno">(12)<a class="headerlink" href="#equation-ecb09c39-f0bf-49f0-9da0-da745d9118d3" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{H}
+=
+\hbar\omega_r \hat{a}^\dagger \hat{a}
+-
+\hbar\omega_q\frac{\hat{Z}}{2}
++
+\hbar g\left(\hat{a}^\dagger\hat{\sigma} + \hat{a}\hat{\sigma}^\dagger\right)
+\end{align}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}⸻\\3. 分散極限\\量子ビットと共振器の周波数差
+$\Delta = \omega_q - \omega_r$\\が結合定数 g より十分大きいとき、\\$|\Delta| \gg g$\\この領域を 分散極限 と呼ぶ。\\⸻\\4. 有効ハミルトニアン\\分散極限では、Schrieffer–Wolff 変換により
+ハミルトニアンは次の有効形に近似される。\end{aligned}\end{align} \]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-45fcd6e8-c218-4093-8b3f-baab059361ef">
+<span class="eqno">(13)<a class="headerlink" href="#equation-45fcd6e8-c218-4093-8b3f-baab059361ef" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{H}_{\mathrm{disp}}
+=
+\hbar\left(\omega_r + \chi\hat{Z}\right)a^\dagger a
+-
+\hbar\left(\omega_q + \chi\right)\frac{\hat{Z}}{2}
+\end{align}\]</div>
+<p>$$
+⸻</p>
+<p>分散シフト</p>
+<p><span class="math notranslate nohighlight">\(\chi = \frac{g^2}{\Delta}\)</span></p>
+<p>⸻</p>
+<ol class="arabic simple" start="5">
+<li><p>物理的意味</p></li>
+</ol>
+<p>この有効ハミルトニアンが意味することは：
+•	共振器の有効周波数が
+<span class="math notranslate nohighlight">\(\omega_r^{(g)} = \omega_r - \chi\)</span>
+<span class="math notranslate nohighlight">\(\omega_r^{(e)} = \omega_r + \chi\)</span>
+と、量子ビットの状態に依存して変化する
+•	量子ビットの状態は直接遷移させられない</p>
+<p>⸻</p>
+<ol class="arabic simple" start="6">
+<li><p>読み出し原理</p>
+<ol class="arabic simple">
+<li><p>共振器に弱いマイクロ波を入射する</p></li>
+<li><p>反射波または透過波の 位相・振幅を測定する</p></li>
+<li><p>共振器周波数のシフトから量子ビット状態を推定する</p></li>
+</ol>
+</li>
+</ol>
+<p>⸻</p>
+<p>状態と共振器応答の対応
+•	<span class="math notranslate nohighlight">\(|g\rangle\)</span>：共振器が低周波側にシフト
+•	<span class="math notranslate nohighlight">\(|e\rangle\)</span>：共振器が高周波側にシフト</p>
+<p>⸻</p>
+<ol class="arabic simple" start="7">
+<li><p>なぜ非破壊測定なのか</p></li>
+</ol>
+<p>有効ハミルトニアンでは</p>
+<p><span class="math notranslate nohighlight">\([H_{\mathrm{disp}}, \sigma_z] = 0\)</span></p>
+<p>が成り立つ。</p>
+<p>これは：
+•	測定中に量子ビットの <span class="math notranslate nohighlight">\(|g\rangle\)</span>, <span class="math notranslate nohighlight">\(|e\rangle\)</span> が混ざらない
+•	測定によって状態が保存される</p>
+<p>ことを意味する。</p>
+<p>⸻</p>
+<ol class="arabic simple" start="8">
+<li><p>測定信号とSNR</p></li>
+</ol>
+<p>測定の識別能は
+•	分散シフト <span class="math notranslate nohighlight">\(\chi\)</span>
+•	共振器線幅 <span class="math notranslate nohighlight">\(\kappa\)</span>
+•	測定光子数</p>
+<p>により決まる。</p>
+<p>⸻</p>
+<p>分解条件</p>
+<p><span class="math notranslate nohighlight">\(2\chi \gtrsim \kappa\)</span></p>
+<p>この条件を満たすと、状態の識別が容易になる。</p>
+<p>⸻</p>
+<ol class="arabic simple" start="9">
+<li><p>実際の制限要因
+•	過大な測定光子数
+→ 量子ビットの誘起緩和（Purcell効果）
+•	共振器中の熱光子
+→ 位相緩和（dephasing）
+•	非理想な増幅器ノイズ</p></li>
+</ol>
+<p>⸻</p>
+<ol class="arabic simple" start="10">
+<li><p>まとめ
+•	分散読み出しは 共振器周波数の状態依存シフトを利用する
+•	量子ビットを直接遷移させないため QND測定が可能
+•	回路QEDにおける標準的読み出し方式
+•	性能は \chi, \kappa と測定設計で決まる</p></li>
+</ol>
+<p>⸻</p>
+<p>発展トピック（必要なら）
+•	トランズモンにおける分散シフトの厳密式
+•	多準位効果と臨界光子数
+•	読み出し誘起デコヒーレンス
+•	実験パラメータ設計指針</p>
+<p>そのまま次章に展開できる構成です。</p>
 </section>
 </section>
 
@@ -443,7 +716,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2 qubit</p>
+        <p class="prev-next-title">2 qubit制御</p>
       </div>
     </a>
     <a class="right-next"
@@ -472,8 +745,6 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">調和振動子</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qubit">qubitと調和振動子の結合系</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">分散読み出し</a></li>
 </ul>
   </nav></div>
 

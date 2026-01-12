@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>入門解説 &#8212; 超伝導qubitノート</title>
+    <title>様々な超伝導qubit &#8212; 超伝導qubitノート</title>
   
   
   
@@ -59,11 +59,9 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/入門解説/0_イントロ';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/techniques/色々なqubit';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1 qubit制御" href="1_1qubit%E5%88%B6%E5%BE%A1.html" />
-    <link rel="prev" title="超伝導qubitノート" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -126,6 +124,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -175,11 +175,11 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">入門解説</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="1_1qubit%E5%88%B6%E5%BE%A1.html">1 qubit制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="2_2qubit%E5%88%B6%E5%BE%A1.html">2 qubit制御</a></li>
-<li class="toctree-l2"><a class="reference internal" href="3_%E8%AA%AD%E3%81%BF%E5%87%BA%E3%81%97.html">分散読み出し</a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../%E5%85%A5%E9%96%80%E8%A7%A3%E8%AA%AC/0_%E3%82%A4%E3%83%B3%E3%83%88%E3%83%AD.html">入門解説</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%85%A5%E9%96%80%E8%A7%A3%E8%AA%AC/1_1qubit%E5%88%B6%E5%BE%A1.html">1 qubit制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%85%A5%E9%96%80%E8%A7%A3%E8%AA%AC/2_2qubit%E5%88%B6%E5%BE%A1.html">2 qubit制御</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../%E5%85%A5%E9%96%80%E8%A7%A3%E8%AA%AC/3_%E8%AA%AD%E3%81%BF%E5%87%BA%E3%81%97.html">分散読み出し</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../SCQ_fundamentals/SCQ_intro.html">入門編</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -258,7 +258,7 @@
       
       
       
-      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/入門解説/0_イントロ.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/KazuhisaOgawa/supreconducting_qubit_note/issues/new?title=Issue%20on%20page%20%2Fdocs/techniques/色々なqubit.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -288,7 +288,7 @@
       
       
       
-      <li><a href="../../_sources/docs/入門解説/0_イントロ.md" target="_blank"
+      <li><a href="../../_sources/docs/techniques/色々なqubit.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -359,7 +359,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -370,11 +372,31 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>入門解説</h1>
+    <h1>様々な超伝導qubit</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#charge-qubit">電荷量子ビット（charge qubit）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">基本構造</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">競合する2つのエネルギー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">ハミルトニアン（基本式）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">電荷基底での直感</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2準位有効ハミルトニアン</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">読み出し</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">最大の弱点：電荷ノイズ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">その後の進化（重要）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">まとめ（要点）</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">磁束量子ビット</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -384,11 +406,111 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>入門解説<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>超伝導qubitの制御について, ある程度理想化された状況を仮定して数式を用いた説明を行う.</p>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="qubit">
+<h1>様々な超伝導qubit<a class="headerlink" href="#qubit" title="Link to this heading">#</a></h1>
+<section id="charge-qubit">
+<h2>電荷量子ビット（charge qubit）<a class="headerlink" href="#charge-qubit" title="Link to this heading">#</a></h2>
+<p>超伝導アイランド上のクーパー対（電荷 2e）の個数を量子状態として用いる, 最も基本的な超伝導量子ビットで, 別名 Cooper pair box（CPB）とも呼ばれる.</p>
+<section id="id1">
+<h3>基本構造<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>図のように, トランズモンと同様にジョセフソン接合と
+•	超伝導アイランド（非常に小さい）
+•	ジョセフソン接合（外部リードと弱結合）
+•	ゲート容量 C_g と ゲート電圧 V_g（電荷を制御）</p>
+<p>アイランドが小さいため, 1 個のクーパー対を載せるエネルギーが大きいのが本質.</p>
+<a class="reference internal image-reference" href="../../_images/charge_qubit.png"><img alt="../../_images/charge_qubit.png" class="align-center" src="../../_images/charge_qubit.png" style="width: 400px;" />
+</a>
+</section>
+<section id="id2">
+<h3>競合する2つのエネルギー<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>電荷量子ビットの物理は次の競合で決まる.</p>
+<p>充電エネルギー:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+E_C=\frac{(2e)^2}{2C_\Sigma}
+\end{align}
+\]</div>
+<p>•	<span class="math notranslate nohighlight">\(C_\Sigma\)</span>：アイランドの全容量
+•	電荷数 <span class="math notranslate nohighlight">\(n\)</span> が良い量子数になりやすい</p>
+<p>ジョセフソンエネルギー:</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+-E_J\cos\phi
+\end{align}
+\]</div>
+<p>•	クーパー対がトンネルし, 異なる電荷数を混成</p>
+</section>
+<section id="id3">
+<h3>ハミルトニアン（基本式）<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+\begin{align}
+H=4E_C(\hat n-n_g)^2 - E_J\cos\hat\phi
+\end{align}
+\]</div>
+<p>•	<span class="math notranslate nohighlight">\(\hat n\)</span>：クーパー対数演算子
+•	<span class="math notranslate nohighlight">\(\hat\phi\)</span>：位相演算子（<span class="math notranslate nohighlight">\([\hat\phi,\hat n]=i\)</span>）
+•	<span class="math notranslate nohighlight">\(n_g=\dfrac{C_gV_g}{2e}\)</span>：ゲート電荷</p>
+</section>
+<section id="id4">
+<h3>電荷基底での直感<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(|n\rangle=\text{「クーパー対が }n\text{ 個」}\)</span>
+•	充電項 4E_C(n-n_g)^2 は n ごとの放物線
+•	n_g を掃引すると放物線が交差</p>
+<p>電荷縮退点（sweet spot）</p>
+<p><span class="math notranslate nohighlight">\(n_g=\frac12\)</span>
+で <span class="math notranslate nohighlight">\(|n=0\rangle\)</span> と <span class="math notranslate nohighlight">\(|n=1\rangle\)</span> が縮退し, <span class="math notranslate nohighlight">\(-E_J\cos\phi\)</span> により避けられた交差が生じる.</p>
+</section>
+<section id="id5">
+<h3>2準位有効ハミルトニアン<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(|0\rangle\)</span>, <span class="math notranslate nohighlight">\(|1\rangle\)</span> の部分空間に制限すると</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+H_{\rm eff}
+=
+-\frac12\bigl[\varepsilon(n_g)\,\sigma_z + E_J\,\sigma_x\bigr]\\
+\varepsilon(n_g)=8E_C\!\left(n_g-\frac12\right)
+\end{align}
+\end{split}\]</div>
+<p>•	電圧（n_g）で \sigma_z を制御
+•	ジョセフソン結合で \sigma_x を与える
+→ 電圧操作が非常に直感的</p>
+</section>
+<section id="id6">
+<h3>読み出し<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>•	単電子トランジスタ（SET / RF-SET）
+•	共振器を用いた分散読み出し
+→ アイランド上の平均電荷を検出</p>
+</section>
+<section id="id7">
+<h3>最大の弱点：電荷ノイズ<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>•	背景電荷の揺らぎ（1/f ノイズ）
+•	表面欠陥・トラップ起源</p>
+<p>結果として コヒーレンス時間が短い（nsオーダー）
+→ 実用化の大きな障害</p>
+</section>
+<section id="id8">
+<h3>その後の進化（重要）<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>電荷量子ビットは単体では不利でしたが、現代超伝導量子ビットの原点です。
+•	Transmon：<span class="math notranslate nohighlight">\(E_J/E_C\gg1\)</span> にして電荷感度を指数関数的に抑制
+•	Xmon / 固定周波数トランズモン：スケーラブル実装</p>
+<p>現在主流の超伝導量子計算機は, <strong>「電荷量子ビットをノイズに強くしたもの」</strong> と言える.</p>
+</section>
+<section id="id9">
+<h3>まとめ（要点）<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>•	何を量子状態にする？ → クーパー対の個数
+•	制御は？ → ゲート電圧
+•	強み → 単純・直感的
+•	弱み → 電荷ノイズに極端に弱い
+•	意義 → Transmon などへの発展の出発点</p>
+</section>
+</section>
+<section id="id10">
+<h2>磁束量子ビット<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -404,7 +526,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs/入門解説"
+            path: "./docs/techniques"
         },
         predefinedOutput: true
     }
@@ -421,30 +543,39 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">超伝導qubitノート</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="1_1qubit%E5%88%B6%E5%BE%A1.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">1 qubit制御</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#charge-qubit">電荷量子ビット（charge qubit）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">基本構造</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">競合する2つのエネルギー</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">ハミルトニアン（基本式）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">電荷基底での直感</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2準位有効ハミルトニアン</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">読み出し</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">最大の弱点：電荷ノイズ</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">その後の進化（重要）</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">まとめ（要点）</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">磁束量子ビット</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
